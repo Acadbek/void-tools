@@ -6,5 +6,5 @@ export interface ToolConfig {
   description: string;    // Meta description
   category: ToolCategory;
   componentKey: string;   // Qaysi komponentni yuklash kerakligi
-  icon: string;           // Ikonka nomi
+  icon: string;
 }
