@@ -1,8 +1,6 @@
 import { ToolConfig } from "@/types";
 
 export const toolsRegistry: Record<string, ToolConfig> = {
-  // --- TOP TIER (ENG KO'P ISHLATILADIGANLAR) ---
-
   "image-converter": {
     slug: "image-converter",
     title: "Image Converter",
@@ -68,8 +66,6 @@ export const toolsRegistry: Record<string, ToolConfig> = {
     icon: "Image"
   },
 
-  // --- SECOND TIER (TEZ-TEZ ISHLATILADIGANLAR) ---
-
   "word-counter": {
     slug: "word-counter",
     title: "Word & Character Counter",
@@ -111,8 +107,6 @@ export const toolsRegistry: Record<string, ToolConfig> = {
     icon: "Wind"
   },
 
-  // --- THIRD TIER (MAXSUS VOSTALAR) ---
-
   "unit-converter": {
     slug: "unit-converter",
     title: "Universal Unit Converter",
@@ -153,8 +147,6 @@ export const toolsRegistry: Record<string, ToolConfig> = {
     componentKey: "PdfToImage",
     icon: "FileStack"
   },
-
-  // --- DEV & NICHE TOOLS ---
 
   "fake-data-generator": {
     slug: "fake-data-generator",
