@@ -7,7 +7,7 @@ import { saveAs } from "file-saver";
 
 export default function QrGenerator() {
   // State Management
-  const [text, setText] = useState("https://t00l.com.br");
+  const [text, setText] = useState("https://t00l.vercel.app");
   const [qrUrl, setQrUrl] = useState<string>("");
   const [width, setWidth] = useState(300);
   const [colorDark, setColorDark] = useState("#000000");

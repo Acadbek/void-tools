@@ -24,7 +24,7 @@ export default function Home() {
           </h1>
 
           <p className="text-xl text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
-            Every tool you need to work with PDFs, Images, and Text in one place.
+            Every tool you need <br /> to work in one place.
             Fast, secure, and completely free.
           </p>
         </div>

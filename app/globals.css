@@ -3,6 +3,8 @@
 :root {
   --background: #ffffff;
   --foreground: #171717;
+  /* Placeholder uchun kulrang rang */
+  --placeholder: #9ca3af;
 }
 
 @theme inline {
@@ -16,6 +18,7 @@
   :root {
     --background: #0a0a0a;
     --foreground: #ededed;
+    --placeholder: #6b7280;
   }
 }
 
@@ -23,4 +26,29 @@ body {
   background: var(--background);
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
+}
+
+/* --- MUHIM TUZATISH --- */
+/* Input va Textarea sizning asosiy rangingizni olishi shart */
+@layer base {
+
+  input,
+  textarea,
+  select {
+    color: var(--foreground) !important;
+    /* Yozuv rangi */
+    background-color: transparent;
+    /* Fon rangi shaffof bo'lsin */
+  }
+
+  /* Placeholder (masalan "Search...") rangi */
+  ::placeholder {
+    color: var(--placeholder);
+    opacity: 1;
+    /* Firefox uchun */
+  }
+}
+
+input {
+  color: black !important;
 }
