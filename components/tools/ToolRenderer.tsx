@@ -55,6 +55,66 @@ const ToolComponents = {
     loading: () => <LoadingSpinner />,
     ssr: false
   }),
+  Base64Converter: dynamic(() => import("./converter/Base64Converter"), {
+    loading: () => <LoadingSpinner />,
+    ssr: false
+  }),
+  JsonToTypescript: dynamic(() => import("./converter/JsonToTypescript"), {
+    loading: () => <LoadingSpinner />,
+    ssr: false
+  }),
+  PdfCompressor: dynamic(() => import("./pdf/PdfCompressor"), {
+    loading: () => <LoadingSpinner />,
+    ssr: false
+  }),
+  PdfToImage: dynamic(() => import("./pdf/PdfToImage"), {
+    loading: () => <LoadingSpinner />,
+    ssr: false
+  }),
+  PdfToWord: dynamic(() => import("./pdf/PdfToWord"), {
+    loading: () => <LoadingSpinner />,
+    ssr: false
+  }),
+  WordToPdf: dynamic(() => import("./pdf/WordToPdf"), {
+    loading: () => <LoadingSpinner />,
+    ssr: false
+  }),
+  PdfSplitter: dynamic(() => import("./pdf/PdfSplitter"), {
+    loading: () => <LoadingSpinner />,
+    ssr: false
+  }),
+  // PdfUnlocker: dynamic(() => import("./pdf/PdfUnlocker"), {
+  //   loading: () => <LoadingSpinner />,
+  //   ssr: false
+  // }),
+  PdfOrganizer: dynamic(() => import("./pdf/PdfOrganizer"), {
+    loading: () => <LoadingSpinner />,
+    ssr: false
+  }),
+  // BackgroundRemover: dynamic(() => import("./image/BackgroundRemover"), {
+  //   loading: () => <LoadingSpinner />,
+  //   ssr: false
+  // }),
+  CssMinifier: dynamic(() => import("./code/CssMinifier"), {
+    loading: () => <LoadingSpinner />,
+    ssr: false
+  }),
+  CssToTailwind: dynamic(() => import("./code/CssToTailwind"), {
+    loading: () => <LoadingSpinner />,
+    ssr: false
+  }),
+  FakeDataGenerator: dynamic(() => import("./generator/FakeDataGenerator"), {
+    loading: () => <LoadingSpinner />,
+    ssr: false
+  }),
+  YoutubeTitleGenerator: dynamic(() => import("./generator/YoutubeTitleGenerator"), {
+    loading: () => <LoadingSpinner />,
+    ssr: false
+  }),
+  OpenGraphPreview: dynamic(() => import("./social/OpenGraphPreview"), {
+    loading: () => <LoadingSpinner />,
+    ssr: false // Brauzerda ishlagani ma'qul
+  }),
 };
 
 export default function ToolRenderer({ componentKey }: { componentKey: string }) {

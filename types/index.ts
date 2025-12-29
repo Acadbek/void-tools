@@ -1,4 +1,4 @@
-export type ToolCategory = 'pdf' | 'image' | 'text' | 'converter' | 'generator';
+export type ToolCategory = 'pdf' | 'image' | 'text' | 'converter' | 'generator' | 'code' | 'social';
 
 export interface ToolConfig {
   slug: string;           // URL dagi nom (masalan: jpg-to-png)

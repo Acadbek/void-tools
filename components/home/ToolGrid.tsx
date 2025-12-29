@@ -16,6 +16,11 @@ const categories = [
   { id: 'image', label: 'Image Tools' },
   { id: 'text', label: 'Text Tools' },
   { id: 'converter', label: 'Converters' },
+  { id: 'code', label: 'Code Tools' },
+  { id: 'generator', label: 'Generator' },
+  { id: 'security', label: 'Security Tools' },
+  { id: 'media', label: 'Media Tools' },
+  { id: 'social', label: 'Social Tools' },
 ];
 
 export default function ToolGrid({ tools }: Props) {

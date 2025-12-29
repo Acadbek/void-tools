@@ -1,0 +1,244 @@
+"use client";
+
+import { useState, useCallback, useRef } from "react";
+import { useDropzone } from "react-dropzone";
+import mammoth from "mammoth";
+// @ts-ignore
+import html2pdf from "html2pdf.js";
+import {
+	FileText,
+	UploadCloud,
+	ArrowRight,
+	Loader2,
+	FileType,
+	RefreshCw,
+	Eye,
+	AlertTriangle
+} from "lucide-react";
+
+export default function WordToPdf() {
+	const [file, setFile] = useState<File | null>(null);
+	const [htmlContent, setHtmlContent] = useState<string>("");
+	const [isConverting, setIsConverting] = useState(false);
+	const [error, setError] = useState<string | null>(null);
+	const previewRef = useRef<HTMLDivElement>(null);
+
+	const onDrop = useCallback(async (acceptedFiles: File[]) => {
+		const selected = acceptedFiles[0];
+		if (!selected?.name.endsWith(".docx")) {
+			setError("Please upload a valid Word (.docx) file.");
+			return;
+		}
+
+		setFile(selected);
+		setError(null);
+		setHtmlContent("");
+
+		try {
+			const arrayBuffer = await selected.arrayBuffer();
+
+			const options = {
+				convertImage: mammoth.images.imgElement((image) => {
+					return image.read("base64").then((imageBuffer) => {
+						return {
+							src: "data:" + image.contentType + ";base64," + imageBuffer
+						};
+					});
+				})
+			};
+
+			const result = await mammoth.convertToHtml({ arrayBuffer }, options);
+
+			if (!result.value.trim()) {
+				setError("No text found!");
+			}
+
+			setHtmlContent(result.value);
+		} catch (err) {
+			console.error(err);
+			setError("Failed to read Word document.");
+		}
+	}, []);
+
+	const { getRootProps, getInputProps, isDragActive } = useDropzone({
+		onDrop,
+		accept: { 'application/vnd.openxmlformats-officedocument.wordprocessingml.document': ['.docx'] },
+		multiple: false
+	});
+
+	const handleDownloadPdf = async () => {
+		if (!htmlContent || !previewRef.current) return;
+		setIsConverting(true);
+
+		const element = previewRef.current;
+
+		const opt = {
+			margin: [15, 15, 15, 15], // Marginlarni sal kattalashtirdim (standart A4 uchun)
+			filename: file?.name.replace(".docx", ".pdf") || "document.pdf",
+			image: { type: 'jpeg', quality: 0.98 },
+			html2canvas: {
+				scale: 2,
+				useCORS: true,
+				letterRendering: true,
+				backgroundColor: "#ffffff",
+				// Canvas balandligini oshirishga urinish
+				windowHeight: element.scrollHeight
+			},
+			jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+			// MUHIM O'ZGARISH: 'avoid-all' olib tashlandi.
+			// Endi u kerak joyda sahifani buzib (split) keyingi betga o'tadi.
+			pagebreak: { mode: ['css', 'legacy'] }
+		};
+
+		try {
+			await html2pdf().set(opt).from(element).save();
+		} catch (err) {
+			console.error(err);
+			setError("Error generating PDF. Try a smaller file.");
+		} finally {
+			setIsConverting(false);
+		}
+	};
+
+	return (
+		<div className="flex flex-col h-full gap-6">
+
+			{/* HEADER */}
+			<div className="bg-indigo-50 border border-indigo-100 p-4 rounded-xl flex items-start gap-3">
+				<div className="p-2 bg-indigo-100 rounded-lg text-indigo-600">
+					<FileType className="w-5 h-5" />
+				</div>
+				<div>
+					<h3 className="font-semibold text-gray-800 text-sm">Convert Word to PDF (Multi-page Support)</h3>
+					<p className="text-xs text-gray-600 mt-1">
+						Optimized for long lists and multi-page documents.
+					</p>
+				</div>
+			</div>
+
+			<div className="grid lg:grid-cols-2 gap-6 h-full">
+
+				{/* LEFT PANE */}
+				<div className="flex flex-col gap-4">
+					<div
+						{...getRootProps()}
+						className={`
+              flex-1 border-2 border-dashed rounded-xl flex flex-col items-center justify-center p-8 transition-all cursor-pointer min-h-[300px]
+              ${isDragActive ? 'border-indigo-500 bg-indigo-50' : 'border-gray-200 hover:border-indigo-400 hover:bg-gray-50'}
+              ${file ? 'bg-indigo-50/30 border-indigo-200' : 'bg-white'}
+            `}
+					>
+						<input {...getInputProps()} />
+
+						{file ? (
+							<div className="text-center animate-in zoom-in duration-300">
+								<div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl mx-auto flex items-center justify-center mb-4">
+									<FileText className="w-8 h-8" />
+								</div>
+								<p className="font-semibold text-gray-800 truncate max-w-[250px] mx-auto">{file.name}</p>
+
+								<button
+									onClick={(e) => { e.stopPropagation(); setFile(null); setHtmlContent(""); }}
+									className="mt-4 text-xs text-red-500 hover:text-red-700 font-medium underline flex items-center justify-center gap-1 mx-auto"
+								>
+									<RefreshCw className="w-3 h-3" /> Change file
+								</button>
+							</div>
+						) : (
+							<div className="text-center">
+								<div className="w-16 h-16 bg-gray-100 text-gray-500 rounded-full mx-auto flex items-center justify-center mb-4">
+									<UploadCloud className="w-8 h-8" />
+								</div>
+								<p className="font-medium text-gray-700">Drop Word (.docx) file</p>
+							</div>
+						)}
+					</div>
+
+					<button
+						onClick={handleDownloadPdf}
+						disabled={!htmlContent || isConverting}
+						className={`
+                  w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-all shadow-md
+                  ${!htmlContent || isConverting
+								? 'bg-gray-100 text-gray-400 cursor-not-allowed shadow-none'
+								: 'bg-indigo-600 text-white hover:bg-indigo-700 hover:shadow-lg'}
+              `}
+					>
+						{isConverting ? (
+							<>
+								<Loader2 className="w-6 h-6 animate-spin" /> Generating PDF...
+							</>
+						) : (
+							<>
+								Download PDF <ArrowRight className="w-5 h-5" />
+							</>
+						)}
+					</button>
+
+					{error && (
+						<div className="flex items-center gap-2 text-sm text-red-600 bg-red-50 p-3 rounded-lg border border-red-100 animate-in slide-in-from-top-1">
+							<AlertTriangle className="w-4 h-4 shrink-0" /> {error}
+						</div>
+					)}
+				</div>
+
+				{/* RIGHT PANE: PREVIEW */}
+				<div className="bg-gray-100 border border-gray-200 rounded-xl p-4 overflow-y-auto max-h-[600px] flex flex-col items-center relative">
+					<div className="sticky top-0 bg-gray-100/90 backdrop-blur w-full py-2 z-10 flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 border-b border-gray-200">
+						<Eye className="w-4 h-4" /> Preview
+					</div>
+
+					{htmlContent ? (
+						<div
+							id="pdf-content"
+							className="bg-white shadow-xl p-[15mm] min-h-[297mm] w-full max-w-[210mm] origin-top"
+						>
+							{/* CSS FIXES FOR LISTS:
+                       - page-break-inside: auto (Listlarga bo'linishga ruxsat berish)
+                       - ul, ol marginlarini to'g'irlash
+                    */}
+							<style>{`
+                        .pdf-preview p, .pdf-preview h1, .pdf-preview h2, .pdf-preview h3, .pdf-preview span, .pdf-preview li {
+                            color: #000000 !important;
+                            line-height: 1.6;
+                        }
+                        
+                        /* Listlarni to'g'ri bo'lish uchun stillar */
+                        .pdf-preview ul, .pdf-preview ol {
+                            page-break-inside: auto !important;
+                            margin-bottom: 1em;
+                        }
+                        
+                        .pdf-preview li {
+                            page-break-inside: avoid; /* Bitta elementni ichini buzmang */
+                            page-break-after: auto;   /* Elementdan keyin buzsa bo'ladi */
+                            margin-bottom: 0.5em;
+                        }
+
+                        /* Jadval bo'linishi */
+                        .pdf-preview table {
+                          page-break-inside: auto;
+                        }
+                        .pdf-preview tr {
+                          page-break-inside: avoid;
+                          page-break-after: auto;
+                        }
+                    `}</style>
+							<div
+								ref={previewRef}
+								className="pdf-preview prose prose-sm max-w-none font-serif text-black"
+								dangerouslySetInnerHTML={{ __html: htmlContent }}
+							/>
+						</div>
+					) : (
+						<div className="h-full flex flex-col items-center justify-center text-gray-400 min-h-[400px]">
+							<FileText className="w-16 h-16 mb-4 opacity-20" />
+							<p className="text-sm">Upload to verify content</p>
+						</div>
+					)}
+				</div>
+
+			</div>
+		</div>
+	);
+}
