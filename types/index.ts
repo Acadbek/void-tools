@@ -1,10 +1,19 @@
 export type ToolCategory = 'pdf' | 'image' | 'text' | 'converter' | 'generator' | 'code' | 'social';
 
 export interface ToolConfig {
-  slug: string;           // URL dagi nom (masalan: jpg-to-png)
-  title: string;          // H1 sarlavha
-  description: string;    // Meta description
+  slug: string;
+  title: string;
+  description: string;
   category: ToolCategory;
-  componentKey: string;   // Qaysi komponentni yuklash kerakligi
+  componentKey: string;
   icon: string;
+  content: {
+    overview: string;
+    howTo: string[];
+    features: string[];
+    faq: {
+      question: string;
+      answer: string;
+    }[];
+  };
 }

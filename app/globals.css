@@ -1,10 +1,13 @@
 @import "tailwindcss";
 
+@plugin "@tailwindcss/typography";
+/* Typography plaginini shu yerda chaqirish ham mumkin */
+
 :root {
   --background: #ffffff;
   --foreground: #171717;
-  /* Placeholder uchun kulrang rang */
-  --placeholder: #9ca3af;
+  --card-bg: #ffffff;
+  --card-border: #e5e7eb;
 }
 
 @theme inline {
@@ -17,8 +20,13 @@
 @media (prefers-color-scheme: dark) {
   :root {
     --background: #0a0a0a;
+    /* To'q qora fon */
     --foreground: #ededed;
-    --placeholder: #6b7280;
+    /* Oqish yozuv */
+    --card-bg: #171717;
+    /* Kartochka uchun to'q rang */
+    --card-border: #262626;
+    /* Kartochka chegarasi */
   }
 }
 
@@ -28,27 +36,18 @@ body {
   font-family: Arial, Helvetica, sans-serif;
 }
 
-/* --- MUHIM TUZATISH --- */
-/* Input va Textarea sizning asosiy rangingizni olishi shart */
+/* Inputlar uchun to'g'ri yechim (Background va Color avtomatik moslashadi) */
 @layer base {
 
   input,
   textarea,
   select {
-    color: var(--foreground) !important;
-    /* Yozuv rangi */
-    background-color: transparent;
-    /* Fon rangi shaffof bo'lsin */
+    @apply bg-transparent border border-gray-300 dark:border-gray-700 rounded-md;
+    color: inherit;
+    /* Otasining rangini oladi */
   }
 
-  /* Placeholder (masalan "Search...") rangi */
   ::placeholder {
-    color: var(--placeholder);
-    opacity: 1;
-    /* Firefox uchun */
+    @apply text-gray-400 dark:text-gray-500;
   }
-}
-
-input {
-  color: black !important;
 }
