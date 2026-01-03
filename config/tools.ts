@@ -1,4 +1,5 @@
 import { ToolConfig } from "@/types";
+import { Layout } from "lucide-react";
 
 export const toolsRegistry: Record<string, ToolConfig> = {
   "image-converter": {
@@ -648,7 +649,73 @@ export const toolsRegistry: Record<string, ToolConfig> = {
         { question: "Does it cache results?", answer: "No, it fetches live data." }
       ]
     },
-  }
+  },
+  "responsive-tester": {
+    slug: "responsive-tester",
+    title: "Responsive Layout Tester",
+    description: "Test your website on different screen sizes (Mobile, Tablet, Desktop) simultaneously. Ideal for developers.",
+    category: "code", // "dev" o'rniga "code" ishlatganingiz ma'qul (mavjud kategoriyalarga moslash uchun)
+    componentKey: "ResponsiveTester",
+    icon: "Smartphone",
+    content: {
+      overview: "Ensure your website looks perfect on every device. This tool simulates various screen resolutions including iPhone, iPad, Laptops, and Desktops. It's an essential tool for developers and designers to test responsive layouts quickly without needing multiple physical devices.",
+      howTo: [
+        "Enter your website URL (e.g., localhost:3000).",
+        "Select a device type (Mobile, Tablet, Desktop).",
+        "Toggle orientation (Portrait/Landscape) if needed.",
+        "Use zoom controls to fit large screens on your display."
+      ],
+      features: [
+        "Multiple device presets (iOS, Android, Web).",
+        "Landscape and Portrait modes.",
+        "Zoom scaling for better visibility.",
+        "Works with localhost servers."
+      ],
+      faq: [
+        { question: "Why does my site show a blank page?", answer: "Some major sites (like Google) block being shown in iframes for security. It works best with your own projects." },
+        { question: "Can I test localhost?", answer: "Yes, as long as your local server is running, you can test it here." }
+      ]
+    }
+  },
+  "seo-meta-generator": {
+    slug: "seo-meta-generator",
+    title: "SEO Suite & OG Builder", // Nomini ham jiddiyroq qildik
+    description: "Generate SEO Meta tags, Open Graph images, JSON-LD Schema (FAQ, Product, Article), and Web Manifests with real-time social previews.",
+    category: "code",
+    componentKey: "UltimateSeoGenerator",
+    icon: "Globe", // "Layout" o'rniga "Globe" mantiqan to'g'riroq (IconMapga qo'shish esdan chiqmasin)
+    content: {
+      overview: "Stop guessing how your link looks on Social Media. This SEO Suite allows you to generate every essential SEO file for your website—from Meta tags and Robots.txt to complex JSON-LD Schemas and PWA Manifests. It features a powerful Visual OG Image Designer and real-time previews for Google, Twitter, Facebook, and Slack.",
+      howTo: [
+        "Select a module from the sidebar (Metadata, Sitemap, OG Studio, Schema, etc.).",
+        "Fill in the details. Your progress is Auto-Saved locally, so you won't lose data.",
+        "Use the 'OG Image Studio' to visually design your social share card with gradients and custom typography.",
+        "Check the 'Real-time Preview' tabs to see how your link appears on Google, Twitter, and Slack.",
+        "Toggle between 'Next.js' and 'HTML' output formats and copy the code."
+      ],
+      features: [
+        "Multi-Platform Live Previews (Google, Twitter, Facebook, Slack).",
+        "Visual Open Graph Image Designer (Gradients, Alignment, Fonts).",
+        "Advanced JSON-LD Schema Generator (FAQ, Product, Article).",
+        "PWA Web Manifest & Dynamic Sitemap Generator.",
+        "LocalStorage Auto-Save & HTML/Next.js Code Export."
+      ],
+      faq: [
+        {
+          question: "Does it save my data if I refresh?",
+          answer: "Yes! We use LocalStorage to auto-save your inputs instantly. You can pick up right where you left off."
+        },
+        {
+          question: "I don't use Next.js. Can I use this?",
+          answer: "Absolutely. Use the output switcher to select 'HTML' mode. It generates standard <meta> tags and scripts compatible with WordPress, PHP, or any HTML site."
+        },
+        {
+          question: "What is the OG Image Studio?",
+          answer: "It's a built-in visual editor that generates the code for @vercel/og (ImageResponse), allowing you to create dynamic social cards without needing Photoshop."
+        }
+      ]
+    }
+  },
 };
 
 export const toolsList = Object.values(toolsRegistry);

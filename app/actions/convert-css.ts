@@ -3,27 +3,27 @@
 import { TailwindConverter } from "css-to-tailwindcss";
 
 export async function convertCssToTailwind(cssInput: string) {
-    if (!cssInput.trim()) return { success: false, data: "" };
+  if (!cssInput.trim()) return { success: false, data: "" };
 
-    try {
-        const converter = new TailwindConverter({
-            remInPx: 16,
-            postCSSPlugins: [],
-            tailwindConfig: {
-                content: [],
-                theme: {
-                    extend: {},
-                },
-            },
-        });
+  try {
+    const converter = new TailwindConverter({
+      remInPx: 16,
+      postCSSPlugins: [],
+      tailwindConfig: {
+        content: [],
+        theme: {
+          extend: {},
+        },
+      },
+    });
 
-        const result = await converter.convertCSS(cssInput);
+    const result = await converter.convertCSS(cssInput);
 
-        const tailwindCss = result.convertedRoot.toString();
+    const tailwindCss = result.convertedRoot.toString();
 
-        return { success: true, data: tailwindCss };
-    } catch (error: any) {
-        console.error("CSS Conversion Error:", error);
-        return { success: false, error: error.message };
-    }
+    return { success: true, data: tailwindCss };
+  } catch (error: any) {
+    console.error("CSS Conversion Error:", error);
+    return { success: false, error: error.message };
+  }
 }

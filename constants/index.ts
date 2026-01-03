@@ -1,0 +1,1 @@
+export const DOMEIN = "https://t00l.vercel.app";

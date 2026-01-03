@@ -4,10 +4,11 @@ import { useState, useEffect, useRef } from "react";
 import QRCode from "qrcode";
 import { Download, QrCode, RefreshCcw, Settings2 } from "lucide-react";
 import { saveAs } from "file-saver";
+import { DOMEIN } from "@/constants";
 
 export default function QrGenerator() {
   // State Management
-  const [text, setText] = useState("https://t00l.vercel.app");
+  const [text, setText] = useState(DOMEIN);
   const [qrUrl, setQrUrl] = useState<string>("");
   const [width, setWidth] = useState(300);
   const [colorDark, setColorDark] = useState("#000000");

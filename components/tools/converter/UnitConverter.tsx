@@ -75,10 +75,8 @@ const CATEGORIES = {
 type CategoryKey = keyof typeof CATEGORIES;
 
 export default function UnitConverter() {
-  // 1. Initial State ni to'g'ri beramiz (Effect kerak bo'lmasligi uchun)
   const [category, setCategory] = useState<CategoryKey>("length");
 
-  // Default values for length
   const defaultUnits = Object.keys(CATEGORIES["length"].units);
   const [fromUnit, setFromUnit] = useState(defaultUnits[0]);
   const [toUnit, setToUnit] = useState(defaultUnits[1] || defaultUnits[0]);
@@ -86,18 +84,15 @@ export default function UnitConverter() {
   const [value, setValue] = useState<number | "">("");
   const [isCopied, setIsCopied] = useState(false);
 
-  // 2. Kategoriya o'zgarganda ishlaydigan yangi funksiya (Effect o'rniga)
   const changeCategory = (newCategory: CategoryKey) => {
     setCategory(newCategory);
 
-    // State o'zgarishini shu zahotiyoq bajaramiz (No cascading render)
     const units = Object.keys(CATEGORIES[newCategory].units);
     setFromUnit(units[0]);
     setToUnit(units[1] || units[0]);
     setValue("");
   };
 
-  // 3. Derived State (Calculation)
   const result = useMemo(() => {
     if (value === "" || isNaN(Number(value))) {
       return "";
@@ -145,7 +140,6 @@ export default function UnitConverter() {
 
   return (
     <div className="space-y-8">
-      {/* TABS */}
       <div className="bg-white p-2 rounded-xl border border-gray-100 shadow-sm overflow-x-auto">
         <div className="flex space-x-2 min-w-max">
           {(Object.keys(CATEGORIES) as CategoryKey[]).map((cat) => {
@@ -154,7 +148,6 @@ export default function UnitConverter() {
             return (
               <button
                 key={cat}
-                // MUHIM: Bu yerda setCategory o'rniga changeCategory ishlatdik
                 onClick={() => changeCategory(cat)}
                 className={`
                   flex items-center gap-2 px-4 py-3 rounded-lg font-medium transition-all
@@ -171,11 +164,8 @@ export default function UnitConverter() {
         </div>
       </div>
 
-      {/* CONVERTER BOX */}
       <div className="bg-white p-6 md:p-10 rounded-2xl border border-gray-200 shadow-lg">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
-
-          {/* FROM SECTION */}
           <div className="w-full space-y-2">
             <label className="text-sm font-bold text-gray-500 uppercase">From</label>
             <input
@@ -196,7 +186,6 @@ export default function UnitConverter() {
             </select>
           </div>
 
-          {/* SWAP BUTTON */}
           <button
             onClick={handleSwap}
             className="p-4 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 hover:scale-110 transition-all mt-6 md:mt-0"
@@ -205,7 +194,6 @@ export default function UnitConverter() {
             <ArrowRightLeft className="w-6 h-6" />
           </button>
 
-          {/* TO SECTION */}
           <div className="w-full space-y-2">
             <label className="text-sm font-bold text-gray-500 uppercase">To</label>
             <div className="relative group">
@@ -240,7 +228,6 @@ export default function UnitConverter() {
         </div>
       </div>
 
-      {/* INFO SECTION */}
       <div className="bg-gray-50 rounded-xl p-6 border border-gray-100">
         <h3 className="font-bold text-gray-900 mb-2">Did you know?</h3>
         <p className="text-gray-600 text-sm">

@@ -115,6 +115,14 @@ const ToolComponents = {
     loading: () => <LoadingSpinner />,
     ssr: false // Brauzerda ishlagani ma'qul
   }),
+  ResponsiveTester: dynamic(() => import("./dev/ResponsiveTester"), {
+    loading: () => <LoadingSpinner />,
+    ssr: false
+  }),
+  UltimateSeoGenerator: dynamic(() => import("./dev/seo-generator"), {
+    loading: () => <LoadingSpinner />,
+    ssr: false
+  }),
 };
 
 export default function ToolRenderer({ componentKey }: { componentKey: string }) {

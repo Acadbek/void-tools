@@ -3,6 +3,7 @@ import { notFound } from "next/navigation";
 import Link from "next/link";
 import { toolsRegistry } from "@/config/tools";
 import ToolRenderer from "@/components/tools/ToolRenderer";
+import { DOMEIN } from "@/constants";
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -20,7 +21,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!tool) return { title: "Tool Not Found" };
 
-  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || "https://t00l.vercel.app";
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || DOMEIN;
 
   return {
     title: `${tool.title} - Free Online Tool`,
