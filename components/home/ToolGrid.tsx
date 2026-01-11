@@ -42,7 +42,7 @@ export default function ToolGrid({ tools }: Props) {
     <div className="space-y-8">
 
       {/* 1. SEARCH & FILTER SECTION */}
-      <div className="flex flex-col md:flex-row gap-4 justify-between items-center bg-card p-4 rounded-2xl shadow-sm border border-border">
+      <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
 
         {/* Categories (Tabs) */}
         <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto no-scrollbar">
@@ -62,7 +62,7 @@ export default function ToolGrid({ tools }: Props) {
         </div>
 
         {/* Search Input */}
-        <div className="relative w-full md:w-80">
+        <div className="relative w-full md:w-90">
           <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <input
             type="text"
