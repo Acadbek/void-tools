@@ -1,6 +1,45 @@
 import { ToolConfig } from "@/types";
 
 export const toolsRegistry: Record<string, ToolConfig> = {
+  "seo-meta-generator": {
+    slug: "seo-meta-generator",
+    title: "SEO Suite & OG Builder",
+    description: "Generate SEO Meta tags, Open Graph images, JSON-LD Schema (FAQ, Product, Article), and Web Manifests with real-time social previews.",
+    category: "code",
+    componentKey: "UltimateSeoGenerator",
+    icon: "Globe",
+    content: {
+      overview: "Stop guessing how your link looks on Social Media. This SEO Suite allows you to generate every essential SEO file for your website—from Meta tags and Robots.txt to complex JSON-LD Schemas and PWA Manifests. It features a powerful Visual OG Image Designer and real-time previews for Google, Twitter, Facebook, and Slack.",
+      howTo: [
+        "Select a module from the sidebar (Metadata, Sitemap, OG Studio, Schema, etc.).",
+        "Fill in the details. Your progress is Auto-Saved locally, so you won't lose data.",
+        "Use the 'OG Image Studio' to visually design your social share card with gradients and custom typography.",
+        "Check the 'Real-time Preview' tabs to see how your link appears on Google, Twitter, and Slack.",
+        "Toggle between 'Next.js' and 'HTML' output formats and copy the code."
+      ],
+      features: [
+        "Multi-Platform Live Previews (Google, Twitter, Facebook, Slack).",
+        "Visual Open Graph Image Designer (Gradients, Alignment, Fonts).",
+        "Advanced JSON-LD Schema Generator (FAQ, Product, Article).",
+        "PWA Web Manifest & Dynamic Sitemap Generator.",
+        "LocalStorage Auto-Save & HTML/Next.js Code Export."
+      ],
+      faq: [
+        {
+          question: "Does it save my data if I refresh?",
+          answer: "Yes! We use LocalStorage to auto-save your inputs instantly. You can pick up right where you left off."
+        },
+        {
+          question: "I don't use Next.js. Can I use this?",
+          answer: "Absolutely. Use the output switcher to select 'HTML' mode. It generates standard <meta> tags and scripts compatible with WordPress, PHP, or any HTML site."
+        },
+        {
+          question: "What is the OG Image Studio?",
+          answer: "It's a built-in visual editor that generates the code for @vercel/og (ImageResponse), allowing you to create dynamic social cards without needing Photoshop."
+        }
+      ]
+    }
+  },
   "image-converter": {
     slug: "image-converter",
     title: "Image Converter",
@@ -672,45 +711,7 @@ export const toolsRegistry: Record<string, ToolConfig> = {
       ]
     }
   },
-  "seo-meta-generator": {
-    slug: "seo-meta-generator",
-    title: "SEO Suite & OG Builder",
-    description: "Generate SEO Meta tags, Open Graph images, JSON-LD Schema (FAQ, Product, Article), and Web Manifests with real-time social previews.",
-    category: "code",
-    componentKey: "UltimateSeoGenerator",
-    icon: "Globe",
-    content: {
-      overview: "Stop guessing how your link looks on Social Media. This SEO Suite allows you to generate every essential SEO file for your website—from Meta tags and Robots.txt to complex JSON-LD Schemas and PWA Manifests. It features a powerful Visual OG Image Designer and real-time previews for Google, Twitter, Facebook, and Slack.",
-      howTo: [
-        "Select a module from the sidebar (Metadata, Sitemap, OG Studio, Schema, etc.).",
-        "Fill in the details. Your progress is Auto-Saved locally, so you won't lose data.",
-        "Use the 'OG Image Studio' to visually design your social share card with gradients and custom typography.",
-        "Check the 'Real-time Preview' tabs to see how your link appears on Google, Twitter, and Slack.",
-        "Toggle between 'Next.js' and 'HTML' output formats and copy the code."
-      ],
-      features: [
-        "Multi-Platform Live Previews (Google, Twitter, Facebook, Slack).",
-        "Visual Open Graph Image Designer (Gradients, Alignment, Fonts).",
-        "Advanced JSON-LD Schema Generator (FAQ, Product, Article).",
-        "PWA Web Manifest & Dynamic Sitemap Generator.",
-        "LocalStorage Auto-Save & HTML/Next.js Code Export."
-      ],
-      faq: [
-        {
-          question: "Does it save my data if I refresh?",
-          answer: "Yes! We use LocalStorage to auto-save your inputs instantly. You can pick up right where you left off."
-        },
-        {
-          question: "I don't use Next.js. Can I use this?",
-          answer: "Absolutely. Use the output switcher to select 'HTML' mode. It generates standard <meta> tags and scripts compatible with WordPress, PHP, or any HTML site."
-        },
-        {
-          question: "What is the OG Image Studio?",
-          answer: "It's a built-in visual editor that generates the code for @vercel/og (ImageResponse), allowing you to create dynamic social cards without needing Photoshop."
-        }
-      ]
-    }
-  },
+
 };
 
 export const toolsList = Object.values(toolsRegistry);
