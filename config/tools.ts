@@ -1,5 +1,4 @@
 import { ToolConfig } from "@/types";
-import { Layout } from "lucide-react";
 
 export const toolsRegistry: Record<string, ToolConfig> = {
   "image-converter": {
@@ -435,8 +434,6 @@ export const toolsRegistry: Record<string, ToolConfig> = {
       ]
     },
   },
-
-  // --- TEXT & CODE TOOLS ---
   "word-counter": {
     slug: "word-counter",
     title: "Word & Character Counter",
@@ -568,8 +565,6 @@ export const toolsRegistry: Record<string, ToolConfig> = {
       ]
     },
   },
-
-  // --- CONVERTER & SOCIAL TOOLS ---
   "unit-converter": {
     slug: "unit-converter",
     title: "Universal Unit Converter",
@@ -679,11 +674,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
   },
   "seo-meta-generator": {
     slug: "seo-meta-generator",
-    title: "SEO Suite & OG Builder", // Nomini ham jiddiyroq qildik
+    title: "SEO Suite & OG Builder",
     description: "Generate SEO Meta tags, Open Graph images, JSON-LD Schema (FAQ, Product, Article), and Web Manifests with real-time social previews.",
     category: "code",
     componentKey: "UltimateSeoGenerator",
-    icon: "Globe", // "Layout" o'rniga "Globe" mantiqan to'g'riroq (IconMapga qo'shish esdan chiqmasin)
+    icon: "Globe",
     content: {
       overview: "Stop guessing how your link looks on Social Media. This SEO Suite allows you to generate every essential SEO file for your website—from Meta tags and Robots.txt to complex JSON-LD Schemas and PWA Manifests. It features a powerful Visual OG Image Designer and real-time previews for Google, Twitter, Facebook, and Slack.",
       howTo: [
