@@ -140,7 +140,7 @@ export default function UnitConverter() {
 
   return (
     <div className="space-y-8">
-      <div className="bg-white p-2 rounded-xl border border-gray-100 shadow-sm overflow-x-auto">
+      <div className="bg-card p-2 rounded-xl border border-border shadow-sm overflow-x-auto">
         <div className="flex space-x-2 min-w-max">
           {(Object.keys(CATEGORIES) as CategoryKey[]).map((cat) => {
             const Icon = CATEGORIES[cat].icon;
@@ -152,8 +152,8 @@ export default function UnitConverter() {
                 className={`
                   flex items-center gap-2 px-4 py-3 rounded-lg font-medium transition-all
                   ${isActive
-                    ? 'bg-blue-600 text-white shadow-md'
-                    : 'bg-gray-50 text-gray-600 hover:bg-gray-100'}
+                    ? 'bg-primary text-primary-foreground shadow-md'
+                    : 'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground'}
                 `}
               >
                 <Icon className="w-4 h-4" />
@@ -164,21 +164,21 @@ export default function UnitConverter() {
         </div>
       </div>
 
-      <div className="bg-white p-6 md:p-10 rounded-2xl border border-gray-200 shadow-lg">
+      <div className="bg-card p-6 md:p-10 rounded-2xl border border-border shadow-lg">
         <div className="flex flex-col md:flex-row items-center justify-between gap-6">
           <div className="w-full space-y-2">
-            <label className="text-sm font-bold text-gray-500 uppercase">From</label>
+            <label className="text-sm font-bold text-muted-foreground uppercase">From</label>
             <input
               type="number"
               value={value}
               onChange={(e) => setValue(e.target.value === "" ? "" : parseFloat(e.target.value))}
               placeholder="Enter value..."
-              className="w-full text-3xl font-bold p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none"
+              className="w-full text-3xl font-bold p-4 border border-border bg-background rounded-xl focus:ring-2 focus:ring-primary/20 focus:border-primary outline-none text-foreground placeholder:text-muted-foreground/30"
             />
             <select
               value={fromUnit}
               onChange={(e) => setFromUnit(e.target.value)}
-              className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl font-medium text-gray-700 outline-none"
+              className="w-full p-3 bg-muted border border-border rounded-xl font-medium text-foreground outline-none focus:ring-2 focus:ring-primary/20"
             >
               {Object.entries(CATEGORIES[category].units).map(([key, unit]: any) => (
                 <option key={key} value={key}>{unit.label}</option>
@@ -188,26 +188,26 @@ export default function UnitConverter() {
 
           <button
             onClick={handleSwap}
-            className="p-4 rounded-full bg-blue-50 text-blue-600 hover:bg-blue-100 hover:scale-110 transition-all mt-6 md:mt-0"
+            className="p-4 rounded-full bg-secondary text-secondary-foreground hover:bg-secondary/80 hover:scale-110 transition-all mt-6 md:mt-0"
             title="Swap Units"
           >
             <ArrowRightLeft className="w-6 h-6" />
           </button>
 
           <div className="w-full space-y-2">
-            <label className="text-sm font-bold text-gray-500 uppercase">To</label>
+            <label className="text-sm font-bold text-muted-foreground uppercase">To</label>
             <div className="relative group">
               <input
                 type="text"
                 readOnly
                 value={result}
                 placeholder="Result"
-                className="w-full text-3xl font-bold p-4 bg-gray-50 border border-gray-200 rounded-xl text-blue-600 outline-none"
+                className="w-full text-3xl font-bold p-4 bg-muted/50 border border-border rounded-xl text-primary outline-none"
               />
               {result !== "" && (
                 <button
                   onClick={handleCopy}
-                  className="absolute right-3 top-1/2 -translate-y-1/2 p-2 text-gray-400 hover:text-blue-600 bg-white rounded-lg shadow-sm border border-gray-100"
+                  className="absolute right-3 top-1/2 -translate-y-1/2 p-2 text-muted-foreground hover:text-primary bg-card rounded-lg shadow-sm border border-border"
                 >
                   {isCopied ? <Check className="w-5 h-5 text-green-500" /> : <Copy className="w-5 h-5" />}
                 </button>
@@ -217,7 +217,7 @@ export default function UnitConverter() {
             <select
               value={toUnit}
               onChange={(e) => setToUnit(e.target.value)}
-              className="w-full p-3 bg-gray-50 border border-gray-200 rounded-xl font-medium text-gray-700 outline-none"
+              className="w-full p-3 bg-muted border border-border rounded-xl font-medium text-foreground outline-none focus:ring-2 focus:ring-primary/20"
             >
               {Object.entries(CATEGORIES[category].units).map(([key, unit]: any) => (
                 <option key={key} value={key}>{unit.label}</option>
@@ -228,9 +228,9 @@ export default function UnitConverter() {
         </div>
       </div>
 
-      <div className="bg-gray-50 rounded-xl p-6 border border-gray-100">
-        <h3 className="font-bold text-gray-900 mb-2">Did you know?</h3>
-        <p className="text-gray-600 text-sm">
+      <div className="bg-muted/30 rounded-xl p-6 border border-border">
+        <h3 className="font-bold text-foreground mb-2">Did you know?</h3>
+        <p className="text-muted-foreground text-sm">
           This converter uses high-precision standard formulas.
           {category === 'temperature'
             ? " For temperature, we use exact offsets (like -273.15 for Kelvin)."

@@ -190,29 +190,29 @@ export const metadata: Metadata = {
 	if (!isLoaded) return null;
 
 	return (
-		<div className="min-h-screen bg-linear-to-br from-blue-50 via-white to-purple-50 dark:from-gray-950 dark:via-gray-900 dark:to-gray-950 p-4 md:p-8 transition-colors duration-300">
+		<div className="min-h-screen bg-background p-4 md:p-8 transition-colors duration-300">
 			<div className="max-w-7xl mx-auto">
 				<div className="flex flex-col lg:flex-row gap-6 min-h-[600px]">
 
 					<div className="flex flex-col gap-4 w-full lg:w-64 shrink-0">
 						<SeoSidebar activeTab={activeTab} setActiveTab={setActiveTab} data={data} />
 
-						<div className="mt-auto pt-4 border-t border-gray-200 dark:border-gray-800">
-							<button onClick={handleReset} className="w-full flex items-center justify-center gap-2 text-xs font-bold text-red-500 hover:bg-red-50 dark:hover:bg-red-900/20 py-2 rounded-lg transition-colors">
+						<div className="mt-auto pt-4 border-t border-border">
+							<button onClick={handleReset} className="w-full flex items-center justify-center gap-2 text-xs font-bold text-destructive hover:bg-destructive/10 py-2 rounded-lg transition-colors">
 								<RotateCcw className="w-3.5 h-3.5" /> Reset All Data
 							</button>
 						</div>
 					</div>
 
 					<div className="flex-1 space-y-6 min-w-0">
-						<div className="bg-white dark:bg-gray-900 p-4 md:p-6 rounded-2xl border border-gray-200 dark:border-gray-800 shadow-sm transition-colors">
+						<div className="bg-card p-4 md:p-6 rounded-2xl border border-border shadow-sm transition-colors">
 
 							{activeTab === 'meta' && <MetadataForm data={data} setData={setData} ogConfig={ogConfig} />}
 
 							{activeTab === 'sitemap' && <SitemapForm data={data} setData={setData} />}
 							{activeTab === 'manifest' && <ManifestForm manifest={manifest} setManifest={setManifest} />}
 							{activeTab === 'faq' && <SchemaBuilder items={faqItems} setItems={setFaqItems} schemaType={schemaType} setSchemaType={setSchemaType} />}
-							{activeTab === 'robots' && <div className="animate-in fade-in"><h3 className="font-bold text-gray-900 dark:text-white mb-2">Robots.txt</h3><p className="text-sm text-gray-500">Standard allow all.</p></div>}
+							{activeTab === 'robots' && <div className="animate-in fade-in"><h3 className="font-bold text-foreground mb-2">Robots.txt</h3><p className="text-sm text-muted-foreground">Standard allow all.</p></div>}
 							{activeTab === 'og-image' && <OgImageStudio config={ogConfig} setConfig={setOgConfig} />}
 
 						</div>
@@ -220,12 +220,12 @@ export const metadata: Metadata = {
 						<div className="space-y-3">
 							{activeTab !== 'og-image' && (
 								<div className="flex items-center justify-end gap-2">
-									<span className="text-xs font-bold text-gray-400 uppercase">Output Format:</span>
-									<div className="bg-gray-100 dark:bg-gray-800 p-1 rounded-lg flex">
-										<button onClick={() => setOutputFormat('nextjs')} className={`flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-bold transition ${outputFormat === 'nextjs' ? 'bg-white dark:bg-gray-700 shadow text-blue-600 dark:text-blue-400' : 'text-gray-500'}`}>
+									<span className="text-xs font-bold text-muted-foreground uppercase">Output Format:</span>
+									<div className="bg-muted p-1 rounded-lg flex gap-1">
+										<button onClick={() => setOutputFormat('nextjs')} className={`flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-bold transition-all duration-200 ${outputFormat === 'nextjs' ? 'bg-background shadow-sm text-foreground ring-1 ring-border' : 'text-muted-foreground hover:text-foreground hover:bg-background/80 hover:shadow-xs'}`}>
 											<FileCode className="w-3.5 h-3.5" /> Next.js
 										</button>
-										<button onClick={() => setOutputFormat('html')} className={`flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-bold transition ${outputFormat === 'html' ? 'bg-white dark:bg-gray-700 shadow text-orange-600 dark:text-orange-400' : 'text-gray-500'}`}>
+										<button onClick={() => setOutputFormat('html')} className={`flex items-center gap-1 px-3 py-1.5 rounded-md text-xs font-bold transition-all duration-200 ${outputFormat === 'html' ? 'bg-background shadow-sm text-foreground ring-1 ring-border' : 'text-muted-foreground hover:text-foreground hover:bg-background/80 hover:shadow-xs'}`}>
 											<CodeIcon className="w-3.5 h-3.5" /> HTML
 										</button>
 									</div>

@@ -73,9 +73,9 @@ export default function WordToPdf() {
 		const element = previewRef.current;
 
 		const opt = {
-			margin: [15, 15, 15, 15], // Marginlarni sal kattalashtirdim (standart A4 uchun)
+			margin: [15, 15, 15, 15] as [number, number, number, number], // Marginlarni sal kattalashtirdim (standart A4 uchun)
 			filename: file?.name.replace(".docx", ".pdf") || "document.pdf",
-			image: { type: 'jpeg', quality: 0.98 },
+			image: { type: 'jpeg' as const, quality: 0.98 },
 			html2canvas: {
 				scale: 2,
 				useCORS: true,
@@ -84,7 +84,7 @@ export default function WordToPdf() {
 				// Canvas balandligini oshirishga urinish
 				windowHeight: element.scrollHeight
 			},
-			jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' },
+			jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const },
 			// MUHIM O'ZGARISH: 'avoid-all' olib tashlandi.
 			// Endi u kerak joyda sahifani buzib (split) keyingi betga o'tadi.
 			pagebreak: { mode: ['css', 'legacy'] }
@@ -104,13 +104,13 @@ export default function WordToPdf() {
 		<div className="flex flex-col h-full gap-6">
 
 			{/* HEADER */}
-			<div className="bg-indigo-50 border border-indigo-100 p-4 rounded-xl flex items-start gap-3">
-				<div className="p-2 bg-indigo-100 rounded-lg text-indigo-600">
+			<div className="bg-primary/10 border border-primary/20 p-4 rounded-xl flex items-start gap-3">
+				<div className="p-2 bg-primary/20 rounded-lg text-primary">
 					<FileType className="w-5 h-5" />
 				</div>
 				<div>
-					<h3 className="font-semibold text-gray-800 text-sm">Convert Word to PDF (Multi-page Support)</h3>
-					<p className="text-xs text-gray-600 mt-1">
+					<h3 className="font-semibold text-foreground text-sm">Convert Word to PDF (Multi-page Support)</h3>
+					<p className="text-xs text-muted-foreground mt-1">
 						Optimized for long lists and multi-page documents.
 					</p>
 				</div>
@@ -124,32 +124,32 @@ export default function WordToPdf() {
 						{...getRootProps()}
 						className={`
               flex-1 border-2 border-dashed rounded-xl flex flex-col items-center justify-center p-8 transition-all cursor-pointer min-h-[300px]
-              ${isDragActive ? 'border-indigo-500 bg-indigo-50' : 'border-gray-200 hover:border-indigo-400 hover:bg-gray-50'}
-              ${file ? 'bg-indigo-50/30 border-indigo-200' : 'bg-white'}
+              ${isDragActive ? 'border-primary bg-primary/10' : 'border-border hover:border-primary hover:bg-muted'}
+              ${file ? 'bg-primary/5 border-primary/30' : 'bg-card'}
             `}
 					>
 						<input {...getInputProps()} />
 
 						{file ? (
 							<div className="text-center animate-in zoom-in duration-300">
-								<div className="w-16 h-16 bg-blue-100 text-blue-600 rounded-2xl mx-auto flex items-center justify-center mb-4">
+								<div className="w-16 h-16 bg-primary/10 text-primary rounded-2xl mx-auto flex items-center justify-center mb-4">
 									<FileText className="w-8 h-8" />
 								</div>
-								<p className="font-semibold text-gray-800 truncate max-w-[250px] mx-auto">{file.name}</p>
+								<p className="font-semibold text-foreground truncate max-w-[250px] mx-auto">{file.name}</p>
 
 								<button
 									onClick={(e) => { e.stopPropagation(); setFile(null); setHtmlContent(""); }}
-									className="mt-4 text-xs text-red-500 hover:text-red-700 font-medium underline flex items-center justify-center gap-1 mx-auto"
+									className="mt-4 text-xs text-destructive hover:text-destructive font-medium underline flex items-center justify-center gap-1 mx-auto"
 								>
 									<RefreshCw className="w-3 h-3" /> Change file
 								</button>
 							</div>
 						) : (
 							<div className="text-center">
-								<div className="w-16 h-16 bg-gray-100 text-gray-500 rounded-full mx-auto flex items-center justify-center mb-4">
+								<div className="w-16 h-16 bg-muted text-muted-foreground rounded-full mx-auto flex items-center justify-center mb-4">
 									<UploadCloud className="w-8 h-8" />
 								</div>
-								<p className="font-medium text-gray-700">Drop Word (.docx) file</p>
+								<p className="font-medium text-foreground">Drop Word (.docx) file</p>
 							</div>
 						)}
 					</div>
@@ -160,8 +160,8 @@ export default function WordToPdf() {
 						className={`
                   w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-all shadow-md
                   ${!htmlContent || isConverting
-								? 'bg-gray-100 text-gray-400 cursor-not-allowed shadow-none'
-								: 'bg-indigo-600 text-white hover:bg-indigo-700 hover:shadow-lg'}
+								? 'bg-muted text-muted-foreground cursor-not-allowed shadow-none'
+								: 'bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg'}
               `}
 					>
 						{isConverting ? (
@@ -176,15 +176,15 @@ export default function WordToPdf() {
 					</button>
 
 					{error && (
-						<div className="flex items-center gap-2 text-sm text-red-600 bg-red-50 p-3 rounded-lg border border-red-100 animate-in slide-in-from-top-1">
+						<div className="flex items-center gap-2 text-sm text-destructive bg-destructive/10 p-3 rounded-lg border border-destructive/20 animate-in slide-in-from-top-1">
 							<AlertTriangle className="w-4 h-4 shrink-0" /> {error}
 						</div>
 					)}
 				</div>
 
 				{/* RIGHT PANE: PREVIEW */}
-				<div className="bg-gray-100 border border-gray-200 rounded-xl p-4 overflow-y-auto max-h-[600px] flex flex-col items-center relative">
-					<div className="sticky top-0 bg-gray-100/90 backdrop-blur w-full py-2 z-10 flex items-center gap-2 text-xs font-bold text-gray-500 uppercase tracking-wider mb-2 border-b border-gray-200">
+				<div className="bg-muted border border-border rounded-xl p-4 overflow-y-auto max-h-[600px] flex flex-col items-center relative">
+					<div className="sticky top-0 bg-muted/90 backdrop-blur w-full py-2 z-10 flex items-center gap-2 text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2 border-b border-border">
 						<Eye className="w-4 h-4" /> Preview
 					</div>
 
@@ -231,7 +231,7 @@ export default function WordToPdf() {
 							/>
 						</div>
 					) : (
-						<div className="h-full flex flex-col items-center justify-center text-gray-400 min-h-[400px]">
+						<div className="h-full flex flex-col items-center justify-center text-muted-foreground min-h-[400px]">
 							<FileText className="w-16 h-16 mb-4 opacity-20" />
 							<p className="text-sm">Upload to verify content</p>
 						</div>

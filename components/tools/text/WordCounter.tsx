@@ -99,7 +99,7 @@ export default function WordCounter() {
         <div className="absolute right-2 top-2 flex gap-2 z-10">
           <button
             onClick={handleCopy}
-            className="p-2 bg-white/90 backdrop-blur border rounded-lg hover:bg-gray-50 text-gray-600 transition-all flex items-center gap-1 text-sm font-medium shadow-sm"
+            className="p-2 bg-background/90 backdrop-blur border rounded-lg hover:bg-muted text-muted-foreground transition-all flex items-center gap-1 text-sm font-medium shadow-sm"
             title="Copy Text"
           >
             <Copy className="w-4 h-4" />
@@ -107,7 +107,7 @@ export default function WordCounter() {
           </button>
           <button
             onClick={handleClear}
-            className="p-2 bg-white/90 backdrop-blur border rounded-lg hover:bg-red-50 text-red-500 transition-all shadow-sm"
+            className="p-2 bg-background/90 backdrop-blur border rounded-lg hover:bg-red-50 text-red-500 transition-all shadow-sm"
             title="Clear Text"
           >
             <Trash2 className="w-4 h-4" />
@@ -118,12 +118,12 @@ export default function WordCounter() {
           value={text}
           onChange={(e) => setText(e.target.value)}
           placeholder="Type or paste your text here to analyze..."
-          className="w-full h-80 p-6 bg-white border border-gray-200 rounded-xl shadow-inner focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-y text-lg leading-relaxed text-gray-700 transition-all"
+          className="w-full h-80 p-6 bg-card border border-border rounded-xl shadow-inner focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none resize-y text-lg leading-relaxed text-foreground transition-all"
           spellCheck="false"
         />
 
         {/* Footer Info of Textarea */}
-        <div className="mt-2 flex items-center gap-4 text-sm text-gray-500 justify-end">
+        <div className="mt-2 flex items-center gap-4 text-sm text-muted-foreground justify-end">
           <span className="flex items-center gap-1">
             <Clock className="w-4 h-4" /> Read time: ~{stats.readingTime} min
           </span>
@@ -134,16 +134,16 @@ export default function WordCounter() {
       </div>
 
       {/* 5. DETAILS TABLE (SEO boyitish uchun) */}
-      <div className="bg-gray-50 rounded-xl p-6 border border-gray-100">
-        <h3 className="font-semibold text-gray-800 mb-4">Detailed Statistics</h3>
-        <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 text-sm text-gray-600">
-          <div className="flex justify-between border-b pb-2 border-gray-200 mr-4">
+      <div className="bg-muted/30 rounded-xl p-6 border border-border">
+        <h3 className="font-semibold text-foreground mb-4">Detailed Statistics</h3>
+        <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-2 text-sm text-muted-foreground">
+          <div className="flex justify-between border-b pb-2 border-border mr-4">
             <span>Characters (no spaces):</span>
-            <span className="font-medium text-gray-900">{stats.charactersNoSpace}</span>
+            <span className="font-medium text-foreground">{stats.charactersNoSpace}</span>
           </div>
-          <div className="flex justify-between border-b pb-2 border-gray-200">
+          <div className="flex justify-between border-b pb-2 border-border">
             <span>Average Word Length:</span>
-            <span className="font-medium text-gray-900">
+            <span className="font-medium text-foreground">
               {stats.words > 0 ? (stats.charactersNoSpace / stats.words).toFixed(1) : 0} chars
             </span>
           </div>
@@ -156,12 +156,12 @@ export default function WordCounter() {
 // Kichik UI Komponenti (Statistika kartochkasi)
 function StatCard({ label, value, icon }: { label: string; value: number; icon: React.ReactNode }) {
   return (
-    <div className="bg-white p-4 rounded-xl border border-gray-100 shadow-sm hover:shadow-md transition-shadow flex items-start justify-between">
+    <div className="bg-card p-4 rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow flex items-start justify-between">
       <div>
-        <p className="text-gray-500 text-xs font-medium uppercase tracking-wider mb-1">{label}</p>
-        <p className="text-2xl font-bold text-gray-900">{value.toLocaleString()}</p>
+        <p className="text-muted-foreground text-xs font-medium uppercase tracking-wider mb-1">{label}</p>
+        <p className="text-2xl font-bold text-foreground">{value.toLocaleString()}</p>
       </div>
-      <div className="p-2 bg-gray-50 rounded-lg">{icon}</div>
+      <div className="p-2 bg-muted/50 rounded-lg">{icon}</div>
     </div>
   );
 }

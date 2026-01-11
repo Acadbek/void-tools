@@ -156,16 +156,16 @@ export default function UniversalImageConverter() {
     <div className="flex flex-col gap-6">
 
       {/* 1. CONTROLS BAR */}
-      <div className="bg-white border border-gray-200 p-5 rounded-xl flex flex-col md:flex-row items-center justify-between gap-5 shadow-sm">
+      <div className="bg-card border border-border p-5 rounded-xl flex flex-col md:flex-row items-center justify-between gap-5 shadow-sm">
         <div className="flex items-center gap-4 w-full md:w-auto">
           <div className="flex flex-col gap-1 w-full">
-            <label className="text-xs font-bold text-gray-500 uppercase">Convert to:</label>
-            <div className="flex bg-gray-100 p-1 rounded-lg w-full md:w-auto">
+            <label className="text-xs font-bold text-muted-foreground uppercase">Convert to:</label>
+            <div className="flex bg-muted p-1 rounded-lg w-full md:w-auto">
               {["png", "jpeg", "webp"].map((fmt) => (
                 <button
                   key={fmt}
                   onClick={() => setTargetFormat(fmt as OutputFormat)}
-                  className={`flex-1 px-4 py-1.5 text-sm font-semibold rounded-md transition-all capitalize ${targetFormat === fmt ? "bg-white text-blue-600 shadow-sm" : "text-gray-500 hover:text-gray-700"}`}
+                  className={`flex-1 px-4 py-1.5 text-sm font-semibold rounded-md transition-all capitalize ${targetFormat === fmt ? "bg-card text-primary shadow-sm" : "text-muted-foreground hover:text-foreground"}`}
                 >
                   {fmt}
                 </button>
@@ -177,7 +177,7 @@ export default function UniversalImageConverter() {
         {/* Quality Slider (Only for JPG/WEBP) */}
         {targetFormat !== "png" && (
           <div className="flex flex-col gap-1 w-full md:w-48">
-            <div className="flex justify-between text-xs font-bold text-gray-500">
+            <div className="flex justify-between text-xs font-bold text-muted-foreground">
               <span>Quality</span>
               <span>{Math.round(quality * 100)}%</span>
             </div>
@@ -188,7 +188,7 @@ export default function UniversalImageConverter() {
               step="0.1"
               value={quality}
               onChange={(e) => setQuality(parseFloat(e.target.value))}
-              className="w-full accent-blue-600 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+              className="w-full accent-primary h-2 bg-muted rounded-lg appearance-none cursor-pointer"
             />
           </div>
         )}
@@ -198,7 +198,7 @@ export default function UniversalImageConverter() {
             <button
               onClick={handleConvertAll}
               disabled={isProcessing}
-              className="flex-1 md:flex-none bg-blue-600 text-white px-6 py-2.5 rounded-lg font-bold hover:bg-blue-700 transition-colors shadow-md disabled:opacity-50 flex items-center justify-center gap-2"
+              className="flex-1 md:flex-none bg-primary text-primary-foreground px-6 py-2.5 rounded-lg font-bold hover:bg-primary/90 transition-colors shadow-md disabled:opacity-50 flex items-center justify-center gap-2"
             >
               {isProcessing ? <Loader2 className="w-5 h-5 animate-spin" /> : <RefreshCwIcon className="w-5 h-5" />}
               Convert All
@@ -207,7 +207,7 @@ export default function UniversalImageConverter() {
             {files.some(f => f.status === "done") && (
               <button
                 onClick={downloadAllZip}
-                className="flex-1 md:flex-none bg-gray-900 text-white px-4 py-2.5 rounded-lg font-bold hover:bg-black transition-colors shadow-md flex items-center justify-center gap-2"
+                className="flex-1 md:flex-none bg-foreground text-background px-4 py-2.5 rounded-lg font-bold hover:bg-foreground/90 transition-colors shadow-md flex items-center justify-center gap-2"
               >
                 <Download className="w-5 h-5" /> ZIP
               </button>
@@ -221,16 +221,16 @@ export default function UniversalImageConverter() {
         <div
           {...getRootProps()}
           className={`
-             border-2 border-dashed rounded-xl flex flex-col items-center justify-center p-12 transition-all cursor-pointer min-h-[300px] bg-white
-             ${isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-blue-400 hover:bg-gray-50'}
+             border-2 border-dashed rounded-xl flex flex-col items-center justify-center p-12 transition-all cursor-pointer min-h-[300px] bg-card
+             ${isDragActive ? 'border-primary bg-primary/10' : 'border-border hover:border-primary hover:bg-muted/50'}
            `}
         >
           <input {...getInputProps()} />
-          <div className="w-20 h-20 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center mb-6">
+          <div className="w-20 h-20 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-6">
             <UploadCloud className="w-10 h-10" />
           </div>
-          <h3 className="text-2xl font-bold text-gray-800 mb-2">Universal Image Converter</h3>
-          <p className="text-gray-500 text-center max-w-md">
+          <h3 className="text-2xl font-bold text-foreground mb-2">Universal Image Converter</h3>
+          <p className="text-muted-foreground text-center max-w-md">
             Drag & drop images here (JPG, PNG, WEBP, SVG). <br />
             We convert them securely in your browser.
           </p>
@@ -242,25 +242,25 @@ export default function UniversalImageConverter() {
           {/* Add more card */}
           <div
             {...getRootProps()}
-            className="border-2 border-dashed border-gray-200 rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-blue-400 hover:bg-blue-50 transition-colors min-h-[200px]"
+            className="border-2 border-dashed border-border rounded-xl flex flex-col items-center justify-center cursor-pointer hover:border-primary hover:bg-primary/10 transition-colors min-h-[200px]"
           >
             <input {...getInputProps()} />
-            <UploadCloud className="w-8 h-8 text-gray-400 mb-2" />
-            <span className="text-sm font-medium text-gray-500">Add more files</span>
+            <UploadCloud className="w-8 h-8 text-muted-foreground mb-2" />
+            <span className="text-sm font-medium text-muted-foreground">Add more files</span>
           </div>
 
           {files.map(file => (
-            <div key={file.id} className="bg-white border border-gray-100 rounded-xl shadow-sm overflow-hidden group relative flex flex-col">
+            <div key={file.id} className="bg-card border border-border rounded-xl shadow-sm overflow-hidden group relative flex flex-col">
               {/* Remove Button */}
               <button
                 onClick={() => removeFile(file.id)}
-                className="absolute top-2 right-2 p-1.5 bg-white/90 text-gray-500 hover:text-red-500 rounded-full shadow-sm z-10 transition-colors opacity-0 group-hover:opacity-100"
+                className="absolute top-2 right-2 p-1.5 bg-card/90 text-muted-foreground hover:text-destructive rounded-full shadow-sm z-10 transition-colors opacity-0 group-hover:opacity-100"
               >
                 <X className="w-4 h-4" />
               </button>
 
               {/* Preview Image */}
-              <div className="h-40 bg-gray-100 relative overflow-hidden flex items-center justify-center p-2">
+              <div className="h-40 bg-muted relative overflow-hidden flex items-center justify-center p-2">
                 <img src={file.preview} alt="preview" className="max-w-full max-h-full object-contain" />
                 {file.status === "converting" && (
                   <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
@@ -277,13 +277,13 @@ export default function UniversalImageConverter() {
               {/* Info & Actions */}
               <div className="p-3 flex flex-col gap-2 flex-1">
                 <div className="flex justify-between items-start">
-                  <p className="text-sm font-semibold text-gray-700 truncate w-32" title={file.file.name}>{file.file.name}</p>
-                  <span className="text-xs text-gray-400 bg-gray-100 px-1.5 py-0.5 rounded uppercase">
+                  <p className="text-sm font-semibold text-foreground truncate w-32" title={file.file.name}>{file.file.name}</p>
+                  <span className="text-xs text-muted-foreground bg-muted px-1.5 py-0.5 rounded uppercase">
                     {file.file.name.split('.').pop()}
                   </span>
                 </div>
 
-                <div className="mt-auto pt-2 border-t border-gray-50 flex items-center justify-between">
+                <div className="mt-auto pt-2 border-t border-border flex items-center justify-between">
                   {file.status === "done" ? (
                     <>
                       <span className="text-xs font-medium text-green-600">
@@ -291,13 +291,13 @@ export default function UniversalImageConverter() {
                       </span>
                       <button
                         onClick={() => downloadFile(file)}
-                        className="text-xs bg-blue-50 text-blue-600 px-3 py-1.5 rounded-md font-bold hover:bg-blue-100 transition-colors flex items-center gap-1"
+                        className="text-xs bg-primary/10 text-primary px-3 py-1.5 rounded-md font-bold hover:bg-primary/20 transition-colors flex items-center gap-1"
                       >
                         <Download className="w-3 h-3" /> Save
                       </button>
                     </>
                   ) : (
-                    <span className="text-xs text-gray-400 italic">
+                    <span className="text-xs text-muted-foreground italic">
                       {file.status === "error" ? "Error!" : "Ready"}
                     </span>
                   )}

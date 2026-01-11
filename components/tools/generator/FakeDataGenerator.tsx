@@ -138,14 +138,14 @@ export default function FakeDataGenerator() {
         <div className="flex flex-col lg:flex-row gap-6 h-[calc(100vh-140px)] min-h-[600px]">
 
             {/* --- LEFT PANEL --- */}
-            <div className="w-full lg:w-[400px] flex flex-col bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden flex-shrink-0">
+            <div className="w-full lg:w-[400px] flex flex-col bg-card border border-border rounded-xl shadow-sm overflow-hidden flex-shrink-0">
 
-                <div className="p-4 border-b border-gray-100 bg-gray-50 flex items-center justify-between">
-                    <div className="flex items-center gap-2 text-gray-700">
-                        <Settings2 className="w-5 h-5 text-blue-600" />
+                <div className="p-4 border-b border-border bg-muted/50 flex items-center justify-between">
+                    <div className="flex items-center gap-2 text-foreground">
+                        <Settings2 className="w-5 h-5 text-primary" />
                         <h3 className="font-bold text-sm">Schema</h3>
                     </div>
-                    <button onClick={generateData} className="text-xs text-blue-600 hover:underline">
+                    <button onClick={generateData} className="text-xs text-primary hover:underline">
                         Refresh
                     </button>
                 </div>
@@ -154,15 +154,15 @@ export default function FakeDataGenerator() {
 
                     <div className="space-y-4">
                         <div>
-                            <label className="text-xs font-bold text-gray-500 uppercase mb-1.5 block">Format</label>
-                            <div className="grid grid-cols-3 gap-1 bg-gray-100 p-1 rounded-lg">
+                            <label className="text-xs font-bold text-muted-foreground uppercase mb-1.5 block">Format</label>
+                            <div className="grid grid-cols-3 gap-1 bg-muted p-1 rounded-lg">
                                 {(['json', 'csv', 'sql'] as const).map(f => (
                                     <button
                                         key={f}
                                         onClick={() => setFormat(f)}
                                         className={`flex items-center justify-center gap-1.5 py-2 rounded-md text-xs font-bold transition-all ${format === f
-                                            ? 'bg-white text-blue-600 shadow-sm ring-1 ring-black/5'
-                                            : 'text-gray-500 hover:text-gray-700 hover:bg-gray-200'
+                                            ? 'bg-card text-primary shadow-sm ring-1 ring-black/5 dark:ring-white/10'
+                                            : 'text-muted-foreground hover:text-foreground hover:bg-muted/80'
                                             }`}
                                     >
                                         {f === 'json' && <FileJson className="w-3.5 h-3.5" />}
@@ -176,9 +176,9 @@ export default function FakeDataGenerator() {
 
                         {/* --- ROWS COUNT INPUT (YANGILANGAN) --- */}
                         <div>
-                            <label className="text-xs font-bold text-gray-500 uppercase mb-1.5 flex justify-between">
+                            <label className="text-xs font-bold text-muted-foreground uppercase mb-1.5 flex justify-between">
                                 <span>Rows Count</span>
-                                <span className="text-[10px] text-gray-400 font-normal">Max: 10,000</span>
+                                <span className="text-[10px] text-muted-foreground/70 font-normal">Max: 10,000</span>
                             </label>
                             <input
                                 type="number"
@@ -187,21 +187,21 @@ export default function FakeDataGenerator() {
                                 value={count === 0 ? '' : count} // 0 bo'lsa bo'sh ko'rsatamiz
                                 onChange={handleCountChange}
                                 onBlur={handleCountBlur}
-                                className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50 focus:bg-white transition-all placeholder:text-gray-300"
+                                className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-muted/50 focus:bg-card transition-all placeholder:text-muted-foreground/50 text-foreground"
                                 placeholder="10"
                             />
                         </div>
 
                         {format === 'json' && (
                             <div className="animate-in fade-in slide-in-from-top-2">
-                                <label className="text-xs font-bold text-gray-500 uppercase mb-1.5 flex items-center gap-2">
-                                    <Braces className="w-3 h-3" /> Root Wrapper Key <span className="text-gray-400 font-normal lowercase">(optional)</span>
+                                <label className="text-xs font-bold text-muted-foreground uppercase mb-1.5 flex items-center gap-2">
+                                    <Braces className="w-3 h-3" /> Root Wrapper Key <span className="text-muted-foreground/70 font-normal lowercase">(optional)</span>
                                 </label>
                                 <input
                                     type="text"
                                     value={rootKey}
                                     onChange={(e) => setRootKey(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50 focus:bg-white transition-all placeholder:text-gray-300"
+                                    className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-muted/50 focus:bg-card transition-all placeholder:text-muted-foreground/50 text-foreground"
                                     placeholder="e.g. data, users, results"
                                 />
                             </div>
@@ -209,22 +209,22 @@ export default function FakeDataGenerator() {
 
                         {format === 'sql' && (
                             <div className="animate-in fade-in slide-in-from-top-2">
-                                <label className="text-xs font-bold text-gray-500 uppercase mb-1.5 block">SQL Table</label>
+                                <label className="text-xs font-bold text-muted-foreground uppercase mb-1.5 block">SQL Table</label>
                                 <input
                                     type="text"
                                     value={tableName}
                                     onChange={(e) => setTableName(e.target.value)}
-                                    className="w-full px-3 py-2 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 bg-gray-50 focus:bg-white transition-all"
+                                    className="w-full px-3 py-2 border border-border rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-primary bg-muted/50 focus:bg-card transition-all text-foreground"
                                     placeholder="table_name"
                                 />
                             </div>
                         )}
                     </div>
 
-                    <div className="h-px bg-gray-100" />
+                    <div className="h-px bg-border" />
 
                     <div className="space-y-3">
-                        <label className="text-xs font-bold text-gray-500 uppercase block">Fields</label>
+                        <label className="text-xs font-bold text-muted-foreground uppercase block">Fields</label>
                         {fields.map((field, idx) => (
                             <div key={field.id} className="flex gap-2 items-start group">
                                 <div className="flex items-center gap-1">
@@ -232,25 +232,25 @@ export default function FakeDataGenerator() {
                                         type="text"
                                         value={field.name}
                                         onChange={(e) => updateField(field.id, "name", e.target.value)}
-                                        className="w-full px-2 py-1.5 text-sm border border-gray-200 rounded bg-white focus:border-blue-500 focus:outline-none font-medium text-gray-700"
+                                        className="w-full px-2 py-1.5 text-sm border border-border rounded bg-card focus:border-primary focus:outline-none font-medium text-foreground"
                                         placeholder="key"
                                     />
                                     <div className="relative">
                                         <select
                                             value={field.type}
                                             onChange={(e) => updateField(field.id, "type", e.target.value)}
-                                            className="w-full px-2 py-1.5 text-xs text-gray-600 border border-gray-200 rounded bg-gray-50 focus:bg-white focus:border-blue-500 focus:outline-none appearance-none cursor-pointer"
+                                            className="w-full px-2 py-1.5 text-xs text-muted-foreground border border-border rounded bg-muted/50 focus:bg-card focus:border-primary focus:outline-none appearance-none cursor-pointer"
                                         >
                                             {DATA_TYPES.map(t => (
                                                 <option key={t.value} value={t.value}>{t.group}: {t.label}</option>
                                             ))}
                                         </select>
-                                        <ChevronDown className="w-3 h-3 text-gray-400 absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
+                                        <ChevronDown className="w-3 h-3 text-muted-foreground absolute right-2 top-1/2 -translate-y-1/2 pointer-events-none" />
                                     </div>
                                 </div>
                                 <button
                                     onClick={() => removeField(field.id)}
-                                    className="mt-1 p-1.5 text-gray-300 hover:text-red-500 hover:bg-red-50 rounded-md transition-colors"
+                                    className="mt-1 p-1.5 text-muted-foreground/50 hover:text-destructive hover:bg-destructive/10 rounded-md transition-colors"
                                 >
                                     <Trash2 className="w-4 h-4" />
                                 </button>
@@ -259,10 +259,10 @@ export default function FakeDataGenerator() {
                     </div>
                 </div>
 
-                <div className="p-4 border-t border-gray-100 bg-white">
+                <div className="p-4 border-t border-border bg-card">
                     <button
                         onClick={addField}
-                        className="w-full py-2.5 border border-dashed border-gray-300 text-gray-600 rounded-lg hover:border-blue-500 hover:text-blue-600 hover:bg-blue-50 transition-all flex items-center justify-center gap-2 font-semibold text-sm"
+                        className="w-full py-2.5 border border-dashed border-border text-muted-foreground rounded-lg hover:border-primary hover:text-primary hover:bg-muted transition-all flex items-center justify-center gap-2 font-semibold text-sm"
                     >
                         <Plus className="w-4 h-4" /> Add Field
                     </button>
@@ -270,36 +270,36 @@ export default function FakeDataGenerator() {
             </div>
 
             {/* --- RIGHT PANEL --- */}
-            <div className="flex-1 flex flex-col min-w-0 bg-white border border-gray-200 rounded-xl shadow-sm overflow-hidden">
+            <div className="flex-1 flex flex-col min-w-0 bg-card border border-border rounded-xl shadow-sm overflow-hidden">
 
-                <div className="p-3 border-b border-gray-200 flex items-center justify-between bg-gray-50/50">
+                <div className="p-3 border-b border-border flex items-center justify-between bg-muted/30">
                     <div className="flex items-center gap-3 px-2">
                         <div className={`w-2 h-2 rounded-full ${isGenerating ? 'bg-yellow-400 animate-pulse' : 'bg-green-500'}`} />
-                        <span className="text-sm font-semibold text-gray-700">Preview</span>
+                        <span className="text-sm font-semibold text-foreground">Preview</span>
                     </div>
 
                     <div className="flex gap-2">
                         <button
                             onClick={handleCopy}
-                            className="flex items-center gap-2 px-3 py-1.5 bg-white border border-gray-200 text-gray-700 rounded-lg text-sm font-medium hover:border-gray-300 hover:bg-gray-50 transition-all shadow-sm active:scale-95"
+                            className="flex items-center gap-2 px-3 py-1.5 bg-card border border-border text-foreground rounded-lg text-sm font-medium hover:border-primary/50 hover:bg-muted transition-all shadow-sm active:scale-95"
                         >
                             {isCopied ? <Check className="w-4 h-4 text-green-600" /> : <Copy className="w-4 h-4" />}
                             {isCopied ? "Copied" : "Copy"}
                         </button>
                         <button
                             onClick={handleDownload}
-                            className="flex items-center gap-2 px-3 py-1.5 bg-blue-600 text-white rounded-lg text-sm font-medium hover:bg-blue-700 transition-all shadow-sm active:scale-95"
+                            className="flex items-center gap-2 px-3 py-1.5 bg-primary text-primary-foreground rounded-lg text-sm font-medium hover:bg-primary/90 transition-all shadow-sm active:scale-95"
                         >
                             <Download className="w-4 h-4" /> Export
                         </button>
                     </div>
                 </div>
 
-                <div className="flex-1 bg-[#1e1e1e] relative group overflow-hidden">
+                <div className="flex-1 bg-slate-950 relative group overflow-hidden">
                     <textarea
                         value={output}
                         readOnly
-                        className="w-full h-full bg-transparent p-6 font-mono text-sm text-blue-100 resize-none focus:outline-none leading-relaxed custom-scrollbar"
+                        className="w-full h-full bg-transparent p-6 font-mono text-sm text-slate-100 resize-none focus:outline-none leading-relaxed custom-scrollbar"
                         spellCheck={false}
                     />
                     <div className="absolute bottom-4 right-4 text-xs text-white/30 font-mono pointer-events-none">

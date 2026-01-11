@@ -138,17 +138,17 @@ export default function ImageToPdf() {
     <div className="space-y-8">
 
       {/* SETTINGS BAR */}
-      <div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm flex flex-wrap items-center gap-6">
-        <div className="flex items-center gap-2 text-gray-700 font-semibold">
+      <div className="bg-card p-4 rounded-xl border border-border shadow-sm flex flex-wrap items-center gap-6">
+        <div className="flex items-center gap-2 text-foreground font-semibold">
           <Settings2 className="w-5 h-5" /> PDF Settings
         </div>
 
         <div className="flex items-center gap-2">
-          <label className="text-sm text-gray-600">Page Size:</label>
+          <label className="text-sm text-muted-foreground">Page Size:</label>
           <select
             value={pageSize}
             onChange={(e) => setPageSize(e.target.value as any)}
-            className="border rounded-lg px-3 py-1.5 bg-gray-50 outline-none text-sm focus:ring-2 focus:ring-blue-500"
+            className="border border-border rounded-lg px-3 py-1.5 bg-muted outline-none text-sm focus:ring-2 focus:ring-primary text-foreground"
           >
             {Object.entries(PAGE_SIZES).map(([key, val]) => (
               <option key={key} value={key}>{val.label}</option>
@@ -157,11 +157,11 @@ export default function ImageToPdf() {
         </div>
 
         <div className="flex items-center gap-2">
-          <label className="text-sm text-gray-600">Margin:</label>
+          <label className="text-sm text-muted-foreground">Margin:</label>
           <select
             value={margin}
             onChange={(e) => setMargin(Number(e.target.value))}
-            className="border rounded-lg px-3 py-1.5 bg-gray-50 outline-none text-sm"
+            className="border border-border rounded-lg px-3 py-1.5 bg-muted outline-none text-sm text-foreground"
           >
             <option value={0}>No Margin</option>
             <option value={20}>Small (20px)</option>
@@ -174,15 +174,15 @@ export default function ImageToPdf() {
       <div
         {...getRootProps()}
         className={`border-2 border-dashed rounded-2xl p-8 text-center cursor-pointer transition-all
-          ${isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-300 hover:border-blue-400 hover:bg-gray-50'}
+          ${isDragActive ? 'border-primary bg-primary/10' : 'border-border hover:border-primary hover:bg-muted'}
         `}
       >
         <input {...(getInputProps() as React.InputHTMLAttributes<HTMLInputElement>)} />
         <div className="flex flex-col items-center gap-3">
-          <div className="p-4 bg-blue-100 text-blue-600 rounded-full">
+          <div className="p-4 bg-primary/10 text-primary rounded-full">
             <Upload className="w-8 h-8" />
           </div>
-          <p className="text-xl font-medium text-gray-700">
+          <p className="text-xl font-medium text-foreground">
             {isDragActive ? "Drop images here..." : "Drag & Drop Images (JPG, PNG)"}
           </p>
         </div>
@@ -192,10 +192,10 @@ export default function ImageToPdf() {
       {files.length > 0 && (
         <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4">
           {files.map((file, index) => (
-            <div key={file.id} className="relative group bg-white p-3 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-all">
+            <div key={file.id} className="relative group bg-card p-3 rounded-xl border border-border shadow-sm hover:shadow-md transition-all">
 
               {/* Preview Image */}
-              <div className="h-32 w-full bg-gray-100 rounded-lg overflow-hidden mb-3 relative flex items-center justify-center">
+              <div className="h-32 w-full bg-muted rounded-lg overflow-hidden mb-3 relative flex items-center justify-center">
                 <img src={file.preview} alt="preview" className="max-h-full max-w-full object-contain" />
                 <div className="absolute top-2 left-2 bg-black/60 text-white text-xs px-2 py-1 rounded-md">
                   #{index + 1}
@@ -208,19 +208,19 @@ export default function ImageToPdf() {
                   <button
                     disabled={index === 0}
                     onClick={() => moveFile(index, 'up')}
-                    className="p-1.5 text-gray-500 hover:bg-gray-100 rounded-md disabled:opacity-30"
+                    className="p-1.5 text-muted-foreground hover:bg-muted rounded-md disabled:opacity-30"
                   >
                     <ArrowUp className="w-4 h-4" />
                   </button>
                   <button
                     disabled={index === files.length - 1}
                     onClick={() => moveFile(index, 'down')}
-                    className="p-1.5 text-gray-500 hover:bg-gray-100 rounded-md disabled:opacity-30"
+                    className="p-1.5 text-muted-foreground hover:bg-muted rounded-md disabled:opacity-30"
                   >
                     <ArrowDown className="w-4 h-4" />
                   </button>
                 </div>
-                <button onClick={() => removeFile(file.id)} className="p-1.5 text-red-500 hover:bg-red-50 rounded-md">
+                <button onClick={() => removeFile(file.id)} className="p-1.5 text-destructive hover:bg-destructive/10 rounded-md">
                   <X className="w-4 h-4" />
                 </button>
               </div>
@@ -228,9 +228,9 @@ export default function ImageToPdf() {
           ))}
 
           {/* Add more button style */}
-          <div {...getRootProps()} className="flex flex-col items-center justify-center h-full min-h-40 border-2 border-dashed border-gray-200 rounded-xl cursor-pointer hover:border-blue-300 hover:bg-blue-50 transition-colors">
+          <div {...getRootProps()} className="flex flex-col items-center justify-center h-full min-h-40 border-2 border-dashed border-border rounded-xl cursor-pointer hover:border-primary hover:bg-muted transition-colors">
             <input {...(getInputProps() as React.InputHTMLAttributes<HTMLInputElement>)} />
-            <div className="text-gray-400 flex flex-col items-center">
+            <div className="text-muted-foreground flex flex-col items-center">
               <Upload className="w-6 h-6 mb-2" />
               <span className="text-sm font-medium">Add More</span>
             </div>
@@ -245,8 +245,8 @@ export default function ImageToPdf() {
             onClick={handleConvert}
             disabled={isConverting}
             className={`
-               flex items-center gap-2 px-10 py-4 text-white font-bold text-lg rounded-xl shadow-lg transition-all
-               ${isConverting ? 'bg-blue-400' : 'bg-blue-600 hover:bg-blue-700 hover:-translate-y-1 hover:shadow-xl'}
+               flex items-center gap-2 px-10 py-4 text-primary-foreground font-bold text-lg rounded-xl shadow-lg transition-all
+               ${isConverting ? 'bg-primary/70' : 'bg-primary hover:bg-primary/90 hover:-translate-y-1 hover:shadow-xl'}
             `}
           >
             {isConverting ? (

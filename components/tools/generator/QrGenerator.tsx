@@ -71,8 +71,8 @@ export default function QrGenerator() {
       <div className="lg:col-span-2 space-y-6">
 
         {/* Input Text */}
-        <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
-          <label className="block text-sm font-semibold text-gray-700 mb-2">
+        <div className="bg-card p-6 rounded-2xl border border-border shadow-sm">
+          <label className="block text-sm font-semibold text-foreground mb-2">
             URL or Text
           </label>
           <input
@@ -80,13 +80,13 @@ export default function QrGenerator() {
             value={text}
             onChange={(e) => setText(e.target.value)}
             placeholder="Enter website URL or text..."
-            className="w-full p-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
+            className="w-full p-4 border border-input rounded-xl focus:ring-2 focus:ring-blue-500 focus:border-transparent outline-none transition-all"
           />
         </div>
 
         {/* Customization Options */}
-        <div className="bg-white p-6 rounded-2xl border border-gray-200 shadow-sm">
-          <div className="flex items-center gap-2 mb-4 text-gray-800">
+        <div className="bg-card p-6 rounded-2xl border border-border shadow-sm">
+          <div className="flex items-center gap-2 mb-4 text-foreground">
             <Settings2 className="w-5 h-5" />
             <h3 className="font-semibold">Customization</h3>
           </div>
@@ -95,7 +95,7 @@ export default function QrGenerator() {
             {/* Colors */}
             <div className="space-y-4">
               <div>
-                <label className="text-xs font-medium text-gray-500 uppercase">QR Color</label>
+                <label className="text-xs font-medium text-muted-foreground uppercase">QR Color</label>
                 <div className="flex items-center gap-3 mt-1">
                   <input
                     type="color"
@@ -103,11 +103,11 @@ export default function QrGenerator() {
                     onChange={(e) => setColorDark(e.target.value)}
                     className="h-10 w-14 p-1 rounded cursor-pointer border"
                   />
-                  <span className="text-sm font-mono text-gray-600">{colorDark}</span>
+                  <span className="text-sm font-mono text-muted-foreground">{colorDark}</span>
                 </div>
               </div>
               <div>
-                <label className="text-xs font-medium text-gray-500 uppercase">Background</label>
+                <label className="text-xs font-medium text-muted-foreground uppercase">Background</label>
                 <div className="flex items-center gap-3 mt-1">
                   <input
                     type="color"
@@ -115,14 +115,14 @@ export default function QrGenerator() {
                     onChange={(e) => setColorLight(e.target.value)}
                     className="h-10 w-14 p-1 rounded cursor-pointer border"
                   />
-                  <span className="text-sm font-mono text-gray-600">{colorLight}</span>
+                  <span className="text-sm font-mono text-muted-foreground">{colorLight}</span>
                 </div>
               </div>
             </div>
 
             {/* Size Slider */}
             <div>
-              <label className="text-xs font-medium text-gray-500 uppercase flex justify-between">
+              <label className="text-xs font-medium text-muted-foreground uppercase flex justify-between">
                 <span>Resolution (Size)</span>
                 <span>{width}px</span>
               </label>
@@ -133,9 +133,9 @@ export default function QrGenerator() {
                 step="50"
                 value={width}
                 onChange={(e) => setWidth(Number(e.target.value))}
-                className="w-full mt-3 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+                className="w-full mt-3 h-2 bg-muted rounded-lg appearance-none cursor-pointer accent-blue-600"
               />
-              <p className="text-xs text-gray-400 mt-2">
+              <p className="text-xs text-muted-foreground mt-2">
                 Drag to change output quality
               </p>
             </div>
@@ -145,22 +145,22 @@ export default function QrGenerator() {
 
       {/* RIGHT: PREVIEW */}
       <div className="lg:col-span-1">
-        <div className="bg-white rounded-2xl shadow-lg border border-gray-100 p-6 sticky top-8">
-          <h3 className="text-center font-semibold text-gray-800 mb-4">Live Preview</h3>
+        <div className="bg-card rounded-2xl shadow-lg border border-border p-6 sticky top-8">
+          <h3 className="text-center font-semibold text-foreground mb-4">Live Preview</h3>
 
-          <div className="bg-gray-50 border-2 border-dashed border-gray-200 rounded-xl p-4 flex items-center justify-center min-h-[300px]">
+          <div className="bg-muted border-2 border-dashed border-border rounded-xl p-4 flex items-center justify-center min-h-[300px]">
             {error ? (
-              <div className="text-center text-red-500 text-sm p-4">
+              <div className="text-center text-destructive text-sm p-4">
                 {error}
               </div>
             ) : qrUrl ? (
               <img
                 src={qrUrl}
                 alt="QR Code Preview"
-                className="max-w-full h-auto shadow-sm rounded-lg border border-gray-100"
+                className="max-w-full h-auto shadow-sm rounded-lg border border-border"
               />
             ) : (
-              <div className="text-center text-gray-400">
+              <div className="text-center text-muted-foreground">
                 <QrCode className="w-12 h-12 mx-auto mb-2 opacity-20" />
                 <p>Start typing to generate</p>
               </div>
@@ -173,7 +173,7 @@ export default function QrGenerator() {
             className={`
               w-full mt-6 flex items-center justify-center gap-2 py-3 px-4 rounded-xl font-bold text-white transition-all
               ${!qrUrl || !!error
-                ? 'bg-gray-300 cursor-not-allowed'
+                ? 'bg-muted cursor-not-allowed'
                 : 'bg-blue-600 hover:bg-blue-700 hover:shadow-lg active:scale-95'}
             `}
           >

@@ -71,18 +71,17 @@ function SocialPreviews({ data, ogConfig }: { data: SeoData, ogConfig: OgConfig 
 	return (
 		<div>
 			<div className="flex items-center justify-between mb-3">
-				<div className="text-xs font-bold text-gray-400 uppercase tracking-wider flex items-center gap-2">
+				<div className="text-xs font-bold text-muted-foreground uppercase tracking-wider flex items-center gap-2">
 					Real-time Preview
 				</div>
-				<div className="flex bg-gray-100 dark:bg-gray-800 rounded-lg p-1 gap-1">
-					<button onClick={() => setPlatform('google')} className={`p-1.5 rounded-md transition ${platform === 'google' ? 'bg-white dark:bg-gray-700 shadow-sm text-blue-500' : 'text-gray-400 hover:text-gray-600'}`} title="Google Search"><Search className="w-3.5 h-3.5" /></button>
-					<button onClick={() => setPlatform('twitter')} className={`p-1.5 rounded-md transition ${platform === 'twitter' ? 'bg-white dark:bg-gray-700 shadow-sm text-sky-500' : 'text-gray-400 hover:text-gray-600'}`} title="Twitter Card"><Twitter className="w-3.5 h-3.5" /></button>
-					<button onClick={() => setPlatform('facebook')} className={`p-1.5 rounded-md transition ${platform === 'facebook' ? 'bg-white dark:bg-gray-700 shadow-sm text-blue-700' : 'text-gray-400 hover:text-gray-600'}`} title="Facebook Post"><Facebook className="w-3.5 h-3.5" /></button>
-					{/* <button onClick={() => setPlatform('slack')} className={`p-1.5 rounded-md transition ${platform === 'slack' ? 'bg-white dark:bg-gray-700 shadow-sm text-purple-500' : 'text-gray-400 hover:text-gray-600'}`} title="Slack Link"><Hash className="w-3.5 h-3.5" /></button> */}
+				<div className="flex bg-muted p-1 rounded-lg gap-1">
+					<button onClick={() => setPlatform('google')} className={`p-1.5 rounded-md transition-all duration-200 ${platform === 'google' ? 'bg-background shadow-sm text-foreground ring-1 ring-border' : 'text-muted-foreground hover:text-foreground hover:bg-background/80 hover:shadow-xs'}`} title="Google Search"><Search className="w-3.5 h-3.5" /></button>
+					<button onClick={() => setPlatform('twitter')} className={`p-1.5 rounded-md transition-all duration-200 ${platform === 'twitter' ? 'bg-background shadow-sm text-foreground ring-1 ring-border' : 'text-muted-foreground hover:text-foreground hover:bg-background/80 hover:shadow-xs'}`} title="Twitter Card"><Twitter className="w-3.5 h-3.5" /></button>
+					<button onClick={() => setPlatform('facebook')} className={`p-1.5 rounded-md transition-all duration-200 ${platform === 'facebook' ? 'bg-background shadow-sm text-foreground ring-1 ring-border' : 'text-muted-foreground hover:text-foreground hover:bg-background/80 hover:shadow-xs'}`} title="Facebook Post"><Facebook className="w-3.5 h-3.5" /></button>
 				</div>
 			</div>
 
-			<div className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm font-sans select-none min-h-[220px] flex items-center justify-center">
+			<div className="bg-card p-4 rounded-xl border border-border shadow-sm font-sans select-none min-h-[220px] flex items-center justify-center">
 
 				{platform === 'google' && (
 					<div className="font-arial w-full">
@@ -165,7 +164,7 @@ function SocialPreviews({ data, ogConfig }: { data: SeoData, ogConfig: OgConfig 
 export function MetadataForm({ data, setData, ogConfig }: { data: SeoData, setData: (d: SeoData) => void, ogConfig: OgConfig }) {
 	return (
 		<div className="space-y-6 animate-in fade-in">
-			<h3 className="font-bold flex gap-2 text-gray-900 dark:text-white items-center pb-2 border-b border-gray-100 dark:border-gray-800">
+			<h3 className="font-bold flex gap-2 text-foreground items-center pb-2 border-b border-border">
 				<Globe className="w-5 h-5 text-blue-500" /> Metadata & Previews
 			</h3>
 
@@ -186,7 +185,7 @@ export function MetadataForm({ data, setData, ogConfig }: { data: SeoData, setDa
 
 					<div>
 						<div className="flex justify-between mb-1">
-							<label className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase">Description</label>
+							<label className="text-xs font-bold text-muted-foreground uppercase">Description</label>
 							<CharCounter current={data.description.length} max={160} />
 						</div>
 						<textarea
@@ -222,7 +221,7 @@ export function MetadataForm({ data, setData, ogConfig }: { data: SeoData, setDa
 export function SitemapForm({ data, setData }: { data: SeoData, setData: (d: SeoData) => void }) {
 	return (
 		<div className="animate-in fade-in">
-			<h3 className="font-bold mb-4 text-gray-900 dark:text-white">Sitemap Config</h3>
+			<h3 className="font-bold mb-4 text-foreground">Sitemap Config</h3>
 			<input placeholder="Base URL" value={data.url} onChange={(e) => setData({ ...data, url: e.target.value })} className={STYLES.inputField} />
 		</div>
 	);
@@ -231,11 +230,11 @@ export function SitemapForm({ data, setData }: { data: SeoData, setData: (d: Seo
 export function ManifestForm({ manifest, setManifest }: { manifest: ManifestData, setManifest: (d: ManifestData) => void }) {
 	return (
 		<div className="animate-in fade-in">
-			<h3 className="font-bold mb-4 text-gray-900 dark:text-white">Manifest Config</h3>
+			<h3 className="font-bold mb-4 text-foreground">Manifest Config</h3>
 			<div className="grid md:grid-cols-2 gap-4">
 				<input placeholder="Name" value={manifest.name} onChange={(e) => setManifest({ ...manifest, name: e.target.value })} className={STYLES.inputField} />
-				<div className="flex items-center gap-2 border border-gray-200 dark:border-gray-700 p-1.5 rounded-lg bg-white dark:bg-gray-800">
-					<span className="text-xs font-bold text-gray-500 px-2">Color</span>
+				<div className="flex items-center gap-2 border border-border p-1.5 rounded-lg bg-card">
+					<span className="text-xs font-bold text-muted-foreground px-2">Color</span>
 					<input type="color" value={manifest.themeColor} onChange={(e) => setManifest({ ...manifest, themeColor: e.target.value })} className="h-8 w-full bg-transparent cursor-pointer" />
 				</div>
 			</div>
@@ -255,21 +254,21 @@ export function SchemaBuilder({ items, setItems, schemaType, setSchemaType }: an
 
 	return (
 		<div className="space-y-6 animate-in fade-in">
-			<div className="flex gap-2 border-b border-gray-100 dark:border-gray-800 pb-4">
-				<button onClick={() => setSchemaType('faq')} className={`px-3 py-1.5 rounded-lg text-sm font-bold flex items-center gap-2 transition ${schemaType === 'faq' ? 'bg-teal-50 text-teal-700 dark:bg-teal-900/30 dark:text-teal-400' : 'text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-800'}`}><HelpCircle className="w-4 h-4" /> FAQ</button>
-				<button onClick={() => setSchemaType('product')} className={`px-3 py-1.5 rounded-lg text-sm font-bold flex items-center gap-2 transition ${schemaType === 'product' ? 'bg-orange-50 text-orange-700 dark:bg-orange-900/30 dark:text-orange-400' : 'text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-800'}`}><ShoppingBag className="w-4 h-4" /> Product</button>
-				<button onClick={() => setSchemaType('article')} className={`px-3 py-1.5 rounded-lg text-sm font-bold flex items-center gap-2 transition ${schemaType === 'article' ? 'bg-blue-50 text-blue-700 dark:bg-blue-900/30 dark:text-blue-400' : 'text-gray-500 hover:bg-gray-50 dark:hover:bg-gray-800'}`}><FileText className="w-4 h-4" /> Article</button>
+			<div className="flex gap-2 border-b border-border pb-4">
+				<button onClick={() => setSchemaType('faq')} className={`px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 transition-all duration-200 ${schemaType === 'faq' ? 'bg-primary text-primary-foreground shadow-md scale-105' : 'text-muted-foreground hover:bg-muted hover:text-foreground hover:scale-105 active:scale-95'}`}><HelpCircle className="w-4 h-4" /> FAQ</button>
+				<button onClick={() => setSchemaType('product')} className={`px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 transition-all duration-200 ${schemaType === 'product' ? 'bg-primary text-primary-foreground shadow-md scale-105' : 'text-muted-foreground hover:bg-muted hover:text-foreground hover:scale-105 active:scale-95'}`}><ShoppingBag className="w-4 h-4" /> Product</button>
+				<button onClick={() => setSchemaType('article')} className={`px-4 py-2 rounded-full text-sm font-medium flex items-center gap-2 transition-all duration-200 ${schemaType === 'article' ? 'bg-primary text-primary-foreground shadow-md scale-105' : 'text-muted-foreground hover:bg-muted hover:text-foreground hover:scale-105 active:scale-95'}`}><FileText className="w-4 h-4" /> Article</button>
 			</div>
 
 			{schemaType === 'faq' && (
 				<>
 					<div className="flex justify-between items-center">
-						<h3 className="font-bold text-gray-900 dark:text-white">Questions & Answers</h3>
-						<button onClick={addFaq} className="text-xs bg-teal-50 dark:bg-teal-900/30 text-teal-700 dark:text-teal-400 px-3 py-1.5 rounded-lg font-bold flex items-center gap-1 hover:bg-teal-100 border border-teal-100 dark:border-teal-800">+ Add</button>
+						<h3 className="font-bold text-foreground">Questions & Answers</h3>
+						<button onClick={addFaq} className="text-xs bg-primary/10 text-primary px-3 py-1.5 rounded-lg font-bold flex items-center gap-1 hover:bg-primary/20 border border-primary/20 hover:border-primary/40 transition-all duration-200 active:scale-95">+ Add</button>
 					</div>
 					<div className="space-y-3 max-h-[300px] overflow-y-auto pr-2 custom-scrollbar">
 						{items.map((item: any, index: number) => (
-							<div key={index} className="bg-gray-50 dark:bg-gray-800 p-3 rounded-lg border border-gray-100 dark:border-gray-700 relative group">
+							<div key={index} className="bg-muted p-3 rounded-lg border border-border relative group">
 								<input placeholder="Question" value={item.question} onChange={(e) => updateFaq(index, 'question', e.target.value)} className={`${STYLES.inputField} mb-2`} />
 								<textarea placeholder="Answer" rows={2} value={item.answer} onChange={(e) => updateFaq(index, 'answer', e.target.value)} className={STYLES.inputField} />
 								{items.length > 1 && <button onClick={() => removeFaq(index)} className="absolute top-2 right-2 text-gray-400 hover:text-red-500 opacity-0 group-hover:opacity-100 transition"><Trash2 className="w-4 h-4" /></button>}
@@ -279,8 +278,8 @@ export function SchemaBuilder({ items, setItems, schemaType, setSchemaType }: an
 				</>
 			)}
 
-			{schemaType === 'product' && <div className="p-8 text-center bg-gray-50 dark:bg-gray-800 rounded-xl border border-dashed border-gray-300 dark:border-gray-700"><ShoppingBag className="w-10 h-10 text-gray-300 mx-auto mb-2" /><p className="text-gray-500 text-sm">Product Schema generator for E-commerce.</p></div>}
-			{schemaType === 'article' && <div className="p-8 text-center bg-gray-50 dark:bg-gray-800 rounded-xl border border-dashed border-gray-300 dark:border-gray-700"><FileText className="w-10 h-10 text-gray-300 mx-auto mb-2" /><p className="text-gray-500 text-sm">Article/Blog Posting Schema generator.</p></div>}
+			{schemaType === 'product' && <div className="p-8 text-center bg-muted rounded-xl border border-dashed border-border"><ShoppingBag className="w-10 h-10 text-muted-foreground mx-auto mb-2" /><p className="text-muted-foreground text-sm">Product Schema generator for E-commerce.</p></div>}
+			{schemaType === 'article' && <div className="p-8 text-center bg-muted rounded-xl border border-dashed border-border"><FileText className="w-10 h-10 text-muted-foreground mx-auto mb-2" /><p className="text-muted-foreground text-sm">Article/Blog Posting Schema generator.</p></div>}
 		</div>
 	);
 }

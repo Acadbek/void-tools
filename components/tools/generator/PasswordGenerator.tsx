@@ -101,11 +101,11 @@ export default function PasswordGenerator() {
     <div className="max-w-3xl mx-auto space-y-8">
 
       {/* DISPLAY AREA */}
-      <div className="relative bg-white p-6 md:p-8 rounded-2xl border border-gray-200 shadow-lg group">
+      <div className="relative bg-card p-6 md:p-8 rounded-2xl border border-border shadow-lg group">
         <div className="flex flex-col md:flex-row items-center justify-between gap-4">
 
           {/* Password Text */}
-          <div className="flex-1 w-full break-all font-mono text-3xl md:text-4xl text-gray-800 tracking-wider text-center md:text-left">
+          <div className="flex-1 w-full break-all font-mono text-3xl md:text-4xl text-foreground tracking-wider text-center md:text-left">
             {password}
           </div>
 
@@ -113,7 +113,7 @@ export default function PasswordGenerator() {
           <div className="flex gap-2">
             <button
               onClick={generatePassword}
-              className="p-3 text-gray-500 hover:bg-gray-100 rounded-xl transition-colors tooltip"
+              className="p-3 text-muted-foreground hover:bg-accent rounded-xl transition-colors tooltip"
               title="Regenerate"
             >
               <RefreshCw className="w-6 h-6" />
@@ -132,7 +132,7 @@ export default function PasswordGenerator() {
 
         {/* Strength Bar */}
         <div className="mt-6 flex items-center gap-3">
-          <div className="flex-1 h-2 bg-gray-100 rounded-full overflow-hidden">
+          <div className="flex-1 h-2 bg-muted rounded-full overflow-hidden">
             <div
               className={`h-full transition-all duration-500 ${strengthColors[strength]}`}
               style={{ width: strength === 'weak' ? '25%' : strength === 'medium' ? '50%' : strength === 'strong' ? '75%' : '100%' }}
@@ -145,15 +145,15 @@ export default function PasswordGenerator() {
       </div>
 
       {/* CONTROLS */}
-      <div className="bg-gray-50 p-6 rounded-2xl border border-gray-100">
-        <h3 className="font-bold text-gray-800 mb-6 flex items-center gap-2">
+      <div className="bg-muted/30 p-6 rounded-2xl border border-border">
+        <h3 className="font-bold text-foreground mb-6 flex items-center gap-2">
           <ShieldCheck className="w-5 h-5 text-blue-600" /> Configuration
         </h3>
 
         {/* Length Slider */}
         <div className="mb-8">
           <div className="flex justify-between mb-2">
-            <label className="font-medium text-gray-700">Password Length</label>
+            <label className="font-medium text-foreground">Password Length</label>
             <span className="font-mono bg-white border px-3 py-1 rounded-md text-blue-600 font-bold">
               {length}
             </span>
@@ -163,7 +163,7 @@ export default function PasswordGenerator() {
             min="6" max="64"
             value={length}
             onChange={(e) => setLength(Number(e.target.value))}
-            className="w-full h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer accent-blue-600"
+            className="w-full h-3 bg-muted rounded-lg appearance-none cursor-pointer accent-blue-600"
           />
         </div>
 
@@ -177,7 +177,7 @@ export default function PasswordGenerator() {
       </div>
 
       {/* SECURITY NOTE */}
-      <div className="bg-blue-50 p-4 rounded-xl flex items-start gap-3 text-sm text-blue-800">
+      <div className="bg-primary/10 p-4 rounded-xl flex items-start gap-3 text-sm text-primary border border-primary/20">
         <Shield className="w-5 h-5 shrink-0 mt-0.5" />
         <p>
           <strong>Privacy Note:</strong> Your passwords are generated locally in your browser using the Web Crypto API.
@@ -192,9 +192,9 @@ export default function PasswordGenerator() {
 // Kichik UI Component
 function Toggle({ label, checked, onChange }: { label: string, checked: boolean, onChange: (v: boolean) => void }) {
   return (
-    <label className="flex items-center justify-between p-4 bg-white border border-gray-200 rounded-xl cursor-pointer hover:border-blue-300 transition-colors">
-      <span className="font-medium text-gray-700">{label}</span>
-      <div className={`w-12 h-6 rounded-full p-1 transition-colors ${checked ? 'bg-blue-600' : 'bg-gray-300'}`}>
+    <label className="flex items-center justify-between p-4 bg-card border border-border rounded-xl cursor-pointer hover:border-blue-300 transition-colors">
+      <span className="font-medium text-foreground">{label}</span>
+      <div className={`w-12 h-6 rounded-full p-1 transition-colors ${checked ? 'bg-blue-600' : 'bg-muted'}`}>
         <div className={`w-4 h-4 bg-white rounded-full shadow-sm transition-transform ${checked ? 'translate-x-6' : 'translate-x-0'}`} />
         <input type="checkbox" className="hidden" checked={checked} onChange={(e) => onChange(e.target.checked)} />
       </div>

@@ -106,28 +106,28 @@ export default function ImageCompressor() {
     <div className="space-y-8">
 
       {/* SETTINGS BAR */}
-      <div className="bg-blue-50 border border-blue-100 p-4 rounded-xl flex flex-wrap items-center gap-6 text-sm text-blue-900">
+      <div className="bg-card border border-border p-4 rounded-xl flex flex-wrap items-center gap-6 text-sm text-foreground">
         <div className="flex items-center gap-2 font-semibold">
-          <Settings className="w-4 h-4" /> Compression Settings:
+          <Settings className="w-4 h-4 text-primary" /> Compression Settings:
         </div>
 
         <div className="flex items-center gap-2">
-          <label>Quality:</label>
+          <label className="text-muted-foreground">Quality:</label>
           <input
             type="range" min="0.1" max="1" step="0.1"
             value={quality}
             onChange={(e) => setQuality(Number(e.target.value))}
-            className="w-24 accent-blue-600"
+            className="w-24 accent-primary"
           />
-          <span className="font-mono">{(quality * 100).toFixed(0)}%</span>
+          <span className="font-mono text-foreground">{(quality * 100).toFixed(0)}%</span>
         </div>
 
         <div className="flex items-center gap-2">
-          <label>Max Width:</label>
+          <label className="text-muted-foreground">Max Width:</label>
           <select
             value={maxWidth}
             onChange={(e) => setMaxWidth(Number(e.target.value))}
-            className="bg-white border border-blue-200 rounded px-2 py-1 outline-none"
+            className="bg-muted border border-border rounded px-2 py-1 outline-none text-foreground"
           >
             <option value={1920}>1920px (Full HD)</option>
             <option value={1280}>1280px (HD)</option>
@@ -141,15 +141,15 @@ export default function ImageCompressor() {
       <div
         {...getRootProps()}
         className={`border-2 border-dashed rounded-2xl p-10 text-center cursor-pointer transition-all
-          ${isDragActive ? 'border-green-500 bg-green-50' : 'border-gray-300 hover:border-green-400 hover:bg-gray-50'}
+          ${isDragActive ? 'border-primary bg-primary/10' : 'border-border hover:border-primary hover:bg-muted'}
         `}
       >
         <input {...(getInputProps() as React.InputHTMLAttributes<HTMLInputElement>)} />
         <div className="flex flex-col items-center gap-3">
-          <div className="p-4 bg-green-100 text-green-600 rounded-full">
+          <div className="p-4 bg-primary/10 text-primary rounded-full">
             <Upload className="w-8 h-8" />
           </div>
-          <p className="text-xl font-medium text-gray-700">
+          <p className="text-xl font-medium text-foreground">
             {isDragActive ? "Drop images here..." : "Drag & Drop Images (JPG, PNG, WEBP)"}
           </p>
         </div>
@@ -157,9 +157,9 @@ export default function ImageCompressor() {
 
       {/* FILE LIST */}
       {files.length > 0 && (
-        <div className="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100 shadow-sm overflow-hidden">
+        <div className="bg-card rounded-xl border border-border divide-y divide-border shadow-sm overflow-hidden">
           {/* Header */}
-          <div className="grid grid-cols-12 gap-4 p-4 bg-gray-50 text-xs font-bold text-gray-500 uppercase tracking-wider">
+          <div className="grid grid-cols-12 gap-4 p-4 bg-muted text-xs font-bold text-muted-foreground uppercase tracking-wider">
             <div className="col-span-4">File Name</div>
             <div className="col-span-3 text-center">Status</div>
             <div className="col-span-4 text-center">Compression</div>
@@ -167,19 +167,19 @@ export default function ImageCompressor() {
           </div>
 
           {files.map((file) => (
-            <div key={file.id} className="grid grid-cols-12 gap-4 p-4 items-center hover:bg-gray-50 transition-colors">
+            <div key={file.id} className="grid grid-cols-12 gap-4 p-4 items-center hover:bg-muted/50 transition-colors">
 
               {/* Name */}
-              <div className="col-span-4 truncate font-medium text-gray-700" title={file.originalFile.name}>
+              <div className="col-span-4 truncate font-medium text-foreground" title={file.originalFile.name}>
                 {file.originalFile.name}
               </div>
 
               {/* Status */}
               <div className="col-span-3 flex justify-center">
-                {file.status === 'pending' && <span className="text-gray-400 text-sm">Waiting</span>}
-                {file.status === 'compressing' && <span className="text-blue-500 text-sm animate-pulse">Compressing...</span>}
+                {file.status === 'pending' && <span className="text-muted-foreground text-sm">Waiting</span>}
+                {file.status === 'compressing' && <span className="text-primary text-sm animate-pulse">Compressing...</span>}
                 {file.status === 'done' && (
-                  <span className="flex items-center gap-1 text-green-600 text-sm font-medium bg-green-100 px-2 py-1 rounded-full">
+                  <span className="flex items-center gap-1 text-green-600 dark:text-green-400 text-sm font-medium bg-green-500/10 px-2 py-1 rounded-full">
                     <CheckCircle2 className="w-3 h-3" /> Done
                   </span>
                 )}
@@ -187,12 +187,12 @@ export default function ImageCompressor() {
 
               {/* Stats */}
               <div className="col-span-4 flex items-center justify-center gap-2 text-sm">
-                <span className="text-gray-500">{file.originalSize}</span>
+                <span className="text-muted-foreground">{file.originalSize}</span>
                 {file.status === 'done' && (
                   <>
-                    <ArrowRight className="w-4 h-4 text-gray-300" />
-                    <span className="font-bold text-gray-900">{file.compressedSize}</span>
-                    <span className="text-xs font-bold text-green-600 bg-green-50 px-1 rounded ml-1">
+                    <ArrowRight className="w-4 h-4 text-muted-foreground" />
+                    <span className="font-bold text-foreground">{file.compressedSize}</span>
+                    <span className="text-xs font-bold text-green-600 dark:text-green-400 bg-green-500/10 px-1 rounded ml-1">
                       -{file.savedPercentage}
                     </span>
                   </>
@@ -204,13 +204,13 @@ export default function ImageCompressor() {
                 {file.status === 'done' ? (
                   <button
                     onClick={() => handleDownload(file)}
-                    className="p-2 text-green-600 hover:bg-green-50 rounded-lg transition-colors"
+                    className="p-2 text-green-600 dark:text-green-400 hover:bg-green-500/10 rounded-lg transition-colors"
                     title="Download"
                   >
                     <Download className="w-5 h-5" />
                   </button>
                 ) : (
-                  <button onClick={() => removeFile(file.id)} className="p-2 text-gray-400 hover:text-red-500">
+                  <button onClick={() => removeFile(file.id)} className="p-2 text-muted-foreground hover:text-destructive">
                     <X className="w-5 h-5" />
                   </button>
                 )}
@@ -225,7 +225,7 @@ export default function ImageCompressor() {
         <div className="flex justify-center pt-4">
           <button
             onClick={handleCompressAll}
-            className="px-8 py-4 bg-green-600 hover:bg-green-700 text-white font-bold text-lg rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-center gap-2"
+            className="px-8 py-4 bg-primary hover:bg-primary/90 text-primary-foreground font-bold text-lg rounded-xl shadow-lg hover:shadow-xl transition-all transform hover:-translate-y-1 flex items-center gap-2"
           >
             Compress Images Now
           </button>

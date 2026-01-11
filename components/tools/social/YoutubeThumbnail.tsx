@@ -96,19 +96,19 @@ export default function YoutubeThumbnail() {
     <div className="space-y-8">
 
       {/* INPUT SECTION */}
-      <div className="bg-white p-8 rounded-2xl border border-gray-200 shadow-sm">
-        <label className="block text-sm font-bold text-gray-700 mb-2 uppercase tracking-wide">
+      <div className="bg-card p-8 rounded-2xl border border-border shadow-sm">
+        <label className="block text-sm font-bold text-foreground mb-2 uppercase tracking-wide">
           Paste YouTube Video Link
         </label>
         <div className="flex flex-col md:flex-row gap-3">
           <div className="relative flex-1">
-            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-gray-400 w-5 h-5" />
+            <Search className="absolute left-4 top-1/2 -translate-y-1/2 text-muted-foreground w-5 h-5" />
             <input
               type="text"
               value={url}
               onChange={(e) => setUrl(e.target.value)}
               placeholder="https://www.youtube.com/watch?v=..."
-              className="w-full pl-12 pr-4 py-4 border border-gray-300 rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none text-lg"
+              className="w-full pl-12 pr-4 py-4 border border-input rounded-xl focus:ring-2 focus:ring-red-500 focus:border-red-500 outline-none text-lg"
               onKeyDown={(e) => e.key === 'Enter' && handleFetch()}
             />
           </div>
@@ -122,7 +122,7 @@ export default function YoutubeThumbnail() {
         </div>
 
         {error && (
-          <div className="mt-4 p-4 bg-red-50 text-red-700 rounded-xl flex items-center gap-2 animate-fade-in">
+          <div className="mt-4 p-4 bg-destructive/10 text-destructive rounded-xl flex items-center gap-2 animate-fade-in">
             <AlertCircle className="w-5 h-5" /> {error}
           </div>
         )}
@@ -134,10 +134,10 @@ export default function YoutubeThumbnail() {
 
           {/* Main Preview (Eng katta sifat) */}
           <div className="md:col-span-2 space-y-4">
-            <h3 className="font-bold text-xl text-gray-800 flex items-center gap-2">
+            <h3 className="font-bold text-xl text-foreground flex items-center gap-2">
               <ImageIcon className="w-6 h-6 text-red-600" /> Preview
             </h3>
-            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-gray-200 group">
+            <div className="relative rounded-2xl overflow-hidden shadow-2xl border border-border group">
               <img
                 src={thumbnails[0].url}
                 alt="Thumbnail Preview"
@@ -154,7 +154,7 @@ export default function YoutubeThumbnail() {
                   href={thumbnails[0].url}
                   target="_blank"
                   rel="noreferrer"
-                  className="p-3 bg-gray-900/80 text-white rounded-full hover:bg-black transition-colors"
+                  className="p-3 bg-secondary/80 text-white rounded-full hover:bg-black transition-colors"
                 >
                   <ExternalLink className="w-5 h-5" />
                 </a>
@@ -163,18 +163,18 @@ export default function YoutubeThumbnail() {
           </div>
 
           {/* Download Options List */}
-          <div className="md:col-span-2 bg-gray-50 rounded-2xl p-6 border border-gray-100">
-            <h4 className="font-bold text-gray-700 mb-4">Available Resolutions</h4>
+          <div className="md:col-span-2 bg-muted/50 rounded-2xl p-6 border border-border">
+            <h4 className="font-bold text-foreground mb-4">Available Resolutions</h4>
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
               {thumbnails.map((thumb) => (
-                <div key={thumb.key} className="bg-white p-4 rounded-xl border border-gray-200 shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-full">
+                <div key={thumb.key} className="bg-card p-4 rounded-xl border border-border shadow-sm hover:shadow-md transition-shadow flex flex-col justify-between h-full">
                   <div className="mb-3">
-                    <span className="text-xs font-bold uppercase text-gray-400">{thumb.width} x {thumb.height}</span>
-                    <p className="font-semibold text-gray-800">{thumb.label}</p>
+                    <span className="text-xs font-bold uppercase text-muted-foreground">{thumb.width} x {thumb.height}</span>
+                    <p className="font-semibold text-foreground">{thumb.label}</p>
                   </div>
                   <button
                     onClick={() => handleDownload(thumb)}
-                    className="w-full py-2 border border-gray-300 rounded-lg text-sm font-medium text-gray-700 hover:bg-gray-50 hover:text-red-600 hover:border-red-200 transition-colors flex items-center justify-center gap-2"
+                    className="w-full py-2 border border-border rounded-lg text-sm font-medium text-foreground hover:bg-muted hover:text-red-600 hover:border-red-200 transition-colors flex items-center justify-center gap-2"
                   >
                     <Download className="w-4 h-4" /> Download
                   </button>

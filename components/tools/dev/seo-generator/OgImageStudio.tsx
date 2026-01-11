@@ -19,9 +19,9 @@ export default function OgImageStudio({ config, setConfig }: Props) {
 	return (
 		<div className="space-y-6 animate-in fade-in">
 			{/* HEADER */}
-			<h3 className="font-bold text-gray-900 dark:text-white flex items-center gap-2 pb-2 border-b border-gray-100 dark:border-gray-800">
+			<h3 className="font-bold text-foreground flex items-center gap-2 pb-2 border-b border-border">
 				<ImageIcon className="w-5 h-5 text-purple-600" /> OG Image Studio
-				<span className="text-xs font-normal text-gray-500 dark:text-gray-400 ml-auto">Uses @vercel/og</span>
+				<span className="text-xs font-normal text-muted-foreground ml-auto">Uses @vercel/og</span>
 			</h3>
 
 			<div className="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-4">
@@ -48,7 +48,7 @@ export default function OgImageStudio({ config, setConfig }: Props) {
 							onChange={(e) => setConfig({ ...config, siteName: e.target.value })}
 							className={`${STYLES.inputField} flex-1`}
 						/>
-						<label className="flex items-center gap-1 text-sm text-gray-600 dark:text-gray-400 cursor-pointer border border-gray-200 dark:border-gray-700 px-2 rounded bg-gray-50 dark:bg-gray-800 hover:bg-gray-100 dark:hover:bg-gray-700 transition">
+						<label className="flex items-center gap-1 text-sm text-muted-foreground cursor-pointer border border-border px-2 rounded bg-muted/50 hover:bg-muted transition">
 							<input
 								type="checkbox"
 								checked={config.showDate}
@@ -64,11 +64,11 @@ export default function OgImageStudio({ config, setConfig }: Props) {
 					<div className={STYLES.controlGroupLabel}><Palette className="w-3.5 h-3.5" /> Background & Style</div>
 
 					{/* Background Type Selector */}
-					<div className="flex items-center gap-2 p-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800">
+					<div className="flex items-center gap-2 p-2 border border-border rounded-lg bg-muted/30">
 						<select
 							value={config.bgType}
 							onChange={(e: any) => setConfig({ ...config, bgType: e.target.value })}
-							className="text-sm border dark:border-gray-600 rounded p-1 bg-white dark:bg-gray-700 text-gray-900 dark:text-gray-100 w-full focus:ring-2 focus:ring-blue-500 outline-none"
+							className="text-sm border border-border rounded p-1 bg-card text-foreground w-full focus:ring-2 focus:ring-blue-500 outline-none"
 						>
 							<option value="solid">Solid Color</option>
 							<option value="gradient">Gradient</option>
@@ -78,9 +78,9 @@ export default function OgImageStudio({ config, setConfig }: Props) {
 
 					{/* Conditional Inputs based on bgType */}
 					{config.bgType === 'image' ? (
-						<div className="space-y-3 p-3 border border-gray-200 dark:border-gray-700 rounded-lg bg-gray-50 dark:bg-gray-800/50">
+						<div className="space-y-3 p-3 border border-border rounded-lg bg-muted/30">
 							<div className="relative">
-								<LinkIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-gray-400" />
+								<LinkIcon className="absolute left-3 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-muted-foreground" />
 								<input
 									placeholder="Image URL (https://...)"
 									value={config.bgImage}
@@ -88,7 +88,7 @@ export default function OgImageStudio({ config, setConfig }: Props) {
 									className={`${STYLES.inputField} pl-9 text-xs`}
 								/>
 							</div>
-							<div className="flex items-center gap-3 text-xs text-gray-500 dark:text-gray-400">
+							<div className="flex items-center gap-3 text-xs text-muted-foreground">
 								<span className="font-medium">Overlay:</span>
 								<input
 									type="range" min="0" max="90"
@@ -100,26 +100,26 @@ export default function OgImageStudio({ config, setConfig }: Props) {
 							</div>
 						</div>
 					) : (
-						<div className="flex items-center gap-2 p-2 border border-gray-200 dark:border-gray-700 rounded-lg">
+						<div className="flex items-center gap-2 p-2 border border-border rounded-lg">
 							<input type="color" title="Start Color" value={config.bgColorStart} onChange={(e) => setConfig({ ...config, bgColorStart: e.target.value })} className={STYLES.colorInput} />
-							{config.bgType === 'gradient' && <span className="text-gray-400">→</span>}
+							{config.bgType === 'gradient' && <span className="text-muted-foreground">→</span>}
 							{config.bgType === 'gradient' && <input type="color" title="End Color" value={config.bgColorEnd} onChange={(e) => setConfig({ ...config, bgColorEnd: e.target.value })} className={STYLES.colorInput} />}
-							<span className="text-xs text-gray-400 ml-auto">Pick Colors</span>
+							<span className="text-xs text-muted-foreground ml-auto">Pick Colors</span>
 						</div>
 					)}
 
 					<div className="flex gap-4 justify-between mt-2">
 						<div className="flex flex-col gap-1">
-							<div className="text-[10px] uppercase font-bold text-gray-400">Text Color</div>
+							<div className="text-[10px] uppercase font-bold text-muted-foreground">Text Color</div>
 							<div className="flex items-center gap-2">
 								<input type="color" value={config.textColor} onChange={(e) => setConfig({ ...config, textColor: e.target.value })} className={STYLES.colorInput} />
-								<span className="text-xs font-mono text-gray-500">{config.textColor}</span>
+								<span className="text-xs font-mono text-muted-foreground">{config.textColor}</span>
 							</div>
 						</div>
 						<div className="flex flex-col gap-1">
-							<div className="text-[10px] uppercase font-bold text-gray-400 text-right">Accent</div>
+							<div className="text-[10px] uppercase font-bold text-muted-foreground text-right">Accent</div>
 							<div className="flex items-center gap-2 justify-end">
-								<span className="text-xs font-mono text-gray-500">{config.accentColor}</span>
+								<span className="text-xs font-mono text-muted-foreground">{config.accentColor}</span>
 								<input type="color" value={config.accentColor} onChange={(e) => setConfig({ ...config, accentColor: e.target.value })} className={STYLES.colorInput} />
 							</div>
 						</div>
@@ -128,11 +128,11 @@ export default function OgImageStudio({ config, setConfig }: Props) {
 
 				{/* 3. TYPOGRAPHY & LAYOUT SECTION */}
 				<div className="space-y-3 md:col-span-2">
-					<div className={`${STYLES.controlGroupLabel} border-t border-gray-100 dark:border-gray-800 pt-4 mt-2`}><Layout className="w-3.5 h-3.5" /> Typography & Layout</div>
+					<div className={`${STYLES.controlGroupLabel} border-t border-border pt-4 mt-2`}><Layout className="w-3.5 h-3.5" /> Typography & Layout</div>
 
-					<div className="flex flex-wrap items-center gap-4 bg-gray-50 dark:bg-gray-800/50 p-3 rounded-xl border border-gray-200 dark:border-gray-700">
+					<div className="flex flex-wrap items-center gap-4 bg-muted/30 p-3 rounded-xl border border-border">
 						{/* Alignment Buttons */}
-						<div className="flex rounded-lg bg-white dark:bg-gray-800 p-1 border border-gray-200 dark:border-gray-700 shadow-sm">
+						<div className="flex rounded-lg bg-card p-1 border border-border shadow-sm">
 							<button onClick={() => handleAlignChange('start')} className={`${STYLES.iconBtn} ${config.alignment === 'flex-start' ? STYLES.iconBtnActive : ''}`}><AlignLeft className="w-4 h-4" /></button>
 							<button onClick={() => handleAlignChange('center')} className={`${STYLES.iconBtn} ${config.alignment === 'center' ? STYLES.iconBtnActive : ''}`}><AlignCenter className="w-4 h-4" /></button>
 							<button onClick={() => handleAlignChange('end')} className={`${STYLES.iconBtn} ${config.alignment === 'flex-end' ? STYLES.iconBtnActive : ''}`}><AlignRight className="w-4 h-4" /></button>
@@ -142,7 +142,7 @@ export default function OgImageStudio({ config, setConfig }: Props) {
 						<select
 							value={config.titleFontWeight}
 							onChange={(e) => setConfig({ ...config, titleFontWeight: e.target.value })}
-							className="text-xs border border-gray-200 dark:border-gray-700 rounded-lg p-2 bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 focus:ring-1 focus:ring-blue-500 outline-none"
+							className="text-xs border border-border rounded-lg p-2 bg-card text-foreground focus:ring-1 focus:ring-blue-500 outline-none"
 						>
 							<option value="400">Regular</option>
 							<option value="700">Bold</option>
@@ -150,7 +150,7 @@ export default function OgImageStudio({ config, setConfig }: Props) {
 						</select>
 
 						{/* Font Size Sliders */}
-						<div className="flex-1 flex flex-col sm:flex-row items-center gap-4 text-xs text-gray-500 dark:text-gray-400 whitespace-nowrap w-full">
+						<div className="flex-1 flex flex-col sm:flex-row items-center gap-4 text-xs text-muted-foreground whitespace-nowrap w-full">
 							<div className="flex items-center gap-2 w-full">
 								<span>Title:</span>
 								<input type="range" min="40" max="120" value={config.titleFontSize} onChange={(e) => setConfig({ ...config, titleFontSize: Number(e.target.value) })} className="w-full accent-blue-600 cursor-pointer" />
@@ -167,11 +167,11 @@ export default function OgImageStudio({ config, setConfig }: Props) {
 			{/* 4. LIVE PREVIEW */}
 			<div className="mt-8">
 				<div className="flex items-center justify-between mb-2">
-					<div className="text-xs font-bold text-gray-400 uppercase tracking-wider">Live Preview (1200 x 630)</div>
-					<div className="text-[10px] text-gray-400 bg-gray-100 dark:bg-gray-800 px-2 py-1 rounded">Scale: 100%</div>
+					<div className="text-xs font-bold text-muted-foreground uppercase tracking-wider">Live Preview (1200 x 630)</div>
+					<div className="text-[10px] text-muted-foreground bg-muted px-2 py-1 rounded">Scale: 100%</div>
 				</div>
 
-				<div className="border border-gray-200 dark:border-gray-700 rounded-xl overflow-hidden shadow-2xl aspect-[1200/630] w-full mx-auto relative transition-all duration-300 group"
+				<div className="border border-border rounded-xl overflow-hidden shadow-2xl aspect-1200/630 w-full mx-auto relative transition-all duration-300 group"
 					style={{
 						background: config.bgType === 'image'
 							? `url(${config.bgImage}) center/cover no-repeat`

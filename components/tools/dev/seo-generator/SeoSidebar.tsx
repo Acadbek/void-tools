@@ -21,7 +21,6 @@ export default function SeoSidebar({ activeTab, setActiveTab, data }: Props) {
 		const issues = [];
 		let score = 0;
 
-		// 1. Title Check (30)
 		if (!data.title) {
 			issues.push({ type: 'error', msg: "Title is missing" });
 		} else if (data.title.length < 30) {
@@ -34,7 +33,6 @@ export default function SeoSidebar({ activeTab, setActiveTab, data }: Props) {
 			score += 30;
 		}
 
-		// 2. Description Check (40)
 		if (!data.description) {
 			issues.push({ type: 'error', msg: "Description is missing" });
 		} else if (data.description.length < 100) {
@@ -47,7 +45,6 @@ export default function SeoSidebar({ activeTab, setActiveTab, data }: Props) {
 			score += 40;
 		}
 
-		// 3. URL & Author (30)
 		if (data.url && data.url.startsWith('http')) score += 15;
 		else issues.push({ type: 'error', msg: "Invalid or missing URL" });
 
@@ -67,7 +64,7 @@ export default function SeoSidebar({ activeTab, setActiveTab, data }: Props) {
 
 			{/* 1. MENU */}
 			<div className="flex flex-col gap-1.5">
-				<div className="text-xs font-bold text-gray-400 uppercase tracking-wider mb-2 px-2">Menu</div>
+				<div className="text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2 px-2">Menu</div>
 				{tabs.map((tab) => (
 					<button
 						key={tab.id}
@@ -80,13 +77,13 @@ export default function SeoSidebar({ activeTab, setActiveTab, data }: Props) {
 				))}
 			</div>
 
-			<div className="bg-white dark:bg-gray-900 border border-gray-200 dark:border-gray-800 rounded-xl p-4 shadow-sm">
+			<div className="bg-card border border-border rounded-xl p-4 shadow-sm">
 				<div className="flex justify-between items-end mb-2">
-					<span className="text-xs font-bold text-gray-500 dark:text-gray-400 uppercase">SEO Health</span>
+					<span className="text-xs font-bold text-muted-foreground uppercase">SEO Health</span>
 					<span className={`text-2xl font-black ${scoreColor}`}>{score}%</span>
 				</div>
 
-				<div className="h-1.5 w-full bg-gray-100 dark:bg-gray-800 rounded-full overflow-hidden mb-4">
+				<div className="h-1.5 w-full bg-muted rounded-full overflow-hidden mb-4">
 					<div className={`h-full ${progressColor} transition-all duration-500`} style={{ width: `${score}%` }}></div>
 				</div>
 
@@ -99,7 +96,7 @@ export default function SeoSidebar({ activeTab, setActiveTab, data }: Props) {
 						issues.slice(0, 3).map((issue, idx) => (
 							<div key={idx} className="flex items-center gap-2 text-[11px] leading-tight">
 								{issue.type === 'error' ? <XCircle className="w-3 h-3 text-red-500 shrink-0" /> : <AlertTriangle className="w-3 h-3 text-yellow-500 shrink-0" />}
-								<span className="text-gray-600 dark:text-gray-400">{issue.msg}</span>
+								<span className="text-muted-foreground">{issue.msg}</span>
 							</div>
 						))
 					)}

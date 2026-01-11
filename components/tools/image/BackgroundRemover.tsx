@@ -213,14 +213,14 @@ export default function BackgroundRemover() {
     <div className="flex flex-col gap-6 select-none">
 
       {/* HEADER */}
-      <div className="bg-white border border-gray-200 p-4 rounded-xl flex items-center justify-between gap-4 shadow-sm">
+      <div className="bg-card border border-border p-4 rounded-xl flex items-center justify-between gap-4 shadow-sm">
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-blue-100 text-blue-600 rounded-lg">
+          <div className="p-2 bg-primary/10 text-primary rounded-lg">
             <Eraser className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="font-semibold text-gray-800 text-sm">Magic Background Remover</h3>
-            <p className="text-xs text-gray-500">Manual tools: Magic Wand & Eraser (No AI)</p>
+            <h3 className="font-semibold text-foreground text-sm">Magic Background Remover</h3>
+            <p className="text-xs text-muted-foreground">Manual tools: Magic Wand & Eraser (No AI)</p>
           </div>
         </div>
 
@@ -229,14 +229,14 @@ export default function BackgroundRemover() {
             <button
               onClick={handleUndo}
               disabled={history.length <= 1}
-              className="p-2 text-gray-600 hover:bg-gray-100 rounded-lg disabled:opacity-30"
+              className="p-2 text-muted-foreground hover:bg-muted rounded-lg disabled:opacity-30"
               title="Undo"
             >
               <RotateCcw className="w-5 h-5" />
             </button>
             <button
               onClick={() => { setImage(null); setFile(null); setHistory([]); }}
-              className="text-sm font-medium text-red-500 hover:bg-red-50 px-3 py-1.5 rounded-lg"
+              className="text-sm font-medium text-destructive hover:bg-destructive/10 px-3 py-1.5 rounded-lg"
             >
               Reset
             </button>
@@ -255,37 +255,37 @@ export default function BackgroundRemover() {
         <div
           {...getRootProps()}
           className={`
-             border-2 border-dashed rounded-xl flex flex-col items-center justify-center p-12 transition-all cursor-pointer min-h-[400px] bg-white
-             ${isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-blue-300'}
+             border-2 border-dashed rounded-xl flex flex-col items-center justify-center p-12 transition-all cursor-pointer min-h-[400px] bg-card
+             ${isDragActive ? 'border-primary bg-primary/5' : 'border-border hover:border-primary/50'}
            `}
         >
           <input {...getInputProps()} />
-          <div className="w-20 h-20 bg-blue-50 text-blue-500 rounded-full flex items-center justify-center mb-6 shadow-sm">
+          <div className="w-20 h-20 bg-primary/10 text-primary rounded-full flex items-center justify-center mb-6 shadow-sm">
             <ImageIcon className="w-10 h-10" />
           </div>
-          <h3 className="text-xl font-bold text-gray-800">Upload Image</h3>
-          <p className="text-gray-500 mt-2">To remove background manually</p>
+          <h3 className="text-xl font-bold text-foreground">Upload Image</h3>
+          <p className="text-muted-foreground mt-2">To remove background manually</p>
         </div>
       ) : (
         <div className="flex flex-col lg:flex-row gap-6 h-[600px]">
 
           {/* TOOLBAR */}
-          <div className="w-full lg:w-64 flex flex-col gap-4 bg-white p-4 rounded-xl border border-gray-200 shadow-sm h-fit">
+          <div className="w-full lg:w-64 flex flex-col gap-4 bg-card p-4 rounded-xl border border-border shadow-sm h-fit">
 
             {/* TOOLS */}
             <div>
-              <label className="text-xs font-bold text-gray-500 uppercase mb-2 block">Tools</label>
+              <label className="text-xs font-bold text-muted-foreground uppercase mb-2 block">Tools</label>
               <div className="flex gap-2">
                 <button
                   onClick={() => setTool('wand')}
-                  className={`flex-1 flex flex-col items-center gap-1 p-3 rounded-lg border ${tool === 'wand' ? 'bg-blue-50 border-blue-500 text-blue-700' : 'border-gray-200 hover:bg-gray-50'}`}
+                  className={`flex-1 flex flex-col items-center gap-1 p-3 rounded-lg border ${tool === 'wand' ? 'bg-primary/10 border-primary text-primary' : 'border-border hover:bg-muted'}`}
                 >
                   <Wand2 className="w-6 h-6" />
                   <span className="text-xs font-medium">Magic Wand</span>
                 </button>
                 <button
                   onClick={() => setTool('eraser')}
-                  className={`flex-1 flex flex-col items-center gap-1 p-3 rounded-lg border ${tool === 'eraser' ? 'bg-blue-50 border-blue-500 text-blue-700' : 'border-gray-200 hover:bg-gray-50'}`}
+                  className={`flex-1 flex flex-col items-center gap-1 p-3 rounded-lg border ${tool === 'eraser' ? 'bg-primary/10 border-primary text-primary' : 'border-border hover:bg-muted'}`}
                 >
                   <Eraser className="w-6 h-6" />
                   <span className="text-xs font-medium">Eraser</span>
@@ -293,40 +293,40 @@ export default function BackgroundRemover() {
               </div>
             </div>
 
-            <hr className="border-gray-100" />
+            <hr className="border-border" />
 
             {/* SETTINGS */}
             {tool === 'wand' ? (
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <label className="text-sm font-medium text-gray-700">Tolerance</label>
-                  <span className="text-xs bg-gray-100 px-2 py-1 rounded">{tolerance}</span>
+                  <label className="text-sm font-medium text-foreground">Tolerance</label>
+                  <span className="text-xs bg-muted px-2 py-1 rounded">{tolerance}</span>
                 </div>
                 <input
                   type="range" min="1" max="100" value={tolerance}
                   onChange={(e) => setTolerance(Number(e.target.value))}
-                  className="w-full accent-blue-600 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                  className="w-full accent-primary h-2 bg-muted rounded-lg appearance-none cursor-pointer"
                 />
-                <p className="text-xs text-gray-500">
+                <p className="text-xs text-muted-foreground">
                   Higher tolerance removes more colors similar to the one you click.
                 </p>
               </div>
             ) : (
               <div className="space-y-3">
                 <div className="flex justify-between items-center">
-                  <label className="text-sm font-medium text-gray-700">Brush Size</label>
-                  <span className="text-xs bg-gray-100 px-2 py-1 rounded">{brushSize}px</span>
+                  <label className="text-sm font-medium text-foreground">Brush Size</label>
+                  <span className="text-xs bg-muted px-2 py-1 rounded">{brushSize}px</span>
                 </div>
                 <input
                   type="range" min="5" max="100" value={brushSize}
                   onChange={(e) => setBrushSize(Number(e.target.value))}
-                  className="w-full accent-blue-600 h-2 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                  className="w-full accent-primary h-2 bg-muted rounded-lg appearance-none cursor-pointer"
                 />
               </div>
             )}
 
-            <div className="bg-blue-50 p-3 rounded-lg mt-2">
-              <p className="text-xs text-blue-700 flex items-start gap-2">
+            <div className="bg-primary/10 p-3 rounded-lg mt-2">
+              <p className="text-xs text-primary flex items-start gap-2">
                 <MousePointer2 className="w-4 h-4 shrink-0 mt-0.5" />
                 {tool === 'wand'
                   ? "Click on the background color you want to remove."
@@ -336,7 +336,7 @@ export default function BackgroundRemover() {
           </div>
 
           {/* CANVAS WORKSPACE */}
-          <div className="flex-1 bg-gray-100 rounded-xl overflow-auto border border-gray-200 relative flex items-center justify-center p-4">
+          <div className="flex-1 bg-muted/20 rounded-xl overflow-auto border border-border relative flex items-center justify-center p-4">
             {/* Shaxmat taxtasi foni (Transparency grid) */}
             <div className="absolute inset-0 bg-[url('https://border-image.com/img/transparent-background.png')] bg-repeat opacity-50 pointer-events-none" />
 

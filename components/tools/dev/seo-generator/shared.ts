@@ -1,11 +1,11 @@
 export const STYLES = {
-	sidebarBtn: "w-full text-left px-3 py-2.5 rounded-lg flex items-center gap-3 transition-colors text-sm font-medium text-gray-600 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-800 border border-transparent",
-	sidebarBtnActive: "bg-blue-50 text-blue-700 border-blue-100 dark:bg-blue-900/20 dark:text-blue-400 dark:border-blue-900/50",
-	inputField: "w-full px-3 py-2 border border-gray-200 dark:border-gray-700 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500 transition-shadow bg-white dark:bg-gray-800 text-gray-900 dark:text-gray-100 placeholder-gray-400 dark:placeholder-gray-500",
-	controlGroupLabel: "text-xs font-bold text-gray-500 dark:text-gray-400 uppercase mb-2 flex items-center gap-1.5",
+	sidebarBtn: "w-full text-left px-3 py-2.5 rounded-lg flex items-center gap-3 transition-colors text-sm font-medium text-muted-foreground hover:bg-muted border border-transparent",
+	sidebarBtnActive: "bg-primary/10 text-primary border-primary/20",
+	inputField: "w-full px-3 py-2 border border-input rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-ring transition-shadow bg-background text-foreground placeholder:text-muted-foreground",
+	controlGroupLabel: "text-xs font-bold text-muted-foreground uppercase mb-2 flex items-center gap-1.5",
 	colorInput: "w-8 h-8 rounded cursor-pointer border-0 p-0 bg-transparent",
-	iconBtn: "p-1.5 rounded-md border border-gray-200 dark:border-gray-700 text-gray-500 dark:text-gray-400 hover:bg-gray-50 dark:hover:bg-gray-700 hover:text-gray-900 dark:hover:text-white transition",
-	iconBtnActive: "bg-blue-50 dark:bg-blue-900/30 text-blue-600 dark:text-blue-400 border-blue-200 dark:border-blue-800"
+	iconBtn: "p-1.5 rounded-md border border-border text-muted-foreground hover:bg-muted hover:text-foreground transition",
+	iconBtnActive: "bg-primary/10 text-primary border-primary/20"
 };
 
 export type TabType = "meta" | "og-image" | "sitemap" | "robots" | "manifest" | "faq";

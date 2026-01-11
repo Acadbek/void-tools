@@ -30,20 +30,20 @@ export default function CssToTailwindPro() {
       <div className="grid md:grid-cols-2 gap-6 flex-1 min-h-0">
 
         <div className="flex flex-col gap-2 h-full">
-          <label className="text-xs font-bold text-gray-500 uppercase flex justify-between px-1">
+          <label className="text-xs font-bold text-muted-foreground uppercase flex justify-between px-1">
             <span>CSS Input</span>
-            {status === 'converting' && <Zap className="w-3 h-3 text-yellow-500 animate-pulse" />}
+            {status === 'converting' && <Zap className="w-3 h-3 text-amber-500 animate-pulse" />}
           </label>
 
-          <div className={`relative w-full h-full rounded-xl border overflow-hidden bg-white transition-all group ${status === 'error' ? 'border-red-300 ring-2 ring-red-100' : 'border-gray-200 focus-within:ring-2 focus-within:ring-blue-500 focus-within:border-blue-500'}`}>
+          <div className={`relative w-full h-full rounded-xl border overflow-hidden bg-card transition-all group ${status === 'error' ? 'border-destructive/50 ring-2 ring-destructive/20' : 'border-border focus-within:ring-2 focus-within:ring-primary/20 focus-within:border-primary'}`}>
 
             <button
               onClick={handlePaste}
               className={`
                   absolute top-3 right-3 z-10 
                   flex items-center gap-2 px-4 py-4 
-                  bg-blue-50 text-blue-700 font-bold text-xs rounded-lg border border-blue-100
-                  shadow-sm hover:shadow-md hover:bg-blue-100 hover:scale-105 active:scale-95
+                  bg-secondary text-secondary-foreground font-bold text-xs rounded-lg border border-border
+                  shadow-sm hover:shadow-md hover:bg-secondary/80 hover:scale-105 active:scale-95
                   transition-all duration-200
               `}
             >
@@ -57,7 +57,7 @@ export default function CssToTailwindPro() {
               onChange={(e) => setInput(e.target.value)}
               onKeyDown={handleKeyDown}
               placeholder={`Paste CSS here...\nExample:\n\nwidth: 100%;\nbackground: #000;`}
-              className="w-full h-full p-4 font-mono text-sm resize-none outline-none leading-relaxed text-gray-800"
+              className="w-full h-full p-4 font-mono text-sm resize-none outline-none leading-relaxed text-foreground bg-transparent placeholder:text-muted-foreground/50"
               spellCheck={false}
               autoFocus
             />
@@ -66,11 +66,11 @@ export default function CssToTailwindPro() {
 
         <div className="flex flex-col gap-2 h-full">
           <div className="flex justify-between items-center h-5 px-1">
-            <label className="text-xs font-bold text-gray-500 uppercase">Tailwind Result</label>
+            <label className="text-xs font-bold text-muted-foreground uppercase">Tailwind Result</label>
             {output && (
               <button
                 onClick={() => copy(output)}
-                className={`text-xs font-bold flex items-center gap-1 transition-colors ${copied ? "text-green-600" : "text-blue-600 hover:text-blue-700"}`}
+                className={`text-xs font-bold flex items-center gap-1 transition-colors ${copied ? "text-green-600" : "text-primary hover:text-primary/80"}`}
               >
                 {copied ? <Check className="w-3 h-3" /> : <Copy className="w-3 h-3" />}
                 {copied ? "Copied" : "Copy Class"}
@@ -80,10 +80,10 @@ export default function CssToTailwindPro() {
 
           <div className="relative w-full h-full group">
             {status === 'error' ? (
-              <div className="w-full h-full p-4 rounded-xl border border-red-200 bg-red-50 text-red-600 text-sm flex flex-col items-center justify-center gap-2 animate-in fade-in">
+              <div className="w-full h-full p-4 rounded-xl border border-destructive/30 bg-destructive/10 text-destructive text-sm flex flex-col items-center justify-center gap-2 animate-in fade-in">
                 <AlertCircle className="w-6 h-6" />
                 <p className="font-semibold">Conversion Failed</p>
-                <p className="text-xs text-red-500 opacity-80">Check your syntax</p>
+                <p className="text-xs text-destructive/80 opacity-80">Check your syntax</p>
               </div>
             ) : (
               <>
@@ -94,10 +94,10 @@ export default function CssToTailwindPro() {
                   title="Click to copy"
                   placeholder="Result appears here..."
                   className={`
-                      w-full h-full p-4 rounded-xl border border-gray-200 font-mono text-sm resize-none outline-none
-                      bg-gray-50 text-blue-700 leading-relaxed transition-all duration-200
+                      w-full h-full p-4 rounded-xl border border-border font-mono text-sm resize-none outline-none
+                      bg-muted/30 text-primary leading-relaxed transition-all duration-200
                       ${status === 'converting' || status === 'typing' ? 'opacity-50' : 'opacity-100'}
-                      ${output ? 'cursor-pointer hover:bg-blue-50 hover:border-blue-300' : ''}
+                      ${output ? 'cursor-pointer hover:bg-muted/50 hover:border-primary/30' : ''}
                   `}
                 />
                 {output && !copied && (

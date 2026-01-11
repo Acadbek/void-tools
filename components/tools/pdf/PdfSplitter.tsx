@@ -14,17 +14,15 @@ import {
   Trash2,
 } from "lucide-react";
 
-// Worker setup
 pdfjsLib.GlobalWorkerOptions.workerSrc = `//unpkg.com/pdfjs-dist@${pdfjsLib.version}/build/pdf.worker.min.mjs`;
 
 export default function PdfSplitter() {
   const [file, setFile] = useState<File | null>(null);
   const [thumbnails, setThumbnails] = useState<string[]>([]);
-  const [selectedPages, setSelectedPages] = useState<number[]>([]); // 0-based index
+  const [selectedPages, setSelectedPages] = useState<number[]>([]);
   const [isProcessing, setIsProcessing] = useState(false);
-  const [splitMode, setSplitMode] = useState<"merge" | "zip">("merge"); // Bitta PDF yoki ZIP
+  const [splitMode, setSplitMode] = useState<"merge" | "zip">("merge");
 
-  // 1. Fayl yuklash va Thumbnaillarni generatsiya qilish
   const onDrop = useCallback(async (acceptedFiles: File[]) => {
     const selected = acceptedFiles[0];
     if (selected?.type !== "application/pdf") return;
@@ -39,10 +37,9 @@ export default function PdfSplitter() {
       const pdf = await pdfjsLib.getDocument(buffer).promise;
       const pages: string[] = [];
 
-      // Har bir sahifani kichik rasm (thumbnail) qilib olamiz
       for (let i = 1; i <= pdf.numPages; i++) {
         const page = await pdf.getPage(i);
-        const viewport = page.getViewport({ scale: 0.4 }); // Optimallashtirilgan o'lcham
+        const viewport = page.getViewport({ scale: 0.4 });
         const canvas = document.createElement("canvas");
         const context = canvas.getContext("2d");
 
@@ -69,7 +66,6 @@ export default function PdfSplitter() {
     multiple: false
   });
 
-  // 2. Sahifani tanlash/bekor qilish
   const togglePage = (index: number) => {
     setSelectedPages(prev =>
       prev.includes(index)
@@ -80,13 +76,12 @@ export default function PdfSplitter() {
 
   const selectAll = () => {
     if (selectedPages.length === thumbnails.length) {
-      setSelectedPages([]); // Deselect all
+      setSelectedPages([]);
     } else {
-      setSelectedPages(thumbnails.map((_, i) => i)); // Select all
+      setSelectedPages(thumbnails.map((_, i) => i));
     }
   };
 
-  // 3. Split va Download logikasi
   const handleSplit = async () => {
     if (!file || selectedPages.length === 0) return;
     setIsProcessing(true);
@@ -96,7 +91,6 @@ export default function PdfSplitter() {
       const srcDoc = await PDFDocument.load(fileBuffer);
 
       if (splitMode === "merge") {
-        // A. Tanlangan sahifalardan yangi BITTA PDF yasash
         const newDoc = await PDFDocument.create();
         const copiedPages = await newDoc.copyPages(srcDoc, selectedPages);
         copiedPages.forEach(page => newDoc.addPage(page));
@@ -105,7 +99,6 @@ export default function PdfSplitter() {
         const blob = new Blob([pdfBytes], { type: "application/pdf" });
         saveAs(blob, `split_${file.name}`);
       } else {
-        // B. Har bir tanlangan sahifani ALOHIDA fayl qilib ZIPlash
         const zip = new JSZip();
 
         for (const pageIndex of selectedPages) {
@@ -131,15 +124,14 @@ export default function PdfSplitter() {
   return (
     <div className="flex flex-col h-full gap-6">
 
-      {/* TOOLBAR */}
-      <div className="bg-white border border-gray-200 p-4 rounded-xl flex flex-col md:flex-row items-center justify-between gap-4 shadow-sm">
+      <div className="bg-card border border-border p-4 rounded-xl flex flex-col md:flex-row items-center justify-between gap-4 shadow-sm">
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-blue-100 text-blue-600 rounded-lg">
+          <div className="p-2 bg-primary/10 text-primary rounded-lg">
             <Scissors className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="font-semibold text-gray-800 text-sm">Split PDF</h3>
-            <p className="text-xs text-gray-500">Select pages to extract.</p>
+            <h3 className="font-semibold text-foreground text-sm">Split PDF</h3>
+            <p className="text-xs text-muted-foreground">Select pages to extract.</p>
           </div>
         </div>
 
@@ -147,23 +139,23 @@ export default function PdfSplitter() {
           <div className="flex items-center gap-3 flex-wrap justify-end">
             <button
               onClick={selectAll}
-              className="text-sm font-medium text-gray-600 hover:text-blue-600 px-3 py-1.5 rounded-lg hover:bg-gray-50 transition-colors"
+              className="text-sm font-medium text-muted-foreground hover:text-primary px-3 py-1.5 rounded-lg hover:bg-muted transition-colors"
             >
               {selectedPages.length === thumbnails.length ? "Deselect All" : "Select All"}
             </button>
 
-            <div className="h-8 w-px bg-gray-200 mx-1 hidden sm:block"></div>
+            <div className="h-8 w-px bg-border mx-1 hidden sm:block"></div>
 
-            <div className="flex bg-gray-100 p-1 rounded-lg">
+            <div className="flex bg-muted p-1 rounded-lg">
               <button
                 onClick={() => setSplitMode("merge")}
-                className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all ${splitMode === "merge" ? "bg-white shadow-sm text-gray-900" : "text-gray-500"}`}
+                className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all ${splitMode === "merge" ? "bg-card shadow-sm text-foreground" : "text-muted-foreground"}`}
               >
                 Merge Selected
               </button>
               <button
                 onClick={() => setSplitMode("zip")}
-                className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all ${splitMode === "zip" ? "bg-white shadow-sm text-gray-900" : "text-gray-500"}`}
+                className={`px-3 py-1.5 text-xs font-medium rounded-md transition-all ${splitMode === "zip" ? "bg-card shadow-sm text-foreground" : "text-muted-foreground"}`}
               >
                 Separate (ZIP)
               </button>
@@ -172,7 +164,7 @@ export default function PdfSplitter() {
             <button
               onClick={handleSplit}
               disabled={selectedPages.length === 0 || isProcessing}
-              className="bg-blue-600 text-white px-5 py-2 rounded-lg text-sm font-semibold hover:bg-blue-700 transition-colors shadow-md disabled:opacity-50 flex items-center gap-2"
+              className="bg-primary text-primary-foreground px-5 py-2 rounded-lg text-sm font-semibold hover:bg-primary/90 transition-colors shadow-md disabled:opacity-50 flex items-center gap-2"
             >
               {isProcessing ? <Loader2 className="w-4 h-4 animate-spin" /> : <Download className="w-4 h-4" />}
               Download
@@ -187,25 +179,25 @@ export default function PdfSplitter() {
           <div
             {...getRootProps()}
             className={`
-               h-full border-2 border-dashed rounded-xl flex flex-col items-center justify-center p-10 transition-all cursor-pointer bg-gray-50 hover:bg-white
-               ${isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-blue-300'}
+               h-full border-2 border-dashed rounded-xl flex flex-col items-center justify-center p-10 transition-all cursor-pointer bg-card hover:bg-muted/50
+               ${isDragActive ? 'border-primary bg-primary/10' : 'border-border hover:border-primary'}
              `}
           >
             <input {...getInputProps()} />
-            <div className="w-20 h-20 bg-white rounded-full shadow-sm flex items-center justify-center mb-6">
-              <Scissors className="w-10 h-10 text-blue-500" />
+            <div className="w-20 h-20 bg-muted/50 rounded-full shadow-sm flex items-center justify-center mb-6 text-primary">
+              <Scissors className="w-10 h-10" />
             </div>
-            <h3 className="text-xl font-bold text-gray-800 mb-2">Split PDF Document</h3>
-            <p className="text-gray-500 text-center max-w-md">
+            <h3 className="text-xl font-bold text-foreground mb-2">Split PDF Document</h3>
+            <p className="text-muted-foreground text-center max-w-md">
               Drag and drop a PDF file here to view pages and extract them.
             </p>
           </div>
         ) : (
           // VISUAL GRID AREA
-          <div className="h-full bg-gray-100/50 border border-gray-200 rounded-xl p-6 overflow-y-auto">
+          <div className="h-full bg-muted/30 border border-border rounded-xl p-6 overflow-y-auto">
             {thumbnails.length === 0 ? (
               <div className="flex justify-center py-20">
-                <Loader2 className="w-10 h-10 text-blue-500 animate-spin" />
+                <Loader2 className="w-10 h-10 text-primary animate-spin" />
               </div>
             ) : (
               <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 gap-4">
@@ -222,24 +214,24 @@ export default function PdfSplitter() {
                     >
                       {/* Page Preview */}
                       <div className={`
-                             rounded-lg overflow-hidden border-2 shadow-sm relative aspect-[3/4] bg-white
-                             ${isSelected ? 'border-blue-500 ring-2 ring-blue-200 ring-offset-2' : 'border-transparent group-hover:border-gray-300'}
+                             rounded-lg overflow-hidden border-2 shadow-sm relative aspect-[3/4] bg-card
+                             ${isSelected ? 'border-primary ring-2 ring-primary/20 ring-offset-2' : 'border-transparent group-hover:border-border'}
                            `}>
                         <img src={src} alt={`Page ${idx + 1}`} className="w-full h-full object-contain" />
 
                         {/* Overlay on Hover */}
-                        <div className={`absolute inset-0 bg-blue-900/10 transition-opacity ${isSelected ? 'opacity-0' : 'opacity-0 group-hover:opacity-100'}`} />
+                        <div className={`absolute inset-0 bg-primary/10 transition-opacity ${isSelected ? 'opacity-0' : 'opacity-0 group-hover:opacity-100'}`} />
 
                         {/* Checkbox Indicator */}
                         <div className={`
                                 absolute top-2 right-2 w-6 h-6 rounded-full flex items-center justify-center transition-all shadow-sm
-                                ${isSelected ? 'bg-blue-500 text-white scale-100' : 'bg-white/90 text-gray-300 scale-90 group-hover:scale-100'}
+                                ${isSelected ? 'bg-primary text-primary-foreground scale-100' : 'bg-muted/90 text-muted-foreground scale-90 group-hover:scale-100'}
                               `}>
                           <CheckCircle2 className="w-4 h-4" />
                         </div>
 
                         {/* Page Number */}
-                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-gray-900/70 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">
+                        <div className="absolute bottom-2 left-1/2 -translate-x-1/2 bg-black/70 text-white text-[10px] px-2 py-0.5 rounded-full backdrop-blur-sm">
                           Page {idx + 1}
                         </div>
                       </div>
@@ -253,7 +245,7 @@ export default function PdfSplitter() {
             <div className="mt-8 text-center pb-4">
               <button
                 onClick={() => { setFile(null); setThumbnails([]); setSelectedPages([]); }}
-                className="text-sm text-red-500 hover:text-red-700 font-medium inline-flex items-center gap-1 hover:bg-red-50 px-3 py-1.5 rounded-lg transition-colors"
+                className="text-sm text-destructive hover:text-destructive/80 font-medium inline-flex items-center gap-1 hover:bg-destructive/10 px-3 py-1.5 rounded-lg transition-colors"
               >
                 <Trash2 className="w-4 h-4" /> Cancel & Remove File
               </button>

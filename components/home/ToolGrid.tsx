@@ -42,7 +42,7 @@ export default function ToolGrid({ tools }: Props) {
     <div className="space-y-8">
 
       {/* 1. SEARCH & FILTER SECTION */}
-      <div className="flex flex-col md:flex-row gap-4 justify-between items-center bg-white p-4 rounded-2xl shadow-sm border border-gray-100">
+      <div className="flex flex-col md:flex-row gap-4 justify-between items-center bg-card p-4 rounded-2xl shadow-sm border border-border">
 
         {/* Categories (Tabs) */}
         <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto no-scrollbar">
@@ -52,8 +52,8 @@ export default function ToolGrid({ tools }: Props) {
               onClick={() => setActiveCategory(cat.id)}
               className={`px-4 py-2 rounded-full text-sm font-medium whitespace-nowrap transition-all
                 ${activeCategory === cat.id
-                  ? 'bg-blue-600 text-white shadow-md'
-                  : 'bg-gray-100 text-gray-600 hover:bg-gray-200'}
+                  ? 'bg-primary text-primary-foreground shadow-md'
+                  : 'bg-muted text-muted-foreground hover:bg-muted/80 hover:text-foreground'}
               `}
             >
               {cat.label}
@@ -63,13 +63,13 @@ export default function ToolGrid({ tools }: Props) {
 
         {/* Search Input */}
         <div className="relative w-full md:w-80">
-          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-gray-400" />
+          <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
           <input
             type="text"
             placeholder="Search tools (e.g. PDF, Resize)..."
             value={search}
             onChange={(e) => setSearch(e.target.value)}
-            className="w-full pl-10 pr-4 py-2 border border-gray-200 rounded-xl focus:ring-2 focus:ring-blue-500 outline-none text-sm"
+            className="w-full pl-10 pr-4 py-2 border border-input bg-background rounded-xl focus:ring-2 focus:ring-ring outline-none text-sm placeholder:text-muted-foreground text-foreground"
           />
         </div>
       </div>
@@ -83,21 +83,21 @@ export default function ToolGrid({ tools }: Props) {
               <Link
                 href={`/tools/${tool.slug}`}
                 key={tool.slug}
-                className="group bg-white p-6 rounded-2xl border border-gray-100 shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
+                className="group bg-card p-6 rounded-2xl border border-border shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >
                 <div className="flex items-start justify-between mb-4">
-                  <div className={`p-3 rounded-xl bg-gradient-to-br from-blue-50 to-indigo-50 text-blue-600 group-hover:scale-110 transition-transform`}>
+                  <div className={`p-3 rounded-xl bg-primary/10 text-primary group-hover:scale-110 transition-transform`}>
                     <Icon className="w-8 h-8" />
                   </div>
-                  <span className="text-xs font-bold px-2 py-1 bg-gray-50 text-gray-400 rounded-md uppercase">
+                  <span className="text-xs font-bold px-2 py-1 bg-muted text-muted-foreground rounded-md uppercase">
                     {tool.category}
                   </span>
                 </div>
 
-                <h3 className="text-lg font-bold text-gray-900 mb-2 group-hover:text-blue-600 transition-colors">
+                <h3 className="text-lg font-bold text-foreground mb-2 group-hover:text-primary transition-colors">
                   {tool.title}
                 </h3>
-                <p className="text-sm text-gray-500 line-clamp-2">
+                <p className="text-sm text-muted-foreground line-clamp-2">
                   {tool.description}
                 </p>
               </Link>
@@ -106,10 +106,10 @@ export default function ToolGrid({ tools }: Props) {
         </div>
       ) : (
         <div className="text-center py-20">
-          <p className="text-xl text-gray-400 font-medium">No tools found matching "{search}"</p>
+          <p className="text-xl text-muted-foreground font-medium">No tools found matching "{search}"</p>
           <button
             onClick={() => { setSearch(""); setActiveCategory("all") }}
-            className="mt-4 text-blue-600 hover:underline"
+            className="mt-4 text-primary hover:underline"
           >
             Clear filters
           </button>

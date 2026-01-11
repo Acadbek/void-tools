@@ -82,6 +82,7 @@ export default function PdfToImage() {
 						context.fillRect(0, 0, canvas.width, canvas.height);
 					}
 
+					// @ts-ignore
 					await page.render({
 						canvasContext: context,
 						viewport: viewport,
@@ -145,19 +146,19 @@ export default function PdfToImage() {
 		<div className="flex flex-col h-full gap-6">
 
 			{/* SETTINGS BAR */}
-			<div className="bg-white border border-gray-200 p-4 rounded-xl flex flex-col md:flex-row items-center gap-6 shadow-sm">
-				<div className="flex items-center gap-2 text-gray-700 font-medium">
-					<Settings2 className="w-5 h-5 text-blue-600" />
+			<div className="bg-card border border-border p-4 rounded-xl flex flex-col md:flex-row items-center gap-6 shadow-sm">
+				<div className="flex items-center gap-2 text-foreground font-medium">
+					<Settings2 className="w-5 h-5 text-primary" />
 					<span>Settings:</span>
 				</div>
 
 				<div className="flex items-center gap-4 flex-wrap">
 					<div className="flex items-center gap-2">
-						<span className="text-sm text-gray-500">Format:</span>
+						<span className="text-sm text-muted-foreground">Format:</span>
 						<select
 							value={format}
 							onChange={(e) => setFormat(e.target.value as ImageFormat)}
-							className="bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+							className="bg-muted border border-border rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-primary outline-none"
 						>
 							<option value="jpeg">JPG (Best for Photos)</option>
 							<option value="png">PNG (Lossless)</option>
@@ -166,11 +167,11 @@ export default function PdfToImage() {
 					</div>
 
 					<div className="flex items-center gap-2">
-						<span className="text-sm text-gray-500">Quality:</span>
+						<span className="text-sm text-muted-foreground">Quality:</span>
 						<select
 							value={scale}
 							onChange={(e) => setScale(Number(e.target.value))}
-							className="bg-gray-50 border border-gray-200 rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-blue-500 outline-none"
+							className="bg-muted border border-border rounded-lg px-3 py-1.5 text-sm focus:ring-2 focus:ring-primary outline-none"
 						>
 							<option value="1">Standard (72 DPI)</option>
 							<option value="1.5">Medium (108 DPI)</option>
@@ -189,31 +190,31 @@ export default function PdfToImage() {
 						{...getRootProps()}
 						className={`
               border-2 border-dashed rounded-xl flex flex-col items-center justify-center p-8 transition-all cursor-pointer min-h-[250px]
-              ${isDragActive ? 'border-blue-500 bg-blue-50' : 'border-gray-200 hover:border-blue-400 hover:bg-gray-50'}
-              ${file ? 'bg-blue-50/30 border-blue-200' : 'bg-white'}
+              ${isDragActive ? 'border-primary bg-primary/10' : 'border-border hover:border-primary hover:bg-muted/50'}
+              ${file ? 'bg-primary/5 border-primary/20' : 'bg-card'}
             `}
 					>
 						<input {...getInputProps()} />
 
 						{file ? (
 							<div className="text-center">
-								<div className="w-12 h-12 bg-red-100 text-red-500 rounded-xl mx-auto flex items-center justify-center mb-3">
+								<div className="w-12 h-12 bg-destructive/10 text-destructive rounded-xl mx-auto flex items-center justify-center mb-3">
 									<FileImage className="w-6 h-6" />
 								</div>
-								<p className="font-semibold text-gray-800 truncate max-w-[200px]">{file.name}</p>
+								<p className="font-semibold text-foreground truncate max-w-[200px]">{file.name}</p>
 								<button
 									onClick={(e) => { e.stopPropagation(); setFile(null); setConvertedImages([]); }}
-									className="mt-2 text-xs text-red-500 hover:text-red-700 font-medium underline"
+									className="mt-2 text-xs text-destructive hover:text-destructive font-medium underline"
 								>
 									Change file
 								</button>
 							</div>
 						) : (
 							<div className="text-center">
-								<div className="w-12 h-12 bg-gray-100 text-gray-500 rounded-full mx-auto flex items-center justify-center mb-3">
+								<div className="w-12 h-12 bg-muted text-muted-foreground rounded-full mx-auto flex items-center justify-center mb-3">
 									<UploadCloud className="w-6 h-6" />
 								</div>
-								<p className="font-medium text-gray-700 text-sm">Drop PDF here</p>
+								<p className="font-medium text-foreground text-sm">Drop PDF here</p>
 							</div>
 						)}
 					</div>
@@ -224,8 +225,8 @@ export default function PdfToImage() {
 						className={`
                   w-full py-3 rounded-xl font-bold text-sm flex items-center justify-center gap-2 transition-all
                   ${!file || isConverting
-								? 'bg-gray-100 text-gray-400 cursor-not-allowed'
-								: 'bg-blue-600 text-white hover:bg-blue-700 shadow-md hover:shadow-lg'}
+								? 'bg-muted text-muted-foreground cursor-not-allowed'
+								: 'bg-primary text-primary-foreground hover:bg-primary/90 shadow-md hover:shadow-lg'}
               `}
 					>
 						{isConverting ? (
@@ -241,7 +242,7 @@ export default function PdfToImage() {
 
 					{/* Status Message */}
 					{error && (
-						<div className="text-sm text-red-500 bg-red-50 p-3 rounded-lg border border-red-100 flex items-center gap-2">
+						<div className="text-sm text-destructive bg-destructive/10 p-3 rounded-lg border border-destructive/20 flex items-center gap-2">
 							<AlertCircle className="w-4 h-4" /> {error}
 						</div>
 					)}
@@ -253,17 +254,17 @@ export default function PdfToImage() {
 				</div>
 
 				{/* RIGHT: PREVIEW & DOWNLOAD */}
-				<div className="lg:col-span-2 bg-gray-50 border border-gray-200 rounded-xl p-6 overflow-y-auto max-h-[600px]">
+				<div className="lg:col-span-2 bg-muted/30 border border-border rounded-xl p-6 overflow-y-auto max-h-[600px]">
 
 					{convertedImages.length > 0 ? (
 						<div>
-							<div className="flex justify-between items-center mb-4 sticky top-0 bg-gray-50 z-10 py-2 border-b border-gray-200">
-								<h3 className="font-bold text-gray-800 flex items-center gap-2">
-									<ImageIcon className="w-5 h-5 text-blue-500" /> Preview
+							<div className="flex justify-between items-center mb-4 sticky top-0 bg-muted/30 z-10 py-2 border-b border-border">
+								<h3 className="font-bold text-foreground flex items-center gap-2">
+									<ImageIcon className="w-5 h-5 text-primary" /> Preview
 								</h3>
 								<button
 									onClick={downloadAllAsZip}
-									className="bg-gray-900 text-white text-xs px-4 py-2 rounded-lg hover:bg-black transition-colors flex items-center gap-2 font-medium"
+									className="bg-primary text-primary-foreground text-xs px-4 py-2 rounded-lg hover:bg-primary/90 transition-colors flex items-center gap-2 font-medium"
 								>
 									<FileArchive className="w-4 h-4" /> Download All (ZIP)
 								</button>
@@ -271,8 +272,8 @@ export default function PdfToImage() {
 
 							<div className="grid grid-cols-2 sm:grid-cols-3 gap-4">
 								{convertedImages.map((url, idx) => (
-									<div key={idx} className="group relative bg-white p-2 rounded-lg shadow-sm border border-gray-200 hover:shadow-md transition-all">
-										<div className="aspect-[3/4] overflow-hidden rounded-md bg-gray-100 relative">
+									<div key={idx} className="group relative bg-card p-2 rounded-lg shadow-sm border border-border hover:shadow-md transition-all">
+										<div className="aspect-3/4 overflow-hidden rounded-md bg-gray-100 relative">
 											{/* Image Preview */}
 											<img
 												src={url}
@@ -290,13 +291,13 @@ export default function PdfToImage() {
 												</button>
 											</div>
 										</div>
-										<p className="text-center text-xs text-gray-500 mt-2 font-medium">Page {idx + 1}</p>
+										<p className="text-center text-xs text-muted-foreground mt-2 font-medium">Page {idx + 1}</p>
 									</div>
 								))}
 							</div>
 						</div>
 					) : (
-						<div className="h-full flex flex-col items-center justify-center text-gray-400 min-h-[300px]">
+						<div className="h-full flex flex-col items-center justify-center text-muted-foreground min-h-[300px]">
 							<FileImage className="w-16 h-16 mb-4 opacity-20" />
 							<p>Converted images will appear here</p>
 						</div>

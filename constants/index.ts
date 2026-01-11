@@ -1,1 +1,1 @@
-export const DOMEIN = "https://t00l.vercel.app";
+export const DOMEIN = "https://tool.nosirjonov.uz";

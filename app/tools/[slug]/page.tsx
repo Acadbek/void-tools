@@ -34,7 +34,7 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: tool.description,
       url: `${baseUrl}/tools/${tool.slug}`,
       type: "website",
-      siteName: "Smart Tools",
+      siteName: "Void Tools",
       // images: [{ url: `/og/${tool.slug}.png` }] // Kelajakda rasm qo'shish uchun
     },
     keywords: [tool.title, "free online tools", "converter", "generator", tool.category],
@@ -73,58 +73,58 @@ export default async function ToolPage({ params }: PageProps) {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      <main className="min-h-screen bg-gray-50 py-12">
+      <main className="min-h-screen bg-background py-12">
         <div className="container mx-auto px-4 max-w-5xl">
 
-          <nav className="text-sm text-gray-500 mb-6">
+          <nav className="text-sm text-muted-foreground mb-6">
             <Link href="/" className="hover:text-blue-600">Home</Link>
             <span className="mx-2">/</span>
             <span className="capitalize">{tool.category}</span>
             <span className="mx-2">/</span>
-            <span className="text-gray-900 font-medium">{tool.title}</span>
+            <span className="text-foreground font-medium">{tool.title}</span>
           </nav>
 
           <header className="text-center mb-10">
-            <h1 className="text-3xl md:text-5xl font-extrabold text-gray-900 mb-4">
+            <h1 className="text-3xl md:text-5xl font-extrabold text-foreground mb-4">
               {tool.title}
             </h1>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
               {tool.description}
             </p>
           </header>
 
-          <section className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6 md:p-8 min-h-[400px] mb-16">
+          <section className="bg-card rounded-2xl shadow-sm border border-border p-6 md:p-8 min-h-[400px] mb-16">
             <ToolRenderer componentKey={tool.componentKey} />
           </section>
 
-          <article className="prose prose-lg max-w-none bg-white p-8 rounded-2xl border border-gray-100 shadow-sm mb-12">
+          <article className="prose text-muted-foreground prose-lg dark:prose-invert max-w-none bg-card p-8 rounded-2xl border border-border shadow-sm mb-12">
 
-            <h3>About {tool.title}</h3>
+            <h3 className="text-foreground">About {tool.title}</h3>
             <p>{tool.content.overview}</p>
 
-            <h3>How to use {tool.title}?</h3>
+            <h3 className="text-foreground">How to use {tool.title}?</h3>
             <ol>
               {tool.content.howTo.map((step, index) => (
                 <li key={index}>{step}</li>
               ))}
             </ol>
 
-            <h3>Key Features</h3>
+            <h3 className="text-foreground">Key Features</h3>
             <ul>
               {tool.content.features.map((feature, index) => (
                 <li key={index}>{feature}</li>
               ))}
             </ul>
 
-            <h3>Frequently Asked Questions</h3>
+            <h3 className="text-foreground">Frequently Asked Questions</h3>
             <div className="not-prose space-y-4 mt-4">
               {tool.content.faq.map((item, index) => (
-                <details key={index} className="group bg-gray-50 p-4 rounded-lg">
-                  <summary className="font-semibold cursor-pointer list-none flex justify-between items-center">
+                <details key={index} className="group bg-muted/50 p-4 rounded-lg border border-transparent hover:border-border transition-colors">
+                  <summary className="font-semibold text-foreground cursor-pointer list-none flex justify-between items-center">
                     {item.question}
-                    <span className="transition group-open:rotate-180">▼</span>
+                    <span className="text-muted-foreground transition group-open:rotate-180">▼</span>
                   </summary>
-                  <p className="text-gray-600 mt-2">{item.answer}</p>
+                  <p className="text-muted-foreground mt-2 text-sm leading-relaxed">{item.answer}</p>
                 </details>
               ))}
             </div>
@@ -132,16 +132,16 @@ export default async function ToolPage({ params }: PageProps) {
 
           {relatedTools.length > 0 && (
             <section>
-              <h3 className="text-2xl font-bold text-gray-900 mb-6">Related Tools</h3>
+              <h3 className="text-2xl font-bold text-foreground mb-6">Related Tools</h3>
               <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
                 {relatedTools.map((t) => (
                   <Link
                     key={t.slug}
                     href={`/tools/${t.slug}`}
-                    className="block p-6 bg-white border border-gray-200 rounded-xl hover:shadow-md transition duration-200"
+                    className="block p-6 bg-card border border-border rounded-xl hover:shadow-md transition duration-200"
                   >
                     <div className="font-bold text-lg mb-2">{t.title}</div>
-                    <p className="text-sm text-gray-500 line-clamp-2">{t.description}</p>
+                    <p className="text-sm text-muted-foreground line-clamp-2">{t.description}</p>
                   </Link>
                 ))}
               </div>

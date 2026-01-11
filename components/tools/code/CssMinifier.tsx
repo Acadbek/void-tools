@@ -83,27 +83,27 @@ export default function CssMinifier() {
     <div className="flex flex-col gap-6 h-[calc(100vh-200px)] min-h-[600px]">
 
       {/* HEADER */}
-      <div className="bg-white border border-gray-200 p-4 rounded-xl flex items-center justify-between shadow-sm shrink-0">
+      <div className="bg-card border border-border p-4 rounded-xl flex items-center justify-between shadow-sm shrink-0">
         <div className="flex items-center gap-3">
-          <div className="p-2 bg-blue-100 text-blue-600 rounded-lg">
+          <div className="p-2 bg-primary/10 text-primary rounded-lg">
             <Code2 className="w-5 h-5" />
           </div>
           <div>
-            <h3 className="font-semibold text-gray-800 text-sm">CSS Minifier</h3>
-            <p className="text-xs text-gray-500">Compress CSS code safely.</p>
+            <h3 className="font-semibold text-foreground text-sm">CSS Minifier</h3>
+            <p className="text-xs text-muted-foreground">Compress CSS code safely.</p>
           </div>
         </div>
 
         <div className="flex gap-2">
           <button
             onClick={handleClear}
-            className="text-sm font-medium text-red-500 hover:bg-red-50 px-3 py-1.5 rounded-lg flex items-center gap-1 transition-colors"
+            className="text-sm font-medium text-destructive hover:bg-destructive/10 px-3 py-1.5 rounded-lg flex items-center gap-1 transition-colors"
           >
             <Trash2 className="w-4 h-4" /> Clear
           </button>
           <button
             onClick={minifyCss}
-            className="bg-blue-600 text-white px-5 py-1.5 rounded-lg text-sm font-bold hover:bg-blue-700 shadow-md flex items-center gap-2 transition-colors"
+            className="bg-primary text-primary-foreground px-5 py-1.5 rounded-lg text-sm font-bold hover:bg-primary/90 shadow-md flex items-center gap-2 transition-colors"
           >
             <Zap className="w-4 h-4" /> Minify
           </button>
@@ -115,25 +115,25 @@ export default function CssMinifier() {
 
         {/* INPUT */}
         <div className="flex flex-col gap-2 h-full">
-          <label className="text-xs font-bold text-gray-500 uppercase flex justify-between">
+          <label className="text-xs font-bold text-muted-foreground uppercase flex justify-between">
             <span>Input CSS</span>
-            <span className="text-blue-600">{formatBytes(stats.original)}</span>
+            <span className="text-primary">{formatBytes(stats.original)}</span>
           </label>
           <textarea
             value={input}
             onChange={(e) => setInput(e.target.value)}
             placeholder="Paste your CSS code here..."
-            className="w-full h-full p-4 rounded-xl border border-gray-200 font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+            className="w-full h-full p-4 rounded-xl border border-border font-mono text-sm resize-none focus:outline-none focus:ring-2 focus:ring-primary/20 bg-card text-foreground placeholder:text-muted-foreground/50"
             spellCheck={false}
           />
         </div>
 
         {/* OUTPUT */}
         <div className="flex flex-col gap-2 h-full">
-          <label className="text-xs font-bold text-gray-500 uppercase flex justify-between items-center h-5">
+          <label className="text-xs font-bold text-muted-foreground uppercase flex justify-between items-center h-5">
             <span>Minified Output</span>
             {stats.saved > 0 && (
-              <span className="bg-green-100 text-green-700 px-1.5 py-0.5 rounded text-[10px]">
+              <span className="bg-green-100 text-green-700 dark:bg-green-900/30 dark:text-green-400 px-1.5 py-0.5 rounded text-[10px]">
                 -{stats.saved}% Saved ({formatBytes(stats.minified)})
               </span>
             )}
@@ -143,21 +143,21 @@ export default function CssMinifier() {
               value={output}
               readOnly
               placeholder="Minified result will appear here..."
-              className="w-full h-full p-4 rounded-xl border border-gray-200 font-mono text-sm resize-none bg-gray-50 text-gray-600 focus:outline-none focus:border-blue-300"
+              className="w-full h-full p-4 rounded-xl border border-border font-mono text-sm resize-none bg-muted/30 text-muted-foreground focus:outline-none focus:border-primary/50"
             />
 
             {output && (
               <div className="absolute top-2 right-2 flex gap-2">
                 <button
                   onClick={handleCopy}
-                  className="p-2 bg-white border border-gray-200 rounded-lg hover:bg-blue-50 hover:text-blue-600 transition-colors shadow-sm"
+                  className="p-2 bg-card border border-border rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground transition-colors shadow-sm"
                   title="Copy to Clipboard"
                 >
                   {copied ? <Check className="w-4 h-4 text-green-500" /> : <Copy className="w-4 h-4" />}
                 </button>
                 <button
                   onClick={handleDownload}
-                  className="p-2 bg-white border border-gray-200 rounded-lg hover:bg-green-50 hover:text-green-600 transition-colors shadow-sm"
+                  className="p-2 bg-card border border-border rounded-lg hover:bg-muted text-muted-foreground hover:text-foreground transition-colors shadow-sm"
                   title="Download .min.css"
                 >
                   <Download className="w-4 h-4" />

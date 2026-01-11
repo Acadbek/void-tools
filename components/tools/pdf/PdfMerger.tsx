@@ -112,7 +112,7 @@ export default function PdfMerger() {
       // FIX: Added 'as any' to bypass strict type checking for BlobPart
       const blob = new Blob([pdfBytes as any], { type: "application/pdf" });
 
-      saveAs(blob, `merged-t00l-tools-${Date.now()}.pdf`);
+      saveAs(blob, `merged-Void-tools-${Date.now()}.pdf`);
 
     } catch (error) {
       console.error("Global merge error:", error);
@@ -128,15 +128,15 @@ export default function PdfMerger() {
       <div
         {...getRootProps()}
         className={`border-2 border-dashed rounded-2xl p-8 text-center cursor-pointer transition-all
-          ${isDragActive ? 'border-red-500 bg-red-50' : 'border-gray-300 hover:border-red-400 hover:bg-gray-50'}
+          ${isDragActive ? 'border-primary bg-primary/10' : 'border-border hover:border-primary hover:bg-muted'}
         `}
       >
         <input {...(getInputProps() as React.InputHTMLAttributes<HTMLInputElement>)} />
         <div className="flex flex-col items-center gap-3">
-          <div className="p-4 bg-red-100 text-red-600 rounded-full">
+          <div className="p-4 bg-primary/10 text-primary rounded-full">
             <Upload className="w-8 h-8" />
           </div>
-          <p className="text-xl font-medium text-gray-700">
+          <p className="text-xl font-medium text-foreground">
             {isDragActive ? "Drop PDFs here..." : "Drag & Drop PDF files here"}
           </p>
         </div>
@@ -144,16 +144,16 @@ export default function PdfMerger() {
 
       {/* File List */}
       {files.length > 0 && (
-        <div className="bg-white rounded-xl border border-gray-200 divide-y divide-gray-100 shadow-sm">
+        <div className="bg-card rounded-xl border border-border divide-y divide-border shadow-sm">
           {files.map((file, index) => (
-            <div key={file.id} className="p-4 flex items-center justify-between gap-4 hover:bg-gray-50 transition-colors">
+            <div key={file.id} className="p-4 flex items-center justify-between gap-4 hover:bg-muted/50 transition-colors">
               <div className="flex items-center gap-4">
-                <div className="p-2 bg-red-100 text-red-600 rounded-lg">
+                <div className="p-2 bg-primary/10 text-primary rounded-lg">
                   <FileText className="w-6 h-6" />
                 </div>
                 <div>
-                  <p className="font-medium text-gray-900 line-clamp-1">{file.name}</p>
-                  <p className="text-xs text-gray-500">{file.size}</p>
+                  <p className="font-medium text-foreground line-clamp-1">{file.name}</p>
+                  <p className="text-xs text-muted-foreground">{file.size}</p>
                 </div>
               </div>
 
@@ -162,20 +162,20 @@ export default function PdfMerger() {
                   <button
                     disabled={index === 0}
                     onClick={() => moveFile(index, 'up')}
-                    className="p-1 text-gray-400 hover:text-blue-600 disabled:opacity-30"
+                    className="p-1 text-muted-foreground hover:text-primary disabled:opacity-30"
                   >
                     <ArrowUp className="w-4 h-4" />
                   </button>
                   <button
                     disabled={index === files.length - 1}
                     onClick={() => moveFile(index, 'down')}
-                    className="p-1 text-gray-400 hover:text-blue-600 disabled:opacity-30"
+                    className="p-1 text-muted-foreground hover:text-primary disabled:opacity-30"
                   >
                     <ArrowDown className="w-4 h-4" />
                   </button>
                 </div>
 
-                <button onClick={() => removeFile(file.id)} className="p-2 text-gray-400 hover:text-red-500">
+                <button onClick={() => removeFile(file.id)} className="p-2 text-muted-foreground hover:text-destructive">
                   <X className="w-5 h-5" />
                 </button>
               </div>
@@ -191,10 +191,10 @@ export default function PdfMerger() {
             onClick={handleMerge}
             disabled={files.length < 2 || isMerging}
             className={`
-              flex items-center gap-2 px-8 py-4 text-white font-bold text-lg rounded-xl shadow-lg transition-all
+              flex items-center gap-2 px-8 py-4 text-primary-foreground font-bold text-lg rounded-xl shadow-lg transition-all
               ${files.length < 2
-                ? 'bg-gray-400 cursor-not-allowed'
-                : 'bg-red-600 hover:bg-red-700 hover:shadow-xl transform hover:-translate-y-1'}
+                ? 'bg-muted text-muted-foreground cursor-not-allowed'
+                : 'bg-primary hover:bg-primary/90 hover:shadow-xl transform hover:-translate-y-1'}
             `}
           >
             {isMerging ? (
@@ -208,7 +208,7 @@ export default function PdfMerger() {
             )}
           </button>
           {files.length < 2 && (
-            <p className="text-center text-sm text-gray-500 mt-2 absolute -bottom-6">
+            <p className="text-center text-sm text-muted-foreground mt-2 absolute -bottom-6">
               Add at least 2 files to merge
             </p>
           )}
