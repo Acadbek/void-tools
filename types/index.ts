@@ -7,7 +7,22 @@ export interface ToolConfig {
   category: ToolCategory;
   componentKey: string;
   icon: string;
-  content: {
+  locales?: Record<string, {
+    title: string;
+    description: string;
+    content: {
+      overview: string;
+      howTo: string[];
+      features: string[];
+      faq: {
+        question: string;
+        answer: string;
+      }[];
+    };
+  }>;
+  nextSteps?: { slug: string; label: string }[];
+  // Legacy support until full migration
+  content?: {
     overview: string;
     howTo: string[];
     features: string[];

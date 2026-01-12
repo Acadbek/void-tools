@@ -1,7 +1,7 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { Saira } from 'next/font/google'
-import "./globals.css";
+import "../globals.css";
 import { Analytics } from "@vercel/analytics/react"
 import Link from "next/link";
 import { ThemeProvider } from "@/components/theme/provider";
@@ -30,20 +30,28 @@ export const metadata: Metadata = {
   }
 };
 
-
 export function Logo(props: React.SVGProps<SVGSVGElement>) {
   return (
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" {...props}>{/* Icon from Material Line Icons by Vjacheslav Trushkin - https://github.com/cyberalien/line-md/blob/master/license.txt */}<g fill="none" stroke="currentColor" strokeLinecap="round" strokeWidth="2"><path fill="currentColor" fillOpacity="0" strokeDasharray="28" strokeDashoffset="28" d="M12 10l4 7h-8Z"><animate fill="freeze" attributeName="fill-opacity" begin="0.7s" dur="0.5s" values="0;1" /><animate fill="freeze" attributeName="stroke-dashoffset" dur="0.4s" values="28;0" /></path><path d="M12 10l4 7h-8Z" opacity="0"><animate fill="freeze" attributeName="d" begin="0.4s" dur="0.2s" values="M12 10l4 7h-8Z;M12 4l9.25 16h-18.5Z" /><set fill="freeze" attributeName="opacity" begin="0.4s" to="1" /></path></g></svg>
   )
 }
 
-export default function RootLayout({
-  children,
-}: Readonly<{
+type Props = {
   children: React.ReactNode;
-}>) {
+  params: Promise<{ lang: string }>;
+}
+
+export async function generateStaticParams() {
+  return [{ lang: 'en' }, { lang: 'es' }, { lang: 'ru' }];
+}
+
+export default async function RootLayout({
+  children,
+  params
+}: Props) {
+  const { lang } = await params;
   return (
-    <html lang="en">
+    <html lang={lang || 'en'}>
       <body
         className={`${geistSans.variable} ${geistMono.variable} ${saira.variable} antialiased`}
       >
@@ -55,7 +63,7 @@ export default function RootLayout({
         >
           <header className="fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-sm">
             <nav className="flex items-center justify-between container mx-auto px-4 py-1">
-              <Link href='/' className="inline-flex items-end">
+              <Link href={`/${lang}`} className="inline-flex items-end">
                 <Logo className="w-9 h-9" />
                 <span className="text-xl font-saira">void tools</span>
               </Link>
