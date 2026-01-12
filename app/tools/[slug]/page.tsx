@@ -84,7 +84,7 @@ export default async function ToolPage({ params }: PageProps) {
             <span className="text-foreground font-medium">{tool.title}</span>
           </nav>
 
-          <header className="text-center mb-10">
+          <header className="text-center mb-10 mt-12">
             <h1 className="text-3xl md:text-5xl font-extrabold text-foreground mb-4">
               {tool.title}
             </h1>

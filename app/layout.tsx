@@ -1,5 +1,6 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
+import { Saira } from 'next/font/google'
 import "./globals.css";
 import { Analytics } from "@vercel/analytics/react"
 import Link from "next/link";
@@ -13,6 +14,11 @@ const geistSans = Geist({
 
 const geistMono = Geist_Mono({
   variable: "--font-geist-mono",
+  subsets: ["latin"],
+});
+
+const saira = Saira({
+  variable: "--font-saira",
   subsets: ["latin"],
 });
 
@@ -39,7 +45,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body
-        className={`${geistSans.variable} ${geistMono.variable} antialiased`}
+        className={`${geistSans.variable} ${geistMono.variable} ${saira.variable} antialiased`}
       >
         <ThemeProvider
           defaultTheme="system"
@@ -49,8 +55,9 @@ export default function RootLayout({
         >
           <header className="fixed top-0 left-0 right-0 z-50 border-b backdrop-blur-sm">
             <nav className="flex items-center justify-between container mx-auto px-4 py-1">
-              <Link href='/'>
+              <Link href='/' className="inline-flex items-end">
                 <Logo className="w-9 h-9" />
+                <span className="text-xl font-saira">void tools</span>
               </Link>
 
               <ThemeToggle />

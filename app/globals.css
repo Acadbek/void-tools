@@ -1,6 +1,10 @@
 @import "tailwindcss";
 @plugin "@tailwindcss/typography";
 
+@theme {
+  --font-saira: var(--font-saira);
+}
+
 :root {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);

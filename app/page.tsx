@@ -23,15 +23,15 @@ export default function Home() {
         <div className="container mx-auto px-4 py-20 text-center relative z-10">
 
           <div className="inline-flex items-center gap-2 px-4 py-2 bg-primary/10 text-primary rounded-full text-sm font-semibold mb-6 animate-fade-in backdrop-blur-xs">
-            <Zap className="w-4 h-4 fill-current" /> 100% Free & Browser-based
+            <Zap className="w-4 h-4 fill-current" /> 100% Free
           </div>
 
           <h1 className="text-5xl md:text-6xl font-extrabold text-foreground mb-6 tracking-tight">
-            Void Tools for <span>Productive People</span>
+            Privacy-First. Browser-Based. Fast
           </h1>
 
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto mb-10 leading-relaxed">
-            Secure | Fast | Free
+            Zero server uploads. Secure tools with instant results
           </p>
         </div>
       </section>

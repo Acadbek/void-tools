@@ -11,16 +11,16 @@ interface Props {
 }
 
 const categories = [
-  { id: 'all', label: 'All Tools' },
-  { id: 'pdf', label: 'PDF Tools' },
-  { id: 'image', label: 'Image Tools' },
-  { id: 'text', label: 'Text Tools' },
+  { id: 'all', label: 'All' },
+  { id: 'pdf', label: 'PDF' },
+  { id: 'image', label: 'Image' },
+  { id: 'text', label: 'Text' },
   { id: 'converter', label: 'Converters' },
-  { id: 'code', label: 'Code Tools' },
+  { id: 'code', label: 'Code' },
   { id: 'generator', label: 'Generator' },
-  { id: 'security', label: 'Security Tools' },
-  { id: 'media', label: 'Media Tools' },
-  { id: 'social', label: 'Social Tools' },
+  { id: 'security', label: 'Security' },
+  { id: 'media', label: 'Media' },
+  { id: 'social', label: 'Social' },
 ];
 
 export default function ToolGrid({ tools }: Props) {
