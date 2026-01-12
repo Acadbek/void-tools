@@ -190,7 +190,7 @@ export const metadata: Metadata = {
 	if (!isLoaded) return null;
 
 	return (
-		<div className="min-h-screen bg-background p-4 md:p-8 transition-colors duration-300">
+		<div className="min-h-screen bg-background transition-colors duration-300">
 			<div className="max-w-7xl mx-auto">
 				<div className="flex flex-col lg:flex-row gap-6 min-h-[600px]">
 

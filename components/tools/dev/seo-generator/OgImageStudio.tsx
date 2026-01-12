@@ -88,15 +88,17 @@ export default function OgImageStudio({ config, setConfig }: Props) {
 									className={`${STYLES.inputField} pl-9 text-xs`}
 								/>
 							</div>
-							<div className="flex items-center gap-3 text-xs text-muted-foreground">
+							<div className="flex items-start flex-col justify-start text-xs text-muted-foreground">
 								<span className="font-medium">Overlay:</span>
-								<input
-									type="range" min="0" max="90"
-									value={config.bgOverlayOpacity}
-									onChange={(e) => setConfig({ ...config, bgOverlayOpacity: Number(e.target.value) })}
-									className="flex-1 cursor-pointer accent-blue-600"
-								/>
-								<span className="w-8 text-right font-mono">{config.bgOverlayOpacity}%</span>
+								<div className="flex items-center gap-2">
+									<input
+										type="range" min="0" max="90"
+										value={config.bgOverlayOpacity}
+										onChange={(e) => setConfig({ ...config, bgOverlayOpacity: Number(e.target.value) })}
+										className="flex-1 cursor-pointer accent-blue-600"
+									/>
+									<span className="w-8 text-right font-mono">{config.bgOverlayOpacity}%</span>
+								</div>
 							</div>
 						</div>
 					) : (

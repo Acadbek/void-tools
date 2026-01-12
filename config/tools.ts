@@ -26,8 +26,9 @@ export const toolsRegistry: Record<string, ToolConfig> = {
         "Auto-Save & Code Export."
       ],
       faq: [
-        { question: "Does it save my data?", answer: "Yes, we use LocalStorage to auto-save instantly." },
-        { question: "Can I use for WordPress?", answer: "Yes, use the HTML output mode." }
+        { question: "Does this tool save my data?", answer: "No, all data is saved locally in your browser's LocalStorage. We do not track or store your SEO data on our servers." },
+        { question: "Can I use the generated code in WordPress?", answer: "Yes! While we offer specific Next.js snippets, you can switch to 'HTML' mode to get standard meta tags that work on WordPress, Wix, or any other website." },
+        { question: "What is the best image size for Open Graph?", answer: "The recommended size for Open Graph images (Facebook, LinkedIn) is 1200x630 pixels. Our OG Image Studio creates images in this exact ratio." }
       ]
     },
     locales: {
@@ -35,36 +36,122 @@ export const toolsRegistry: Record<string, ToolConfig> = {
         title: "SEO Suite & OG Builder",
         description: "Generate SEO Meta tags, Open Graph images, JSON-LD Schema, and Web Manifests.",
         content: {
-          overview: "Stop guessing how your link looks on Social Media. This SEO Suite allows you to generate every essential SEO file for your website—from Meta tags to JSON-LD Schemas.",
+          overview: "Stop guessing how your link looks on Social Media. This SEO Suite allows you to generate every essential SEO file for your website.",
           howTo: ["Select a module.", "Fill in details.", "Design OG Image.", "Copy code."],
           features: ["Live Previews.", "Visual Designer.", "Schema Generator.", "PWA Support."],
-          faq: [{ question: "Does it save data?", answer: "Yes, locally." }]
+          faq: [
+            { question: "Is this SEO tool free?", answer: "Yes, it is 100% free to use for unlimited projects." },
+            { question: "How do I add the code to Next.js?", answer: "Copy the 'Next.js' output and paste it into your `layout.tsx` or `page.tsx` metadata object." },
+            { question: "Does it support Twitter Cards?", answer: "Yes, it generates specific meta tags for Twitter Summary and Large Image cards." }
+          ]
         }
       },
       es: {
         title: "Generador SEO y Open Graph",
         description: "Genera metaetiquetas SEO, imágenes Open Graph, esquema JSON-LD y manifiestos web.",
         content: {
-          overview: "Deje de adivinar cómo se ve su enlace en las redes sociales. Genere todos los archivos SEO esenciales para su sitio web.",
+          overview: "Deje de adivinar cómo se ve su enlace en las redes sociales. Genere todos los archivos SEO esenciales.",
           howTo: ["Selecciona un módulo.", "Rellena los detalles.", "Diseña tu imagen.", "Copia el código."],
           features: ["Vistas previas en vivo.", "Diseñador visual.", "Generador de esquemas.", "Soporte PWA."],
-          faq: [{ question: "¿Guarda mis datos?", answer: "Sí, localmente." }]
+          faq: [
+            { question: "¿Es gratuita esta herramienta SEO?", answer: "Sí, es completamente gratis para uso ilimitado." },
+            { question: "¿Funciona para WordPress?", answer: "Sí, selecciona el modo 'HTML' para obtener etiquetas compatibles con cualquier sitio web." },
+            { question: "¿Cuál es el tamaño ideal para imágenes OG?", answer: "Recomendamos 1200x630 píxeles, que es el estándar para Facebook y LinkedIn." }
+          ]
         }
       },
       ru: {
         title: "SEO Генератор и OG Builder",
         description: "Генерация SEO мета-тегов, изображений Open Graph, JSON-LD схем и веб-манифестов.",
         content: {
-          overview: "Перестаньте гадать, как ваша ссылка выглядит в соцсетях. Создавайте все необходимые SEO-файлы в одном месте.",
+          overview: "Перестаньте гадать, как ваша ссылка выглядит в соцсетях. Создавайте все необходимые SEO-файлы.",
           howTo: ["Выберите модуль.", "Заполните детали.", "Создайте дизайн.", "Скопируйте код."],
           features: ["Предпросмотр в реальном времени.", "Визуальный редактор.", "Генератор схем.", "PWA манифест."],
-          faq: [{ question: "Данные сохраняются?", answer: "Да, локально." }]
+          faq: [
+            { question: "Это бесплатно?", answer: "Да, все функции доступны бесплатно и без ограничений." },
+            { question: "Куда вставлять код в Next.js?", answer: "Скопируйте объект metadata и вставьте его в `layout.tsx` или `page.tsx`." },
+            { question: "Поддерживаются ли Twitter Cards?", answer: "Да, инструмент создает специальные теги для Twitter Large Image." }
+          ]
         }
       }
     },
     nextSteps: [
       { slug: "open-graph-preview", label: "Test your live links" },
       { slug: "json-formatter", label: "Validate your JSON-LD" }
+    ]
+  },
+  "css-to-tailwind": {
+    slug: "css-to-tailwind",
+    title: "CSS to Tailwind Converter",
+    description: "Transform standard CSS code into Tailwind CSS classes. Modernize your styling workflow.",
+    category: "code",
+    componentKey: "CssToTailwind",
+    icon: "Wind",
+    content: {
+      overview: "Migrate to Tailwind CSS. Convert legacy CSS code into modern utility classes automatically.",
+      howTo: [
+        "Paste CSS.",
+        "View Tailwind classes.",
+        "Copy."
+      ],
+      features: [
+        "Smart mapping.",
+        "Media queries.",
+        "Modern props.",
+        "Instant."
+      ],
+      faq: [
+        { question: "Does it convert Media Queries?", answer: "Yes, standard media queries are converted to Tailwind prefixes like `md:`, `lg:`, etc." },
+        { question: "Can I convert SCSS or SASS?", answer: "Currently, it works best with standard CSS. For SASS nesting, compile it to CSS first." },
+        { question: "Is the conversion 100% accurate?", answer: "It covers about 95% of CSS properties. Complex animations or very specific selectors might need manual adjustment." }
+      ]
+    },
+    locales: {
+      en: {
+        title: "CSS to Tailwind Converter",
+        description: "Transform standard CSS code into Tailwind CSS classes.",
+        content: {
+          overview: "Migrate to Tailwind CSS. Convert legacy CSS code automatically.",
+          howTo: ["Paste CSS.", "View.", "Copy."],
+          features: ["Mapping.", "Queries.", "Props.", "Instant."],
+          faq: [
+            { question: "How do I use arbitrary values?", answer: "If a CSS value doesn't match the Tailwind config, the tool generates arbitrary values like `w-[350px]`." },
+            { question: "Is it free to use?", answer: "Yes, this converter is completely free for developers." },
+            { question: "Does it work with Grid and Flexbox?", answer: "Absolutely. It accurately converts `display: flex`, `grid-template-columns`, and other layout properties." }
+          ]
+        }
+      },
+      es: {
+        title: "CSS a Tailwind",
+        description: "Transforma código CSS estándar a clases de Tailwind.",
+        content: {
+          overview: "Migra a Tailwind CSS. Convierte CSS antiguo automáticamente.",
+          howTo: ["Pega CSS.", "Ver.", "Copiar."],
+          features: ["Mapeo.", "Queries.", "Props.", "Instantáneo."],
+          faq: [
+            { question: "¿Convierte Media Queries?", answer: "Sí, las convierte en prefijos como `md:`, `lg:`." },
+            { question: "¿Soporta valores arbitrarios?", answer: "Sí, genera clases como `top-[13px]` si no hay una clase estándar." },
+            { question: "¿Funciona con Flexbox?", answer: "Sí, convierte perfectamente propiedades de Flex y Grid." }
+          ]
+        }
+      },
+      ru: {
+        title: "Конвертер CSS в Tailwind",
+        description: "Преобразуйте обычный CSS в классы Tailwind.",
+        content: {
+          overview: "Переходите на Tailwind. Автоматическая конвертация старого CSS.",
+          howTo: ["Вставьте CSS.", "Смотрите.", "Копируйте."],
+          features: ["Маппинг.", "Запросы.", "Свойства.", "Мгновенно."],
+          faq: [
+            { question: "Поддерживаются ли медиа-запросы?", answer: "Да, они преобразуются в префиксы `sm:`, `md:` и т.д." },
+            { question: "Как насчет нестандартных размеров?", answer: "Инструмент создаст произвольные значения, например `h-[50px]`." },
+            { question: "Это точно работает?", answer: "Да, инструмент покрывает большинство CSS свойств, включая Flexbox и Grid." }
+          ]
+        }
+      }
+    },
+    nextSteps: [
+      { slug: "css-minifier", label: "Minify CSS" }
     ]
   },
   "open-graph-preview": {
@@ -89,8 +176,9 @@ export const toolsRegistry: Record<string, ToolConfig> = {
         "Instant preview."
       ],
       faq: [
-        { question: "Why is no image showing?", answer: "Check if your og:image meta tag is set correctly." },
-        { question: "Does it cache results?", answer: "No, it fetches live data." }
+        { question: "Why is my OG Image not showing?", answer: "Check if the `og:image` URL is absolute (starts with https://) and accessible publicly. Also, ensure the image size is around 1200x630." },
+        { question: "Does this tool cache my data?", answer: "No, we fetch the live data from your URL every time you click 'Check'." },
+        { question: "Which platforms are supported?", answer: "We currently simulate previews for Facebook, Twitter (X), LinkedIn, and Telegram." }
       ]
     },
     locales: {
@@ -101,7 +189,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Don't share broken links. Check how your website's meta tags (Open Graph) look on major social platforms.",
           howTo: ["Paste URL.", "Click Check.", "View results.", "Fix tags."],
           features: ["Multi-platform.", "Debug SEO.", "Instant check.", "Live data."],
-          faq: [{ question: "No image?", answer: "Check og:image tag." }]
+          faq: [
+            { question: "How to fix missing description?", answer: "Ensure you have `<meta name='description' ...>` and `<meta property='og:description' ...>` tags." },
+            { question: "Is this tool free?", answer: "Yes, completely free link debugger." },
+            { question: "Does it work with localhost?", answer: "No, your URL must be publicly accessible on the internet for our crawler to reach it." }
+          ]
         }
       },
       es: {
@@ -111,7 +203,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "No compartas enlaces rotos. Comprueba cómo se ven tus metaetiquetas antes de publicar.",
           howTo: ["Pega la URL.", "Haz clic en Verificar.", "Ver resultados.", "Corregir etiquetas."],
           features: ["Multi-plataforma.", "Depurar SEO.", "Verificación instantánea.", "Datos en vivo."],
-          faq: [{ question: "¿Sin imagen?", answer: "Revisa la etiqueta og:image." }]
+          faq: [
+            { question: "¿Por qué no se ve la imagen?", answer: "Asegúrate de que la URL de `og:image` sea absoluta y pública." },
+            { question: "¿Funciona con localhost?", answer: "No, la URL debe ser pública en internet." },
+            { question: "¿Qué plataformas soporta?", answer: "Facebook, Twitter, LinkedIn y Telegram." }
+          ]
         }
       },
       ru: {
@@ -121,7 +217,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Не делитесь битыми ссылками. Проверьте мета-теги вашего сайта перед публикацией.",
           howTo: ["Вставьте URL.", "Нажмите Проверить.", "Смотрите результат.", "Исправьте теги."],
           features: ["Мультиплатформенность.", "Отладка SEO.", "Мгновенно.", "Живые данные."],
-          faq: [{ question: "Нет картинки?", answer: "Проверьте тег og:image." }]
+          faq: [
+            { question: "Почему картинка не грузится?", answer: "Проверьте, что ссылка в `og:image` полная (https://) и доступна публично." },
+            { question: "Работает ли с локальным сервером?", answer: "Нет, сайт должен быть доступен в интернете." },
+            { question: "Какие сети поддерживаются?", answer: "Мы показываем превью для Facebook, Twitter, LinkedIn и Telegram." }
+          ]
         }
       }
     },
@@ -153,8 +253,9 @@ export const toolsRegistry: Record<string, ToolConfig> = {
         "Supports JPG, PNG, WEBP."
       ],
       faq: [
-        { question: "Is it free?", answer: "Yes, completely free with no limits." },
-        { question: "Do you store my photos?", answer: "No, all processing happens locally." }
+        { question: "Is it safe to upload my photos?", answer: "Absolutely. We do not upload your photos to any server. All conversion happens locally in your browser." },
+        { question: "Can I convert WEBP to JPG?", answer: "Yes, this tool fully supports converting WEBP files to standard JPG or PNG formats." },
+        { question: "Is there a file size limit?", answer: "There is no hard limit, but performance depends on your device's memory since it runs in the browser." }
       ]
     },
     locales: {
@@ -165,7 +266,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Effortlessly convert your images between popular formats like JPG, PNG, and WEBP.",
           howTo: ["Upload images.", "Select format.", "Convert.", "Download."],
           features: ["Batch Conversion.", "Privacy Focused.", "No Quality Loss.", "Fast."],
-          faq: [{ question: "Is it free?", answer: "Yes." }]
+          faq: [
+            { question: "Is this tool free?", answer: "Yes, unlimited conversions for free." },
+            { question: "Does it convert transparent PNGs?", answer: "Yes, but if you convert PNG to JPG, the transparency will become white." },
+            { question: "Do you store my images?", answer: "No, images never leave your device." }
+          ]
         }
       },
       es: {
@@ -175,7 +280,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Convierte tus imágenes sin esfuerzo entre formatos populares como JPG, PNG y WEBP.",
           howTo: ["Sube imágenes.", "Elige formato.", "Convierte.", "Descarga."],
           features: ["Conversión por lotes.", "Privacidad.", "Sin pérdida de calidad.", "Rápido."],
-          faq: [{ question: "¿Es gratis?", answer: "Sí." }]
+          faq: [
+            { question: "¿Es seguro subir mis fotos?", answer: "Sí, el procesamiento es local en tu navegador. Nada se sube a la nube." },
+            { question: "¿Puedo convertir WEBP a JPG?", answer: "Sí, soportamos conversión total de WEBP." },
+            { question: "¿Tiene costo?", answer: "No, es 100% gratis." }
+          ]
         }
       },
       ru: {
@@ -185,7 +294,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Легко конвертируйте изображения в популярные форматы JPG, PNG и WEBP.",
           howTo: ["Загрузите фото.", "Выберите формат.", "Конвертируйте.", "Скачайте."],
           features: ["Пакетная конвертация.", "Приватность.", "Без потери качества.", "Быстро."],
-          faq: [{ question: "Это бесплатно?", answer: "Да." }]
+          faq: [
+            { question: "Безопасно ли это?", answer: "Абсолютно. Ваши фото не покидают ваш браузер." },
+            { question: "Можно ли конвертировать WEBP?", answer: "Да, мы поддерживаем конвертацию из WEBP в JPG и PNG." },
+            { question: "Есть ли лимиты?", answer: "Нет, конвертируйте сколько угодно файлов." }
+          ]
         }
       }
     },
@@ -216,8 +329,9 @@ export const toolsRegistry: Record<string, ToolConfig> = {
         "Instant preview."
       ],
       faq: [
-        { question: "Will my image look blurry?", answer: "No, we use smart lossy compression." },
-        { question: "What formats supported?", answer: "JPG, PNG, and WEBP." }
+        { question: "Will my image look pixelated?", answer: "No, we use smart lossy compression algorithms that reduce file size while keeping the image looking great to the human eye." },
+        { question: "Which formats can I compress?", answer: "You can compress JPG, PNG, and WEBP files." },
+        { question: "Why compress images?", answer: "Compressed images load faster on websites, improving SEO and user experience." }
       ]
     },
     locales: {
@@ -228,7 +342,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Optimize your website performance by compressing images without losing quality.",
           howTo: ["Upload images.", "Adjust level.", "Compress.", "Download."],
           features: ["80% reduction.", "High quality.", "Bulk support.", "Instant preview."],
-          faq: [{ question: "Blurry?", answer: "No." }]
+          faq: [
+            { question: "Is it secure?", answer: "Yes, compression happens in your browser." },
+            { question: "How much space can I save?", answer: "Typically between 50% to 80% depending on the image." },
+            { question: "Can I compress multiple files?", answer: "Yes, batch compression is supported." }
+          ]
         }
       },
       es: {
@@ -238,7 +356,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Optimiza el rendimiento de tu web comprimiendo imágenes sin perder calidad.",
           howTo: ["Sube imágenes.", "Ajusta nivel.", "Comprime.", "Descarga."],
           features: ["Reducción del 80%.", "Alta calidad.", "Soporte por lotes.", "Vista previa."],
-          faq: [{ question: "¿Borroso?", answer: "No." }]
+          faq: [
+            { question: "¿Se verán borrosas las fotos?", answer: "No, mantenemos la calidad visual alta." },
+            { question: "¿Qué formatos soporta?", answer: "JPG, PNG y WEBP." },
+            { question: "¿Es gratis?", answer: "Sí, totalmente gratis." }
+          ]
         }
       },
       ru: {
@@ -248,7 +370,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Оптимизируйте сайт, сжимая изображения без потери качества.",
           howTo: ["Загрузите фото.", "Настройте уровень.", "Сжимиайте.", "Скачайте."],
           features: ["Сжатие до 80%.", "Высокое качество.", "Пакетная обработка.", "Предпросмотр."],
-          faq: [{ question: "Размыто?", answer: "Нет." }]
+          faq: [
+            { question: "Ухудшится ли качество?", answer: "Визуально разницы практически нет, но размер файла станет меньше." },
+            { question: "Где обрабатываются файлы?", answer: "Прямо в вашем браузере, без загрузки на сервер." },
+            { question: "Можно ли сжать сразу много фото?", answer: "Да, поддерживается пакетная загрузка." }
+          ]
         }
       }
     },
@@ -279,8 +405,9 @@ export const toolsRegistry: Record<string, ToolConfig> = {
         "Supports all major formats."
       ],
       faq: [
-        { question: "Can I make images larger?", answer: "Yes, but quality might decrease." },
-        { question: "Is it secure?", answer: "Yes, local processing only." }
+        { question: "Does resizing reduce quality?", answer: "Scaling down (making smaller) usually keeps quality high. Scaling up (making larger) may cause pixelation." },
+        { question: "Can I resize multiple images at once?", answer: "Currently, we focus on single image precision resizing, but batch features are coming." },
+        { question: "Is it safe?", answer: "Yes, your photos never leave your device." }
       ]
     },
     locales: {
@@ -291,7 +418,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Quickly resize your images for social media, websites, or email attachments.",
           howTo: ["Upload.", "Set dimensions.", "Resize.", "Download."],
           features: ["Pixel perfect.", "Aspect ratio lock.", "Fast.", "Secure."],
-          faq: [{ question: "Enlarge?", answer: "Yes." }]
+          faq: [
+            { question: "Can I enlarge images?", answer: "Yes, but quality might decrease." },
+            { question: "How to keep aspect ratio?", answer: "Ensure the 'Lock Aspect Ratio' toggle is on." },
+            { question: "Is it free?", answer: "Yes, 100% free." }
+          ]
         }
       },
       es: {
@@ -301,7 +432,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Cambia rápidamente el tamaño de tus imágenes para redes sociales o webs.",
           howTo: ["Sube.", "Pon dimensiones.", "Redimensiona.", "Descarga."],
           features: ["Píxel perfecto.", "Bloqueo de proporción.", "Rápido.", "Seguro."],
-          faq: [{ question: "¿Agrandar?", answer: "Sí." }]
+          faq: [
+            { question: "¿Puedo agrandar imágenes?", answer: "Sí, pero pueden pixelarse un poco." },
+            { question: "¿Mantiene la proporción?", answer: "Sí, si activas la opción de bloqueo." },
+            { question: "¿Es seguro?", answer: "Sí, todo se procesa localmente." }
+          ]
         }
       },
       ru: {
@@ -311,7 +446,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Быстро изменяйте размер изображений для соцсетей или веб-сайтов.",
           howTo: ["Загрузите.", "Укажите размер.", "Измените.", "Скачайте."],
           features: ["Точность пикселей.", "Сохранение пропорций.", "Быстро.", "Безопасно."],
-          faq: [{ question: "Увеличить?", answer: "Да." }]
+          faq: [
+            { question: "Можно ли увеличить фото?", answer: "Да, но качество может немного снизиться." },
+            { question: "Сохраняются ли пропорции?", answer: "Да, используйте функцию блокировки пропорций." },
+            { question: "Это бесплатно?", answer: "Да, полностью бесплатно." }
+          ]
         }
       }
     },
@@ -342,8 +481,9 @@ export const toolsRegistry: Record<string, ToolConfig> = {
         "No registration."
       ],
       faq: [
-        { question: "Is it legal?", answer: "Yes, for fair use." },
-        { question: "Why no 4K?", answer: "Video might not have a 4K thumbnail." }
+        { question: "Is it legal to download thumbnails?", answer: "Yes, downloading thumbnails for personal use, reference, or fair use is generally legal." },
+        { question: "Why is 4K option disabled?", answer: "Not all videos have a 4K thumbnail. If the creator didn't upload a high-res image, we can only provide the HD version." },
+        { question: "Does it work with Shorts?", answer: "Yes, it supports YouTube Shorts URLs as well." }
       ]
     },
     locales: {
@@ -354,7 +494,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Grab a thumbnail from a YouTube video in maximum resolution.",
           howTo: ["Copy URL.", "Paste.", "Select quality.", "Download."],
           features: ["4K Support.", "Any video.", "Fast.", "Free."],
-          faq: [{ question: "Legal?", answer: "Yes." }]
+          faq: [
+            { question: "Is this free?", answer: "Yes, unlimited downloads." },
+            { question: "Why no 4K?", answer: "The video owner may not have uploaded a 4K image." },
+            { question: "Do I need to sign up?", answer: "No account required." }
+          ]
         }
       },
       es: {
@@ -364,7 +508,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Obtén la miniatura de cualquier video de YouTube en máxima resolución.",
           howTo: ["Copia URL.", "Pega.", "Elige calidad.", "Descarga."],
           features: ["Soporte 4K.", "Cualquier video.", "Rápido.", "Gratis."],
-          faq: [{ question: "¿Legal?", answer: "Sí." }]
+          faq: [
+            { question: "¿Es legal?", answer: "Sí, para uso personal o de referencia." },
+            { question: "¿Por qué no hay 4K?", answer: "Quizás el video no tiene una imagen de alta resolución." },
+            { question: "¿Funciona con Shorts?", answer: "Sí, también funciona con YouTube Shorts." }
+          ]
         }
       },
       ru: {
@@ -374,7 +522,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Получите превью (обложку) любого видео YouTube в максимальном разрешении.",
           howTo: ["Копируйте URL.", "Вставьте.", "Выберите качество.", "Скачайте."],
           features: ["Поддержка 4K.", "Любое видео.", "Быстро.", "Бесплатно."],
-          faq: [{ question: "Законно?", answer: "Да." }]
+          faq: [
+            { question: "Это легально?", answer: "Да, для личного использования." },
+            { question: "Почему нет 4K?", answer: "Возможно, автор не загрузил картинку в высоком качестве." },
+            { question: "Нужна регистрация?", answer: "Нет, скачивайте без регистрации." }
+          ]
         }
       }
     },
@@ -407,8 +559,9 @@ export const toolsRegistry: Record<string, ToolConfig> = {
         "No file size limits."
       ],
       faq: [
-        { question: "Is my data safe?", answer: "Yes, files are processed in your browser." },
-        { question: "How many files can I merge?", answer: "As many as your device memory can handle." }
+        { question: "Is my data safe?", answer: "Yes! Unlike other tools, we do NOT upload your files to a server. Merging happens entirely in your browser." },
+        { question: "Is there a file size limit?", answer: "No hard limits. Since it works offline in your browser, it depends on your computer's RAM." },
+        { question: "Can I reorder files?", answer: "Yes, simply drag and drop the files to change their order before merging." }
       ]
     },
     locales: {
@@ -419,7 +572,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Combine PDFs in the order you want with the easiest PDF Merger available.",
           howTo: ["Select files.", "Reorder.", "Merge.", "Save."],
           features: ["Secure.", "Drag & Drop.", "Fast.", "No limits."],
-          faq: [{ question: "Safe?", answer: "Yes." }]
+          faq: [
+            { question: "Are my files uploaded?", answer: "No, everything is processed locally." },
+            { question: "Is it free?", answer: "Yes, 100% free with no limits." },
+            { question: "Can I merge large files?", answer: "Yes, providing your device has enough memory." }
+          ]
         }
       },
       es: {
@@ -429,7 +586,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Combina PDFs en el orden que desees con el fusionador de PDF más fácil disponible.",
           howTo: ["Selecciona archivos.", "Reordena.", "Une.", "Guarda."],
           features: ["Seguro.", "Arrastrar y soltar.", "Rápido.", "Sin límites."],
-          faq: [{ question: "¿Seguro?", answer: "Sí." }]
+          faq: [
+            { question: "¿Mis archivos se suben?", answer: "No, el proceso es local y seguro." },
+            { question: "¿Puedo reordenar?", answer: "Sí, arrastra y suelta los archivos." },
+            { question: "¿Es gratis?", answer: "Sí, totalmente gratuito." }
+          ]
         }
       },
       ru: {
@@ -439,7 +600,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Объединяйте PDF-файлы в нужном порядке с помощью самого простого инструмента.",
           howTo: ["Выберите файлы.", "Сортируйте.", "Объедините.", "Сохраните."],
           features: ["Безопасно.", "Перетаскивание.", "Быстро.", "Без лимитов."],
-          faq: [{ question: "Безопасно?", answer: "Да." }]
+          faq: [
+            { question: "Мои файлы загружаются на сервер?", answer: "Нет, объединение происходит в вашем браузере." },
+            { question: "Есть ли лимиты?", answer: "Нет, зависит только от памяти вашего устройства." },
+            { question: "Можно менять порядок?", answer: "Да, просто перетащите файлы." }
+          ]
         }
       }
     },
@@ -470,8 +635,9 @@ export const toolsRegistry: Record<string, ToolConfig> = {
         "Works on Mobile and Desktop."
       ],
       faq: [
-        { question: "Can I edit the text?", answer: "Yes, the output is a standard Word document." },
-        { question: "Does it support scans?", answer: "Yes, it extracts text from images." }
+        { question: "Can I edit the text afterwards?", answer: "Yes, the output is a standard Word document (.docx) that is fully editable." },
+        { question: "Does it support scanned PDFs?", answer: "Yes, we use advanced technology to extract text and images from scans." },
+        { question: "Is my document secure?", answer: "Yes, processing is secure and we do not store your files." }
       ]
     },
     locales: {
@@ -482,7 +648,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Turn your PDF documents into editable Word files while preserving layout.",
           howTo: ["Upload PDF.", "Convert.", "Download DOCX.", "Edit."],
           features: ["OCR Tech.", "Preserves Layout.", "Fast.", "Mobile ready."],
-          faq: [{ question: "Editable?", answer: "Yes." }]
+          faq: [
+            { question: "Is formatting preserved?", answer: "Yes, we aim to keep the original layout." },
+            { question: "Is it free?", answer: "Yes." },
+            { question: "Do I need Microsoft Word?", answer: "No, you can also use Google Docs." }
+          ]
         }
       },
       es: {
@@ -492,7 +662,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Transforma tus PDFs en archivos Word editables conservando el diseño.",
           howTo: ["Sube PDF.", "Convierte.", "Descarga DOCX.", "Edita."],
           features: ["Tecnología OCR.", "Conserva diseño.", "Rápido.", "Móvil."],
-          faq: [{ question: "¿Editable?", answer: "Sí." }]
+          faq: [
+            { question: "¿Puedo editar el texto?", answer: "Sí, el archivo final es totalmente editable." },
+            { question: "¿Funciona con escaneos?", answer: "Sí, extrae texto e imágenes." },
+            { question: "¿Es seguro?", answer: "Sí, tus archivos están seguros." }
+          ]
         }
       },
       ru: {
@@ -502,7 +676,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Превратите ваши PDF в редактируемые файлы Word с сохранением верстки.",
           howTo: ["Загрузите PDF.", "Конвертируйте.", "Скачайте DOCX.", "Редактируйте."],
           features: ["OCR Технология.", "Сохранение верстки.", "Быстро.", "Для мобильных."],
-          faq: [{ question: "Редактируемый?", answer: "Да." }]
+          faq: [
+            { question: "Можно ли редактировать?", answer: "Да, вы получите стандартный файл Word." },
+            { question: "Сохраняется ли форматирование?", answer: "Да, мы стараемся сохранить оригинальный вид." },
+            { question: "Это безопасно?", answer: "Да, мы не храним ваши файлы." }
+          ]
         }
       }
     },
@@ -531,8 +709,9 @@ export const toolsRegistry: Record<string, ToolConfig> = {
         "Universal compatibility."
       ],
       faq: [
-        { question: "Will formatting change?", answer: "No, the PDF will look exactly like your Word doc." },
-        { question: "Is it free?", answer: "Yes, unlimited free conversions." }
+        { question: "Will my formatting change?", answer: "No, converting to PDF locks your formatting so it looks the same on any device." },
+        { question: "Is it free?", answer: "Yes, you can convert unlimited files for free." },
+        { question: "Can I convert .doc files?", answer: "Currently we support .docx files, which is the modern standard." }
       ]
     },
     locales: {
@@ -543,7 +722,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Convert your DOCX files to PDF to ensure your formatting stays consistent.",
           howTo: ["Upload Word.", "Convert.", "Download PDF."],
           features: ["Consistent Layout.", "Pro Quality.", "Secure.", "Universal."],
-          faq: [{ question: "Formatting?", answer: "Stays same." }]
+          faq: [
+            { question: "Why convert to PDF?", answer: "To ensure layout stays consistent everywhere." },
+            { question: "Is it fast?", answer: "Yes, conversion takes seconds." },
+            { question: "Secure?", answer: "Yes, secure processing." }
+          ]
         }
       },
       es: {
@@ -553,7 +736,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Convierte tus archivos DOCX a PDF para asegurar que el formato se mantenga.",
           howTo: ["Sube Word.", "Convierte.", "Descarga PDF."],
           features: ["Diseño consistente.", "Calidad Pro.", "Seguro.", "Universal."],
-          faq: [{ question: "¿Formato?", answer: "Se mantiene." }]
+          faq: [
+            { question: "¿Cambiará el formato?", answer: "No, el PDF mantiene el diseño original." },
+            { question: "¿Es gratis?", answer: "Sí, conversiones ilimitadas." },
+            { question: "¿Por qué PDF?", answer: "Para asegurar que se vea bien en todos los dispositivos." }
+          ]
         }
       },
       ru: {
@@ -563,7 +750,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Конвертируйте DOCX в PDF, чтобы сохранить форматирование на любом устройстве.",
           howTo: ["Загрузите Word.", "Конвертируйте.", "Скачайте PDF."],
           features: ["Сохранение верстки.", "Проф. качество.", "Безопасно.", "Универсально."],
-          faq: [{ question: "Форматирование?", answer: "Сохраняется." }]
+          faq: [
+            { question: "Изменится ли вид документа?", answer: "Нет, PDF фиксирует форматирование." },
+            { question: "Это бесплатно?", answer: "Да." },
+            { question: "Поддерживается ли .docx?", answer: "Да, это основной формат." }
+          ]
         }
       }
     },
@@ -580,11 +771,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
     componentKey: "ImageToPdf",
     icon: "FileStack",
     content: {
-      overview: "Combine your photos or scanned documents into a single, shareable PDF file. Perfect for creating portfolios or sending documents.",
+      overview: "Combine your photos or scanned documents into a single, shareable PDF file. Perfect for creating portfolios, digital albums, or sending documents via email.",
       howTo: [
         "Select your images (JPG, PNG).",
         "Reorder them if necessary.",
-        "Choose page orientation.",
+        "Choose page orientation (Portrait/Landscape).",
         "Click 'Convert' and download."
       ],
       features: [
@@ -594,8 +785,9 @@ export const toolsRegistry: Record<string, ToolConfig> = {
         "No watermark."
       ],
       faq: [
-        { question: "Can I reorder?", answer: "Yes, drag and drop." },
-        { question: "Is there a limit?", answer: "No, add many photos." }
+        { question: "Can I reorder images?", answer: "Yes, simply drag and drop the images to change their sequence in the PDF." },
+        { question: "How many images can I add?", answer: "There is no strict limit, you can add as many as your browser memory allows." },
+        { question: "Does it work with PNG?", answer: "Yes, it supports JPG, PNG, and WEBP formats." }
       ]
     },
     locales: {
@@ -606,7 +798,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Combine your photos or scanned documents into a single, shareable PDF file.",
           howTo: ["Select images.", "Reorder.", "Set orientation.", "Download."],
           features: ["Multiple images.", "Orientation.", "Small size.", "No watermark."],
-          faq: [{ question: "Reorder?", answer: "Yes." }]
+          faq: [
+            { question: "Can I make a photo album?", answer: "Yes, it is perfect for combining photos." },
+            { question: "Is it free?", answer: "Yes." },
+            { question: "Can I change orientation?", answer: "Yes, choose between Portrait and Landscape." }
+          ]
         }
       },
       es: {
@@ -616,7 +812,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Combina tus fotos o documentos escaneados en un solo archivo PDF para compartir.",
           howTo: ["Elige imágenes.", "Reordena.", "Orientación.", "Descarga."],
           features: ["Múltiples imágenes.", "Orientación.", "Tamaño pequeño.", "Sin marca."],
-          faq: [{ question: "¿Reordenar?", answer: "Sí." }]
+          faq: [
+            { question: "¿Puedo reordenar las fotos?", answer: "Sí, arrástralas a la posición deseada." },
+            { question: "¿Soporta PNG?", answer: "Sí, JPG, PNG y WEBP." },
+            { question: "¿Es gratis?", answer: "Totalmente gratis." }
+          ]
         }
       },
       ru: {
@@ -626,7 +826,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Объедините фото или сканы документов в один удобный PDF файл.",
           howTo: ["Выберите фото.", "Сортируйте.", "Ориентация.", "Скачайте."],
           features: ["Несколько фото.", "Ориентация.", "Малый размер.", "Без водяных знаков."],
-          faq: [{ question: "Сортировка?", answer: "Да." }]
+          faq: [
+            { question: "Можно менять порядок?", answer: "Да, перетаскиванием." },
+            { question: "Сколько фото можно добавить?", answer: "Сколько угодно." },
+            { question: "Есть ли водяные знаки?", answer: "Нет, документ чистый." }
+          ]
         }
       }
     },
@@ -643,10 +847,10 @@ export const toolsRegistry: Record<string, ToolConfig> = {
     componentKey: "PdfCompressor",
     icon: "FileStack",
     content: {
-      overview: "Shrink large PDF files to make them easier to email or upload. Our tool optimizes internal assets without sacrificing readability.",
+      overview: "Shrink large PDF files to make them easier to email or upload to portals with size limits. Our tool optimizes internal assets without sacrificing readability.",
       howTo: [
         "Upload your large PDF.",
-        "Select compression level.",
+        "Select compression level (Low, Medium, High).",
         "Download the optimized PDF."
       ],
       features: [
@@ -656,8 +860,9 @@ export const toolsRegistry: Record<string, ToolConfig> = {
         "Secure processing."
       ],
       faq: [
-        { question: "Blurry text?", answer: "No, text remains vector-based." },
-        { question: "Space saved?", answer: "Usually 30% to 70%." }
+        { question: "Will text become blurry?", answer: "No, text remains vector-based and sharp. Only images inside the PDF are optimized." },
+        { question: "How much space can I save?", answer: "Usually between 30% to 70%, depending on how many images are in the PDF." },
+        { question: "Is it secure?", answer: "Yes, compression happens in your browser, no upload involved." }
       ]
     },
     locales: {
@@ -668,7 +873,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Shrink large PDF files to make them easier to email or upload.",
           howTo: ["Upload PDF.", "Select level.", "Download."],
           features: ["Size reduction.", "Sharp text.", "Offline ready.", "Secure."],
-          faq: [{ question: "Blurry?", answer: "No." }]
+          faq: [
+            { question: "Does it affect quality?", answer: "Text stays sharp, images are optimized." },
+            { question: "Is it free?", answer: "Yes." },
+            { question: "Can I send via email?", answer: "Yes, it makes files small enough for email." }
+          ]
         }
       },
       es: {
@@ -678,7 +887,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Achica archivos PDF grandes para enviarlos por email más fácil.",
           howTo: ["Sube PDF.", "Elige nivel.", "Descarga."],
           features: ["Reducción tamaño.", "Texto nítido.", "Offline.", "Seguro."],
-          faq: [{ question: "¿Borroso?", answer: "No." }]
+          faq: [
+            { question: "¿Se verá borroso?", answer: "No, el texto se mantiene nítido." },
+            { question: "¿Cuánto reduce?", answer: "Entre 30% y 70%." },
+            { question: "¿Es seguro?", answer: "Sí, sin subidas al servidor." }
+          ]
         }
       },
       ru: {
@@ -688,7 +901,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Сожмите большие PDF файлы для отправки по почте.",
           howTo: ["Загрузите PDF.", "Выберите уровень.", "Скачайте."],
           features: ["Уменьшение размера.", "Четкий текст.", "Офлайн.", "Безопасно."],
-          faq: [{ question: "Размыто?", answer: "Нет." }]
+          faq: [
+            { question: "Текст останется четким?", answer: "Да, оптимизируются только картинки." },
+            { question: "Насколько уменьшится файл?", answer: "Обычно на 30-70%." },
+            { question: "Это безопасно?", answer: "Да, файлы не покидают браузер." }
+          ]
         }
       }
     },
@@ -705,22 +922,23 @@ export const toolsRegistry: Record<string, ToolConfig> = {
     componentKey: "PdfSplitter",
     icon: "FileStack",
     content: {
-      overview: "Extract only the pages you need from a large PDF document. Split a book into chapters or separate a single invoice.",
+      overview: "Extract only the pages you need from a large PDF document. Split a book into chapters or separate a single invoice from a bulk file.",
       howTo: [
         "Upload the PDF document.",
-        "Select the pages to extract.",
+        "Select the pages you want to extract.",
         "Click 'Split PDF'.",
-        "Download pages as new file."
+        "Download the selected pages as a new file."
       ],
       features: [
         "Visual page selector.",
-        "Extract ranges.",
+        "Extract ranges (e.g., 1-5).",
         "Instant processing.",
         "No upload required."
       ],
       faq: [
-        { question: "Multiple ranges?", answer: "Yes, select any pages." },
-        { question: "Original file affected?", answer: "No." }
+        { question: "Can I split multiple ranges?", answer: "Yes, you can select any combination of pages to create a new PDF." },
+        { question: "Is the original file affected?", answer: "No, your original file remains untouched. We create a new file with selected pages." },
+        { question: "Does it work with large files?", answer: "Yes, it works efficiently even with large documents." }
       ]
     },
     locales: {
@@ -731,7 +949,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Extract only the pages you need from a large PDF document.",
           howTo: ["Upload PDF.", "Select pages.", "Split.", "Download."],
           features: ["Page selector.", "Ranges.", "Instant.", "No upload."],
-          faq: [{ question: "Multiple ranges?", answer: "Yes." }]
+          faq: [
+            { question: "Can I select specific pages?", answer: "Yes, click to select pages." },
+            { question: "Is it secure?", answer: "Yes, local processing." },
+            { question: "Is it free?", answer: "Yes." }
+          ]
         }
       },
       es: {
@@ -741,7 +963,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Extrae solo las páginas que necesitas de un documento PDF grande.",
           howTo: ["Sube PDF.", "Elige páginas.", "Divide.", "Descarga."],
           features: ["Selector visual.", "Rangos.", "Instantáneo.", "Sin subida."],
-          faq: [{ question: "¿Varios rangos?", answer: "Sí." }]
+          faq: [
+            { question: "¿Puedo elegir páginas sueltas?", answer: "Sí, selecciona las que quieras." },
+            { question: "¿Afecta al original?", answer: "No, crea un archivo nuevo." },
+            { question: "¿Es seguro?", answer: "Sí, todo ocurre en tu PC." }
+          ]
         }
       },
       ru: {
@@ -751,7 +977,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Извлеките только нужные страницы из большого PDF документа.",
           howTo: ["Загрузите PDF.", "Выберите страницы.", "Разделите.", "Скачайте."],
           features: ["Выбор страниц.", "Диапазоны.", "Мгновенно.", "Без загрузки."],
-          faq: [{ question: "Несколько диапазонов?", answer: "Да." }]
+          faq: [
+            { question: "Можно выбрать несколько страниц?", answer: "Да, любую комбинацию." },
+            { question: "Файл испортится?", answer: "Нет, создается новый файл." },
+            { question: "Это бесплатно?", answer: "Да." }
+          ]
         }
       }
     },
@@ -768,22 +998,23 @@ export const toolsRegistry: Record<string, ToolConfig> = {
     componentKey: "PdfOrganizer",
     icon: "LayoutGrid",
     content: {
-      overview: "Take full control of your PDF pages. Rotate upside-down pages, delete unnecessary ones, and reorder the flow.",
+      overview: "Take full control of your PDF pages. Rotate upside-down pages, delete unnecessary ones, and reorder the flow of your document.",
       howTo: [
         "Upload your PDF.",
-        "Hover to rotate/delete.",
-        "Drag pages to reorder.",
+        "Hover over pages to rotate or delete.",
+        "Drag pages to new positions.",
         "Save the organized PDF."
       ],
       features: [
-        "Rotate pages.",
-        "Delete pages.",
-        "Drag-and-drop.",
+        "Rotate individual pages.",
+        "Delete specific pages.",
+        "Visual drag-and-drop.",
         "Real-time preview."
       ],
       faq: [
-        { question: "Rotate one page?", answer: "Yes." },
-        { question: "Permanent?", answer: "Creates new file." }
+        { question: "Can I rotate just one page?", answer: "Yes, you can rotate specific pages individually." },
+        { question: "Is the change permanent?", answer: "It creates a new file with your changes; the original stays safe." },
+        { question: "How to reorder pages?", answer: "Simply drag and drop the pages to the desired position." }
       ]
     },
     locales: {
@@ -794,7 +1025,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Take full control of your PDF pages. Rotate, delete, and reorder.",
           howTo: ["Upload.", "Rotate/Delete.", "Reorder.", "Save."],
           features: ["Rotate.", "Delete.", "Drag & Drop.", "Preview."],
-          faq: [{ question: "Rotate one?", answer: "Yes." }]
+          faq: [
+            { question: "Can I delete pages?", answer: "Yes, easily remove unwanted pages." },
+            { question: "Is it easy?", answer: "Yes, simple drag and drop." },
+            { question: "Secure?", answer: "Yes, local processing." }
+          ]
         }
       },
       es: {
@@ -804,7 +1039,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Toma el control total de tus páginas PDF. Rota, elimina y reordena.",
           howTo: ["Sube.", "Rota/Elimina.", "Reordena.", "Guarda."],
           features: ["Rotar.", "Eliminar.", "Arrastrar.", "Vista previa."],
-          faq: [{ question: "¿Rotar una?", answer: "Sí." }]
+          faq: [
+            { question: "¿Puedo rotar una sola página?", answer: "Sí." },
+            { question: "¿Cómo reordeno?", answer: "Arrastra y suelta." },
+            { question: "¿Es seguro?", answer: "Sí." }
+          ]
         }
       },
       ru: {
@@ -814,7 +1053,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Полный контроль над страницами PDF. Вращайте, удаляйте, меняйте местами.",
           howTo: ["Загрузите.", "Вращайте/Удаляйте.", "Сортируйте.", "Сохраните."],
           features: ["Вращение.", "Удаление.", "Перетаскивание.", "Предпросмотр."],
-          faq: [{ question: "Повернуть одну?", answer: "Да." }]
+          faq: [
+            { question: "Можно повернуть одну страницу?", answer: "Да." },
+            { question: "Как менять порядок?", answer: "Просто перетащите." },
+            { question: "Безопасно?", answer: "Да." }
+          ]
         }
       }
     },
@@ -831,21 +1074,22 @@ export const toolsRegistry: Record<string, ToolConfig> = {
     componentKey: "PdfToImage",
     icon: "FileStack",
     content: {
-      overview: "Convert every page of your PDF into a separate high-quality image file. Useful for sharing document pages on social media.",
+      overview: "Convert every page of your PDF into a separate high-quality image file. Useful for sharing document pages on social media or inserting into presentations.",
       howTo: [
         "Upload the PDF file.",
-        "Choose format (JPG/PNG).",
-        "Download pages."
+        "Choose output format (JPG or PNG).",
+        "Download all pages as a ZIP or individually."
       ],
       features: [
         "High DPI output.",
-        "JPG and PNG.",
+        "Supports JPG and PNG.",
         "Batch extraction.",
-        "Transparent backgrounds."
+        "Transparent background support."
       ],
       faq: [
-        { question: "All pages?", answer: "Yes, every page." },
-        { question: "Quality?", answer: "High resolution." }
+        { question: "Does it convert all pages?", answer: "Yes, every page in the PDF is converted into an image." },
+        { question: "Is the quality good?", answer: "Yes, we use high-resolution rendering for crisp images." },
+        { question: "JPG or PNG?", answer: "Use JPG for photos/smaller size, PNG for text/transparency." }
       ]
     },
     locales: {
@@ -856,7 +1100,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Convert every page of your PDF into a separate high-quality image file.",
           howTo: ["Upload PDF.", "Select format.", "Download."],
           features: ["High DPI.", "JPG/PNG.", "Batch.", "Transparency."],
-          faq: [{ question: "All pages?", answer: "Yes." }]
+          faq: [
+            { question: "All pages converted?", answer: "Yes." },
+            { question: "Best format?", answer: "PNG for text, JPG for photos." },
+            { question: "Free?", answer: "Yes." }
+          ]
         }
       },
       es: {
@@ -866,7 +1114,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Convierte cada página de tu PDF en un archivo de imagen separado.",
           howTo: ["Sube PDF.", "Elige formato.", "Descarga."],
           features: ["Alta DPI.", "JPG/PNG.", "Lotes.", "Transparencia."],
-          faq: [{ question: "¿Todas las páginas?", answer: "Sí." }]
+          faq: [
+            { question: "¿Todas las páginas?", answer: "Sí." },
+            { question: "¿Calidad?", answer: "Alta resolución." },
+            { question: "¿JPG o PNG?", answer: "PNG para texto, JPG para fotos." }
+          ]
         }
       },
       ru: {
@@ -876,7 +1128,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Превратите каждую страницу PDF в отдельный файл изображения.",
           howTo: ["Загрузите PDF.", "Выберите формат.", "Скачайте."],
           features: ["Высокое DPI.", "JPG/PNG.", "Пакетно.", "Прозрачность."],
-          faq: [{ question: "Все страницы?", answer: "Да." }]
+          faq: [
+            { question: "Все страницы?", answer: "Да, каждая страница." },
+            { question: "Какое качество?", answer: "Высокое разрешение." },
+            { question: "JPG или PNG?", answer: "PNG для текста, JPG для фото." }
+          ]
         }
       }
     },
@@ -886,7 +1142,7 @@ export const toolsRegistry: Record<string, ToolConfig> = {
     ]
   },
 
-  // --- GENERATOR & DEV TOOLS ---
+  // --- GENERATOR TOOLS ---
   "qr-code-generator": {
     slug: "qr-code-generator",
     title: "QR Code Generator",
@@ -895,22 +1151,23 @@ export const toolsRegistry: Record<string, ToolConfig> = {
     componentKey: "QrGenerator",
     icon: "QrCode",
     content: {
-      overview: "Generate scannable QR codes for URLs, WiFi, Text, or vCards. Customize the foreground and background colors.",
+      overview: "Generate scannable QR codes for URLs, WiFi, Text, or vCards. Customize the foreground and background colors to match your brand identity.",
       howTo: [
-        "Select type (URL, WiFi, etc.).",
-        "Enter data.",
-        "Customize colors.",
-        "Download PNG/SVG."
+        "Select the type (URL, WiFi, Text, etc.).",
+        "Enter the required data.",
+        "Customize colors and size.",
+        "Download as PNG or SVG."
       ],
       features: [
-        "Custom colors.",
+        "Customizable colors.",
         "High-res download.",
-        "WiFi & Contact support.",
-        "No expiration."
+        "Supports WiFi & Contact data.",
+        "No expiration date."
       ],
       faq: [
-        { question: "Do they expire?", answer: "No, static codes." },
-        { question: "Print ready?", answer: "Yes." }
+        { question: "Do these codes expire?", answer: "No, our QR codes are static and work forever." },
+        { question: "Can I use them for print?", answer: "Yes, you can download high-quality PNG or SVG for printing." },
+        { question: "Is it free?", answer: "Yes, completely free with no limits." }
       ]
     },
     locales: {
@@ -921,7 +1178,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Generate scannable QR codes for URLs, WiFi, Text, or vCards.",
           howTo: ["Select type.", "Enter data.", "Customize.", "Download."],
           features: ["Colors.", "High-res.", "WiFi.", "Forever free."],
-          faq: [{ question: "Expire?", answer: "No." }]
+          faq: [
+            { question: "Do they expire?", answer: "No, never." },
+            { question: "Can I customize colors?", answer: "Yes, full color control." },
+            { question: "Is it high quality?", answer: "Yes, print-ready." }
+          ]
         }
       },
       es: {
@@ -931,7 +1192,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Genera códigos QR escaneables para URLs, WiFi, texto o vCards.",
           howTo: ["Elige tipo.", "Ingresa datos.", "Personaliza.", "Descarga."],
           features: ["Colores.", "Alta res.", "WiFi.", "Gratis siempre."],
-          faq: [{ question: "¿Caducan?", answer: "No." }]
+          faq: [
+            { question: "¿Caducan?", answer: "No, son estáticos." },
+            { question: "¿Puedo cambiar colores?", answer: "Sí." },
+            { question: "¿Sirve para imprimir?", answer: "Sí, alta calidad." }
+          ]
         }
       },
       ru: {
@@ -941,7 +1206,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Создавайте сканируемые QR-коды для ссылок, WiFi, текста или контактов.",
           howTo: ["Выберите тип.", "Введите данные.", "Настройте.", "Скачайте."],
           features: ["Цвета.", "Высокое разр.", "WiFi.", "Навсегда."],
-          faq: [{ question: "Истекают?", answer: "Нет." }]
+          faq: [
+            { question: "Есть срок действия?", answer: "Нет, коды вечные." },
+            { question: "Можно менять цвета?", answer: "Да." },
+            { question: "Подходит для печати?", answer: "Да, высокое качество." }
+          ]
         }
       }
     },
@@ -952,27 +1221,28 @@ export const toolsRegistry: Record<string, ToolConfig> = {
   "password-generator": {
     slug: "password-generator",
     title: "Strong Password Generator",
-    description: "Create secure, random passwords instantly. Customizable length and character sets.",
+    description: "Create secure, random passwords instantly. Customizable length and character sets for maximum security.",
     category: "generator",
     componentKey: "PasswordGenerator",
     icon: "Lock",
     content: {
-      overview: "Protect your accounts with uncrackable passwords. Generate random strings containing numbers and symbols.",
+      overview: "Protect your accounts with uncrackable passwords. Generate random strings containing numbers, symbols, and uppercase letters.",
       howTo: [
-        "Select length.",
-        "Check options (Symbols, Numbers).",
-        "Generate.",
-        "Copy."
+        "Select password length.",
+        "Check options (Numbers, Symbols).",
+        "Click 'Generate'.",
+        "Copy to clipboard."
       ],
       features: [
         "Cryptographically strong.",
-        "Customizable.",
+        "Customizable complexity.",
         "One-click copy.",
-        "Local generation."
+        "No data storage."
       ],
       faq: [
-        { question: "Secure?", answer: "Yes, browser crypto." },
-        { question: "Saved?", answer: "Never." }
+        { question: "How secure is this?", answer: "We use the browser's cryptographic API for maximum randomness." },
+        { question: "Do you save passwords?", answer: "Never. Passwords are generated locally and discarded." },
+        { question: "Why use a random password?", answer: "Random passwords are much harder for hackers to guess or crack." }
       ]
     },
     locales: {
@@ -983,7 +1253,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Protect your accounts with uncrackable passwords.",
           howTo: ["Select length.", "Options.", "Generate.", "Copy."],
           features: ["Crypto strong.", "Custom.", "Fast.", "Local."],
-          faq: [{ question: "Secure?", answer: "Yes." }]
+          faq: [
+            { question: "Is it secure?", answer: "Yes, cryptographically strong." },
+            { question: "Saved on server?", answer: "No, never." },
+            { question: "Customizable?", answer: "Yes, length and chars." }
+          ]
         }
       },
       es: {
@@ -993,7 +1267,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Protege tus cuentas con contraseñas indescifrables.",
           howTo: ["Longitud.", "Opciones.", "Generar.", "Copiar."],
           features: ["Cifrado fuerte.", "Personalizable.", "Rápido.", "Local."],
-          faq: [{ question: "¿Seguro?", answer: "Sí." }]
+          faq: [
+            { question: "¿Es seguro?", answer: "Sí, usamos criptografía del navegador." },
+            { question: "¿Se guardan?", answer: "Nunca." },
+            { question: "¿Personalizable?", answer: "Sí." }
+          ]
         }
       },
       ru: {
@@ -1003,7 +1281,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Защитите свои аккаунты с помощью невзламываемых паролей.",
           howTo: ["Длина.", "Опции.", "Создать.", "Копировать."],
           features: ["Криптостойкость.", "Настройки.", "Быстро.", "Локально."],
-          faq: [{ question: "Безопасно?", answer: "Да." }]
+          faq: [
+            { question: "Это безопасно?", answer: "Да, полная случайность." },
+            { question: "Пароли сохраняются?", answer: "Нет, никогда." },
+            { question: "Можно настроить длину?", answer: "Да." }
+          ]
         }
       }
     },
@@ -1017,22 +1299,23 @@ export const toolsRegistry: Record<string, ToolConfig> = {
     componentKey: "FakeDataGenerator",
     icon: "Database",
     content: {
-      overview: "Developers love this tool for populating databases. Generate thousands of rows of realistic fake data.",
+      overview: "Developers love this tool for populating databases or testing UI. Generate thousands of rows of realistic fake data including names, emails, addresses, and dates.",
       howTo: [
-        "Select fields (Name, Email).",
-        "Choose format (JSON/CSV).",
-        "Select rows.",
-        "Download."
+        "Select fields (Name, Email, Phone, etc.).",
+        "Choose output format (JSON, CSV, SQL).",
+        "Select number of rows.",
+        "Generate and Download."
       ],
       features: [
         "Multiple data types.",
-        "Export JSON/CSV/SQL.",
-        "Realistic patterns.",
-        "Instant."
+        "Export to JSON, CSV, SQL.",
+        "Realistic data patterns.",
+        "Instant generation."
       ],
       faq: [
-        { question: "Real data?", answer: "No, random mock." },
-        { question: "Large datasets?", answer: "Yes." }
+        { question: "Is the data real?", answer: "No, it is randomly generated mock data safe for testing." },
+        { question: "Can I generate 1000 rows?", answer: "Yes, large datasets are supported for performance testing." },
+        { question: "What formats are supported?", answer: "You can export data in JSON, CSV, and SQL formats." }
       ]
     },
     locales: {
@@ -1043,7 +1326,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Generate thousands of rows of realistic fake data for testing.",
           howTo: ["Select fields.", "Format.", "Rows.", "Download."],
           features: ["Data types.", "Export.", "Realistic.", "Fast."],
-          faq: [{ question: "Real?", answer: "No." }]
+          faq: [
+            { question: "Real people?", answer: "No, fake data." },
+            { question: "Large amounts?", answer: "Yes, thousands of rows." },
+            { question: "Formats?", answer: "JSON, CSV, SQL." }
+          ]
         }
       },
       es: {
@@ -1053,7 +1340,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Genera miles de filas de datos falsos realistas para pruebas.",
           howTo: ["Campos.", "Formato.", "Filas.", "Descarga."],
           features: ["Tipos de datos.", "Exportar.", "Realista.", "Rápido."],
-          faq: [{ question: "¿Real?", answer: "No." }]
+          faq: [
+            { question: "¿Datos reales?", answer: "No, son ficticios." },
+            { question: "¿Muchos datos?", answer: "Sí, miles de filas." },
+            { question: "¿Formatos?", answer: "JSON, CSV, SQL." }
+          ]
         }
       },
       ru: {
@@ -1063,7 +1354,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Генерируйте тысячи строк реалистичных фейковых данных для тестирования.",
           howTo: ["Поля.", "Формат.", "Строки.", "Скачать."],
           features: ["Типы данных.", "Экспорт.", "Реалистично.", "Быстро."],
-          faq: [{ question: "Настоящие?", answer: "Нет." }]
+          faq: [
+            { question: "Люди настоящие?", answer: "Нет, данные вымышлены." },
+            { question: "Можно много данных?", answer: "Да, тысячи строк." },
+            { question: "Форматы?", answer: "JSON, CSV, SQL." }
+          ]
         }
       }
     },
@@ -1074,27 +1369,28 @@ export const toolsRegistry: Record<string, ToolConfig> = {
   "youtube-title-generator": {
     slug: "youtube-title-generator",
     title: "YouTube Title Generator",
-    description: "Generate viral, high-CTR video titles using AI-proven templates.",
+    description: "Generate viral, high-CTR video titles and descriptions using AI-proven templates.",
     category: "generator",
     componentKey: "YoutubeTitleGenerator",
     icon: "Youtube",
     content: {
-      overview: "Stuck on a video idea? Use our Title Generator to create catchy, click-worthy titles that boost your CTR.",
+      overview: "Stuck on a video idea? Use our Title Generator to create catchy, click-worthy titles that boost your Click-Through Rate (CTR) and views.",
       howTo: [
-        "Enter topic.",
-        "Generate.",
-        "Browse hooks.",
-        "Copy."
+        "Enter your video topic or keyword.",
+        "Click 'Generate Titles'.",
+        "Browse the list of viral hooks.",
+        "Copy your favorite one."
       ],
       features: [
-        "Viral patterns.",
+        "Based on viral patterns.",
         "SEO friendly.",
         "Multiple variations.",
-        "Boosts CTR."
+        "Increases CTR."
       ],
       faq: [
-        { question: "How it works?", answer: "Templates from top videos." },
-        { question: "Free?", answer: "Yes." }
+        { question: "How does it work?", answer: "It uses templates derived from top-performing viral videos to ensure high engagement." },
+        { question: "Is it free?", answer: "Yes, generate unlimited titles for free." },
+        { question: "Does it help SEO?", answer: "Yes, catchy titles improve CTR, which is a key ranking factor." }
       ]
     },
     locales: {
@@ -1105,7 +1401,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Create catchy, click-worthy titles that boost your CTR.",
           howTo: ["Topic.", "Generate.", "Browse.", "Copy."],
           features: ["Viral.", "SEO.", "Variations.", "CTR."],
-          faq: [{ question: "Free?", answer: "Yes." }]
+          faq: [
+            { question: "Free?", answer: "Yes." },
+            { question: "How it helps?", answer: "Boosts CTR and views." },
+            { question: "Unlimited?", answer: "Yes." }
+          ]
         }
       },
       es: {
@@ -1115,7 +1415,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Crea títulos llamativos que aumenten tus visitas.",
           howTo: ["Tema.", "Generar.", "Explorar.", "Copiar."],
           features: ["Viral.", "SEO.", "Variaciones.", "CTR."],
-          faq: [{ question: "¿Gratis?", answer: "Sí." }]
+          faq: [
+            { question: "¿Gratis?", answer: "Sí." },
+            { question: "¿Ayuda?", answer: "Aumenta clics y vistas." },
+            { question: "¿Ilimitado?", answer: "Sí." }
+          ]
         }
       },
       ru: {
@@ -1125,7 +1429,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Создавайте цепляющие заголовки, которые увеличивают просмотры.",
           howTo: ["Тема.", "Создать.", "Выбрать.", "Копировать."],
           features: ["Вирусно.", "SEO.", "Варианты.", "CTR."],
-          faq: [{ question: "Бесплатно?", answer: "Да." }]
+          faq: [
+            { question: "Бесплатно?", answer: "Да." },
+            { question: "Помогает?", answer: "Увеличивает CTR и просмотры." },
+            { question: "Безлимитно?", answer: "Да." }
+          ]
         }
       }
     },
@@ -1136,26 +1444,27 @@ export const toolsRegistry: Record<string, ToolConfig> = {
   "word-counter": {
     slug: "word-counter",
     title: "Word & Character Counter",
-    description: "Real-time word, character, sentence, and paragraph counter. Perfect for writing and SEO.",
+    description: "Real-time word, character, sentence, and paragraph counter. Perfect for writing and SEO content.",
     category: "text",
     componentKey: "WordCounter",
     icon: "Type",
     content: {
-      overview: "Instant analysis of word count, character count, paragraphs, and reading time.",
+      overview: "Writers, students, and SEO pros rely on this tool. Paste your text to get an instant analysis of word count, character count (with/without spaces), paragraphs, and reading time.",
       howTo: [
-        "Paste text.",
-        "See stats.",
-        "Check reading time."
+        "Type or paste your text into the box.",
+        "See statistics update in real-time.",
+        "Check reading and speaking time estimates."
       ],
       features: [
-        "Real-time.",
-        "Reading time.",
-        "Space counting.",
-        "Privacy."
+        "Real-time counting.",
+        "Reading time estimation.",
+        "Keyword density (coming soon).",
+        "Privacy focused."
       ],
       faq: [
-        { question: "Count spaces?", answer: "Yes." },
-        { question: "Limit?", answer: "No." }
+        { question: "Does it count spaces?", answer: "We provide counts for both: with spaces and without spaces." },
+        { question: "Is there a text limit?", answer: "No, you can paste entire essays or articles." },
+        { question: "Do you save my text?", answer: "No, text processing is instant and local. Nothing is stored." }
       ]
     },
     locales: {
@@ -1166,7 +1475,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Instant analysis of word count, character count, paragraphs, and reading time.",
           howTo: ["Paste.", "Stats.", "Time."],
           features: ["Real-time.", "Reading time.", "Spaces.", "Privacy."],
-          faq: [{ question: "Limit?", answer: "No." }]
+          faq: [
+            { question: "Count spaces?", answer: "Yes." },
+            { question: "Limit?", answer: "No limit." },
+            { question: "Privacy?", answer: "Text not saved." }
+          ]
         }
       },
       es: {
@@ -1176,7 +1489,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Análisis instantáneo de conteo de palabras, caracteres y tiempo de lectura.",
           howTo: ["Pega.", "Estadísticas.", "Tiempo."],
           features: ["Tiempo real.", "Lectura.", "Espacios.", "Privacidad."],
-          faq: [{ question: "¿Límite?", answer: "No." }]
+          faq: [
+            { question: "¿Cuenta espacios?", answer: "Sí." },
+            { question: "¿Límite?", answer: "Sin límite." },
+            { question: "¿Privacidad?", answer: "No guardamos nada." }
+          ]
         }
       },
       ru: {
@@ -1186,7 +1503,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Мгновенный анализ количества слов, знаков и времени чтения.",
           howTo: ["Вставьте.", "Статистика.", "Время."],
           features: ["Реал-тайм.", "Чтение.", "Пробелы.", "Приватность."],
-          faq: [{ question: "Лимит?", answer: "Нет." }]
+          faq: [
+            { question: "Считает пробелы?", answer: "Да." },
+            { question: "Есть лимит?", answer: "Нет." },
+            { question: "Приватность?", answer: "Текст не сохраняется." }
+          ]
         }
       }
     },
@@ -1197,26 +1518,28 @@ export const toolsRegistry: Record<string, ToolConfig> = {
   "json-formatter": {
     slug: "json-formatter",
     title: "JSON Formatter & Validator",
-    description: "Beautify, validate, and minify JSON data. Fix syntax errors and make JSON readable.",
+    description: "Beautify, validate, and minify JSON data. Fix syntax errors and make JSON readable for developers.",
     category: "code",
     componentKey: "JsonFormatter",
     icon: "FileText",
     content: {
-      overview: "Debug your JSON data easily. Format messy JSON, validate errors, and minify for production.",
+      overview: "Debug your JSON data easily. This tool formats messy JSON into a readable tree structure, validates syntax errors, and can also minify JSON for production.",
       howTo: [
-        "Paste JSON.",
-        "Format/Minify.",
-        "Copy."
+        "Paste your JSON string.",
+        "Click 'Format' to beautify.",
+        "Click 'Minify' to compress.",
+        "Copy the result."
       ],
       features: [
-        "Error highlight.",
-        "Tree view.",
-        "Minify/Beautify.",
-        "Fast copy."
+        "Syntax error highlighting.",
+        "Collapsible tree view.",
+        "Minify and Beautify modes.",
+        "One-click copy."
       ],
       faq: [
-        { question: "Fix errors?", answer: "Highlights them." },
-        { question: "Secure?", answer: "Yes." }
+        { question: "Does it fix errors?", answer: "It highlights syntax errors so you can easily identify and fix them." },
+        { question: "Is my JSON sent to a server?", answer: "No, all validation and formatting happen locally in your browser." },
+        { question: "Can I minify JSON?", answer: "Yes, use the Minify button to compress JSON for production use." }
       ]
     },
     locales: {
@@ -1227,7 +1550,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Debug your JSON data easily. Format messy JSON, validate errors.",
           howTo: ["Paste.", "Format.", "Copy."],
           features: ["Errors.", "Tree view.", "Minify.", "Fast."],
-          faq: [{ question: "Secure?", answer: "Yes." }]
+          faq: [
+            { question: "Secure?", answer: "Yes, local." },
+            { question: "Fix errors?", answer: "Highlights them." },
+            { question: "Minify?", answer: "Yes." }
+          ]
         }
       },
       es: {
@@ -1237,7 +1564,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Depura tus datos JSON fácilmente. Formatea y valida errores.",
           howTo: ["Pega.", "Formatea.", "Copia."],
           features: ["Errores.", "Árbol.", "Minificar.", "Rápido."],
-          faq: [{ question: "¿Seguro?", answer: "Sí." }]
+          faq: [
+            { question: "¿Seguro?", answer: "Sí, local." },
+            { question: "¿Arregla errores?", answer: "Los resalta." },
+            { question: "¿Minifica?", answer: "Sí." }
+          ]
         }
       },
       ru: {
@@ -1247,7 +1578,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Легко отлаживайте JSON. Форматируйте и находите ошибки.",
           howTo: ["Вставьте.", "Формат.", "Копия."],
           features: ["Ошибки.", "Дерево.", "Сжатие.", "Быстро."],
-          faq: [{ question: "Безопасно?", answer: "Да." }]
+          faq: [
+            { question: "Безопасно?", answer: "Да, локально." },
+            { question: "Исправляет ошибки?", answer: "Подсвечивает их." },
+            { question: "Сжимает?", answer: "Да." }
+          ]
         }
       }
     },
@@ -1255,90 +1590,30 @@ export const toolsRegistry: Record<string, ToolConfig> = {
       { slug: "json-to-typescript", label: "Convert to TS Types" }
     ]
   },
-  "css-to-tailwind": {
-    slug: "css-to-tailwind",
-    title: "CSS to Tailwind Converter",
-    description: "Transform standard CSS code into Tailwind CSS classes. Modernize your styling workflow.",
-    category: "code",
-    componentKey: "CssToTailwind",
-    icon: "Wind",
-    content: {
-      overview: "Migrate to Tailwind CSS. Convert legacy CSS code into modern utility classes automatically.",
-      howTo: [
-        "Paste CSS.",
-        "View Tailwind classes.",
-        "Copy."
-      ],
-      features: [
-        "Smart mapping.",
-        "Media queries.",
-        "Modern props.",
-        "Instant."
-      ],
-      faq: [
-        { question: "Accurate?", answer: "Mostly yes." },
-        { question: "Arbitrary values?", answer: "Yes." }
-      ]
-    },
-    locales: {
-      en: {
-        title: "CSS to Tailwind Converter",
-        description: "Transform standard CSS code into Tailwind CSS classes.",
-        content: {
-          overview: "Migrate to Tailwind CSS. Convert legacy CSS code automatically.",
-          howTo: ["Paste CSS.", "View.", "Copy."],
-          features: ["Mapping.", "Queries.", "Props.", "Instant."],
-          faq: [{ question: "Accurate?", answer: "Mostly." }]
-        }
-      },
-      es: {
-        title: "CSS a Tailwind",
-        description: "Transforma código CSS estándar a clases de Tailwind.",
-        content: {
-          overview: "Migra a Tailwind CSS. Convierte CSS antiguo automáticamente.",
-          howTo: ["Pega CSS.", "Ver.", "Copiar."],
-          features: ["Mapeo.", "Queries.", "Props.", "Instantáneo."],
-          faq: [{ question: "¿Preciso?", answer: "Mayormente." }]
-        }
-      },
-      ru: {
-        title: "Конвертер CSS в Tailwind",
-        description: "Преобразуйте обычный CSS в классы Tailwind.",
-        content: {
-          overview: "Переходите на Tailwind. Автоматическая конвертация старого CSS.",
-          howTo: ["Вставьте CSS.", "Смотрите.", "Копируйте."],
-          features: ["Маппинг.", "Запросы.", "Свойства.", "Мгновенно."],
-          faq: [{ question: "Точно?", answer: "Почти всегда." }]
-        }
-      }
-    },
-    nextSteps: [
-      { slug: "css-minifier", label: "Minify CSS" }
-    ]
-  },
   "css-minifier": {
     slug: "css-minifier",
     title: "CSS Minifier",
-    description: "Minify CSS code to reduce file size and improve website load speed.",
+    description: "Minify CSS code to reduce file size and improve website load speed. Remove unnecessary whitespace.",
     category: "code",
     componentKey: "CssMinifier",
     icon: "Code2",
     content: {
-      overview: "Speed up your website by minifying CSS. Remove whitespace and comments.",
+      overview: "Speed up your website by minifying your CSS. This tool removes whitespace, comments, and newlines to create the smallest possible file size for production.",
       howTo: [
-        "Paste CSS.",
-        "Minify.",
-        "Copy."
+        "Paste your CSS code.",
+        "Click 'Minify'.",
+        "Copy the optimized code."
       ],
       features: [
-        "Removes spaces.",
-        "Optimizes size.",
-        "Instant.",
-        "SEO friendly."
+        "Removes comments and spaces.",
+        "Optimizes file size.",
+        "Instant processing.",
+        "Essential for SEO speed."
       ],
       faq: [
-        { question: "Revert?", answer: "Use beautifier." },
-        { question: "Space saved?", answer: "15-20%." }
+        { question: "Can I revert it?", answer: "It is hard to read minified code. You should keep a copy of your original CSS." },
+        { question: "How much space does it save?", answer: "Typically 15-20% of the file size, which improves load speed." },
+        { question: "Is it safe for production?", answer: "Yes, minification only removes unnecessary characters, it doesn't change functionality." }
       ]
     },
     locales: {
@@ -1349,7 +1624,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Speed up your website by minifying CSS. Remove whitespace.",
           howTo: ["Paste.", "Minify.", "Copy."],
           features: ["No spaces.", "Small size.", "Instant.", "SEO."],
-          faq: [{ question: "Revert?", answer: "Hard." }]
+          faq: [
+            { question: "Revert?", answer: "Hard, keep backup." },
+            { question: "Savings?", answer: "15-20%." },
+            { question: "Safe?", answer: "Yes." }
+          ]
         }
       },
       es: {
@@ -1359,7 +1638,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Acelera tu web minificando CSS. Elimina espacios.",
           howTo: ["Pega.", "Minifica.", "Copia."],
           features: ["Sin espacios.", "Tamaño.", "Rápido.", "SEO."],
-          faq: [{ question: "¿Revertir?", answer: "Difícil." }]
+          faq: [
+            { question: "¿Revertir?", answer: "Difícil, guarda copia." },
+            { question: "¿Ahorro?", answer: "15-20%." },
+            { question: "¿Seguro?", answer: "Sí." }
+          ]
         }
       },
       ru: {
@@ -1369,7 +1652,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Ускорьте сайт, сжимая CSS. Удаляет пробелы.",
           howTo: ["Вставьте.", "Сжать.", "Копия."],
           features: ["Без пробелов.", "Размер.", "Быстро.", "SEO."],
-          faq: [{ question: "Вернуть?", answer: "Сложно." }]
+          faq: [
+            { question: "Можно вернуть назад?", answer: "Сложно, храните копию." },
+            { question: "Экономия?", answer: "15-20%." },
+            { question: "Безопасно?", answer: "Да." }
+          ]
         }
       }
     },
@@ -1380,26 +1667,27 @@ export const toolsRegistry: Record<string, ToolConfig> = {
   "json-to-typescript": {
     slug: "json-to-typescript",
     title: "JSON to TypeScript",
-    description: "Convert JSON objects into TypeScript interfaces instantly.",
+    description: "Convert JSON objects into TypeScript interfaces instantly. Speed up your development process.",
     category: "code",
     componentKey: "JsonToTypescript",
     icon: "FileCode",
     content: {
-      overview: "Stop writing interfaces manually. Paste JSON and get TypeScript definitions.",
+      overview: "Stop writing interfaces manually. Paste a JSON response from an API, and get the corresponding TypeScript Interface or Type definition instantly.",
       howTo: [
-        "Paste JSON.",
-        "View TS.",
-        "Copy."
+        "Paste your JSON object.",
+        "The TypeScript interface appears instantly.",
+        "Copy to your project."
       ],
       features: [
-        "Nested objects.",
-        "Type inference.",
-        "Arrays.",
-        "Real-time."
+        "Detects nested objects.",
+        "Infers types (string, number, boolean).",
+        "Handles arrays correctly.",
+        "Real-time conversion."
       ],
       faq: [
-        { question: "Optional fields?", answer: "Strict types." },
-        { question: "Secure?", answer: "Yes." }
+        { question: "Does it handle optional fields?", answer: "By default, it creates strict interfaces based on the provided data." },
+        { question: "Is it secure?", answer: "Yes, code never leaves your browser." },
+        { question: "Can it handle complex nested JSON?", answer: "Yes, it recursively generates interfaces for nested objects." }
       ]
     },
     locales: {
@@ -1410,7 +1698,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Stop writing interfaces manually. Paste JSON and get TypeScript definitions.",
           howTo: ["Paste JSON.", "View TS.", "Copy."],
           features: ["Nested.", "Types.", "Arrays.", "Real-time."],
-          faq: [{ question: "Secure?", answer: "Yes." }]
+          faq: [
+            { question: "Secure?", answer: "Yes." },
+            { question: "Nested JSON?", answer: "Supported." },
+            { question: "Arrays?", answer: "Supported." }
+          ]
         }
       },
       es: {
@@ -1420,7 +1712,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Deja de escribir interfaces manualmente. Pega JSON y obtén TS.",
           howTo: ["Pega JSON.", "Ver TS.", "Copia."],
           features: ["Anidado.", "Tipos.", "Arrays.", "Tiempo real."],
-          faq: [{ question: "¿Seguro?", answer: "Sí." }]
+          faq: [
+            { question: "¿Seguro?", answer: "Sí." },
+            { question: "¿JSON anidado?", answer: "Soportado." },
+            { question: "¿Arrays?", answer: "Soportado." }
+          ]
         }
       },
       ru: {
@@ -1430,7 +1726,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Перестаньте писать интерфейсы вручную. Вставьте JSON и получите TS.",
           howTo: ["Вставьте JSON.", "Смотрите TS.", "Копия."],
           features: ["Вложенность.", "Типы.", "Массивы.", "Реал-тайм."],
-          faq: [{ question: "Безопасно?", answer: "Да." }]
+          faq: [
+            { question: "Безопасно?", answer: "Да." },
+            { question: "Вложенный JSON?", answer: "Поддерживается." },
+            { question: "Массивы?", answer: "Поддерживается." }
+          ]
         }
       }
     },
@@ -1441,27 +1741,28 @@ export const toolsRegistry: Record<string, ToolConfig> = {
   "unit-converter": {
     slug: "unit-converter",
     title: "Universal Unit Converter",
-    description: "Convert between common units: Length, Weight, Temperature, Area, and Time.",
+    description: "Convert between common units: Length, Weight, Temperature, Area, and Time. Simple and accurate.",
     category: "converter",
     componentKey: "UnitConverter",
     icon: "RefreshCcw",
     content: {
-      overview: "A simple, all-in-one converter for daily needs. Metric and Imperial units.",
+      overview: "A simple, all-in-one converter for daily needs. Whether you are cooking, traveling, or doing science homework, convert between Metric and Imperial units easily.",
       howTo: [
-        "Select category.",
-        "Enter value.",
-        "Select units.",
-        "Result."
+        "Select the category (e.g., Length, Weight).",
+        "Enter the value.",
+        "Select 'From' and 'To' units.",
+        "See the result instantly."
       ],
       features: [
-        "Length/Weight/Temp.",
-        "Instant.",
-        "Clean.",
-        "Accurate."
+        "Supports Length, Weight, Temp, and more.",
+        "Instant calculation.",
+        "Clean interface.",
+        "Accurate formulas."
       ],
       faq: [
-        { question: "Accurate?", answer: "Yes." },
-        { question: "Temp?", answer: "C/F/K." }
+        { question: "Is it accurate?", answer: "Yes, we use standard scientific conversion factors." },
+        { question: "Can I convert temperature?", answer: "Yes, we support Celsius, Fahrenheit, and Kelvin." },
+        { question: "Is it free?", answer: "Yes, use it as much as you like." }
       ]
     },
     locales: {
@@ -1472,7 +1773,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "A simple, all-in-one converter for daily needs.",
           howTo: ["Category.", "Value.", "Units.", "Result."],
           features: ["Many units.", "Instant.", "Clean.", "Accurate."],
-          faq: [{ question: "Accurate?", answer: "Yes." }]
+          faq: [
+            { question: "Accurate?", answer: "Yes." },
+            { question: "Temp?", answer: "Yes, C/F/K." },
+            { question: "Free?", answer: "Yes." }
+          ]
         }
       },
       es: {
@@ -1482,7 +1787,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Un conversor simple todo en uno para necesidades diarias.",
           howTo: ["Categoría.", "Valor.", "Unidades.", "Resultado."],
           features: ["Muchas unidades.", "Instantáneo.", "Limpio.", "Preciso."],
-          faq: [{ question: "¿Preciso?", answer: "Sí." }]
+          faq: [
+            { question: "¿Preciso?", answer: "Sí." },
+            { question: "¿Temperatura?", answer: "Sí, C/F/K." },
+            { question: "¿Gratis?", answer: "Sí." }
+          ]
         }
       },
       ru: {
@@ -1492,7 +1801,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Простой конвертер все-в-одном для ежедневных нужд.",
           howTo: ["Категория.", "Значение.", "Единицы.", "Результат."],
           features: ["Много единиц.", "Мгновенно.", "Чисто.", "Точно."],
-          faq: [{ question: "Точно?", answer: "Да." }]
+          faq: [
+            { question: "Точно?", answer: "Да." },
+            { question: "Температура?", answer: "Да, C/F/K." },
+            { question: "Бесплатно?", answer: "Да." }
+          ]
         }
       }
     },
@@ -1501,26 +1814,27 @@ export const toolsRegistry: Record<string, ToolConfig> = {
   "base64-converter": {
     slug: "base64-converter",
     title: "Base64 Converter",
-    description: "Encode text/files to Base64 or decode Base64 strings.",
+    description: "Encode text/files to Base64 or decode Base64 strings back to original format.",
     category: "converter",
     componentKey: "Base64Converter",
     icon: "FileCode",
     content: {
-      overview: "Encode text or files into Base64 strings, or decode Base64 back into text.",
+      overview: "A handy tool for developers to encode text or files into Base64 strings, or decode Base64 back into readable text. Essential for data transmission and debugging.",
       howTo: [
-        "Mode (Encode/Decode).",
-        "Paste/Upload.",
-        "Result."
+        "Choose Encode or Decode mode.",
+        "Paste text or upload a file.",
+        "Get the result instantly."
       ],
       features: [
-        "Text and files.",
-        "Fast.",
-        "Large strings.",
-        "UTF-8."
+        "Supports text and files.",
+        "Fast processing.",
+        "Handles large strings.",
+        "UTF-8 support."
       ],
       faq: [
-        { question: "What is Base64?", answer: "Encoding binary as text." },
-        { question: "Encryption?", answer: "No." }
+        { question: "What is Base64?", answer: "It is a way to represent binary data as ASCII text, useful for email and data storage." },
+        { question: "Is it encryption?", answer: "No, it is encoding. It is not secure for passwords." },
+        { question: "Can I decode images?", answer: "Yes, you can convert Base64 strings back to image files." }
       ]
     },
     locales: {
@@ -1531,7 +1845,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Encode text or files into Base64 strings, or decode back.",
           howTo: ["Mode.", "Input.", "Result."],
           features: ["Text/Files.", "Fast.", "Large strings.", "UTF-8."],
-          faq: [{ question: "Encryption?", answer: "No." }]
+          faq: [
+            { question: "Encryption?", answer: "No." },
+            { question: "Images?", answer: "Yes." },
+            { question: "Secure?", answer: "Yes." }
+          ]
         }
       },
       es: {
@@ -1541,7 +1859,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Codifica texto o archivos en Base64, o decodifica.",
           howTo: ["Modo.", "Entrada.", "Resultado."],
           features: ["Texto/Archivos.", "Rápido.", "Grandes cadenas.", "UTF-8."],
-          faq: [{ question: "¿Encriptación?", answer: "No." }]
+          faq: [
+            { question: "¿Encriptación?", answer: "No." },
+            { question: "¿Imágenes?", answer: "Sí." },
+            { question: "¿Seguro?", answer: "Sí." }
+          ]
         }
       },
       ru: {
@@ -1551,7 +1873,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Кодируйте текст или файлы в Base64, или декодируйте.",
           howTo: ["Режим.", "Ввод.", "Результат."],
           features: ["Текст/Файлы.", "Быстро.", "Большие строки.", "UTF-8."],
-          faq: [{ question: "Шифрование?", answer: "Нет." }]
+          faq: [
+            { question: "Шифрование?", answer: "Нет." },
+            { question: "Картинки?", answer: "Да." },
+            { question: "Безопасно?", answer: "Да." }
+          ]
         }
       }
     },
@@ -1560,27 +1886,28 @@ export const toolsRegistry: Record<string, ToolConfig> = {
   "responsive-tester": {
     slug: "responsive-tester",
     title: "Responsive Layout Tester",
-    description: "Test your website on different screen sizes (Mobile, Tablet, Desktop) simultaneously.",
+    description: "Test your website on different screen sizes (Mobile, Tablet, Desktop) simultaneously. Ideal for developers.",
     category: "code",
     componentKey: "ResponsiveTester",
     icon: "Smartphone",
     content: {
-      overview: "Ensure your website looks perfect on every device. Simulates various screen resolutions.",
+      overview: "Ensure your website looks perfect on every device. This tool simulates various screen resolutions including iPhone, iPad, Laptops, and Desktops.",
       howTo: [
-        "Enter URL.",
-        "Select device.",
-        "Orientation.",
-        "Zoom."
+        "Enter your website URL (e.g., localhost:3000).",
+        "Select a device type (Mobile, Tablet, Desktop).",
+        "Toggle orientation (Portrait/Landscape) if needed.",
+        "Use zoom controls to fit large screens on your display."
       ],
       features: [
-        "Presets.",
-        "Landscape/Portrait.",
-        "Zoom.",
-        "Localhost support."
+        "Multiple device presets (iOS, Android, Web).",
+        "Landscape and Portrait modes.",
+        "Zoom scaling for better visibility.",
+        "Works with localhost servers."
       ],
       faq: [
-        { question: "Blank page?", answer: "Some sites block iframes." },
-        { question: "Localhost?", answer: "Yes." }
+        { question: "Why does my site show a blank page?", answer: "Some major sites (like Google) block being shown in iframes for security (X-Frame-Options). It works best with your own projects." },
+        { question: "Can I test localhost?", answer: "Yes! As long as your local server is running, you can test it here." },
+        { question: "Is it accurate?", answer: "It simulates the viewport size perfectly, but does not emulate the actual device hardware." }
       ]
     },
     locales: {
@@ -1591,7 +1918,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Ensure your website looks perfect on every device.",
           howTo: ["URL.", "Device.", "Orient.", "Zoom."],
           features: ["Presets.", "Landscape.", "Zoom.", "Localhost."],
-          faq: [{ question: "Localhost?", answer: "Yes." }]
+          faq: [
+            { question: "Blank page?", answer: "Iframe blocked by site." },
+            { question: "Localhost?", answer: "Yes." },
+            { question: "Accurate?", answer: "Viewport only." }
+          ]
         }
       },
       es: {
@@ -1601,7 +1932,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Asegúrate de que tu sitio se vea perfecto en todos los dispositivos.",
           howTo: ["URL.", "Dispositivo.", "Orientación.", "Zoom."],
           features: ["Preajustes.", "Paisaje.", "Zoom.", "Localhost."],
-          faq: [{ question: "¿Localhost?", answer: "Sí." }]
+          faq: [
+            { question: "¿Página en blanco?", answer: "Bloqueo por iframe." },
+            { question: "¿Localhost?", answer: "Sí." },
+            { question: "¿Preciso?", answer: "Solo viewport." }
+          ]
         }
       },
       ru: {
@@ -1611,7 +1946,11 @@ export const toolsRegistry: Record<string, ToolConfig> = {
           overview: "Убедитесь, что сайт выглядит идеально на любом устройстве.",
           howTo: ["URL.", "Устройство.", "Поворот.", "Зум."],
           features: ["Предустановки.", "Альбомная.", "Зум.", "Localhost."],
-          faq: [{ question: "Localhost?", answer: "Да." }]
+          faq: [
+            { question: "Белый экран?", answer: "Сайт блокирует iframe." },
+            { question: "Localhost?", answer: "Да." },
+            { question: "Точно?", answer: "Только размер экрана." }
+          ]
         }
       }
     },
