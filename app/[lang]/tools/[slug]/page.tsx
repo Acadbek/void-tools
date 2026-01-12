@@ -31,15 +31,16 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
 
   if (!tool) return { title: 'Tool Not Found' };
 
-  // Fetch localized title/desc (fallback to English or tool root properties)
   const localeConfig = tool.locales?.[lang] || tool.locales?.['en'] || { title: tool.title, description: tool.description };
   const title = localeConfig.title;
   const description = localeConfig.description;
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || DOMEIN;
 
+  const ogImageUrl = `${baseUrl}/api/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`;
+
   return {
-    title: `${title} | Void Tools`, // Or use site name from constants
+    title: `${title} | Void Tools`,
     description: description,
     alternates: {
       canonical: `${baseUrl}/${lang}/tools/${slug}`,
@@ -55,8 +56,26 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       description: description,
       url: `${baseUrl}/${lang}/tools/${slug}`,
       type: 'website',
-      // Dynamic Open Graph Image generation based on the tool title (placeholder path)
-      // images: [{ url: `${baseUrl}/api/og?title=${encodeURIComponent(title)}` }], 
+      siteName: 'Void Tools',
+      images: [
+        {
+          url: ogImageUrl,
+          width: 1200,
+          height: 630,
+          alt: `${title} - Void Tools Preview`,
+        },
+      ],
+    },
+    twitter: {
+      card: 'summary_large_image',
+      title: title,
+      description: description,
+      images: [ogImageUrl],
+    },
+    appleWebApp: {
+      capable: true,
+      title: title,
+      statusBarStyle: 'black-translucent',
     },
   };
 }
