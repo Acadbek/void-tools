@@ -11,21 +11,18 @@ const Lightning = ({ hue = 230, xOffset = 0, speed = 1, intensity = 1, size = 1 
     if (!canvas) return;
 
     const resizeCanvas = () => {
-      // Parent container o'lchamini to'liq olish
       canvas.width = canvas.parentElement.clientWidth;
       canvas.height = canvas.parentElement.clientHeight;
     };
     resizeCanvas();
     window.addEventListener('resize', resizeCanvas);
 
-    // 1-O'ZGARISH: Alpha (shaffoflik) ni yoqish
     const gl = canvas.getContext('webgl', { alpha: true, premultipliedAlpha: false });
     if (!gl) {
       console.error('WebGL not supported');
       return;
     }
 
-    // Vertex shader (o'zgarmadi)
     const vertexShaderSource = `
       attribute vec2 aPosition;
       void main() {
@@ -33,7 +30,6 @@ const Lightning = ({ hue = 230, xOffset = 0, speed = 1, intensity = 1, size = 1 
       }
     `;
 
-    // 2-O'ZGARISH: Fragment shaderda shaffoflikni hisoblash
     const fragmentShaderSource = `
       precision mediump float;
       uniform vec2 iResolution;
@@ -163,7 +159,6 @@ const Lightning = ({ hue = 230, xOffset = 0, speed = 1, intensity = 1, size = 1 
     const uIntensityLocation = gl.getUniformLocation(program, 'uIntensity');
     const uSizeLocation = gl.getUniformLocation(program, 'uSize');
 
-    // 4-O'ZGARISH: Blending (aralashtirish) ni yoqish
     gl.enable(gl.BLEND);
     gl.blendFunc(gl.SRC_ALPHA, gl.ONE_MINUS_SRC_ALPHA);
 
@@ -172,7 +167,6 @@ const Lightning = ({ hue = 230, xOffset = 0, speed = 1, intensity = 1, size = 1 
       resizeCanvas();
       gl.viewport(0, 0, canvas.width, canvas.height);
 
-      // 5-O'ZGARISH: Canvasni har safar to'liq shaffof qilib tozalash
       gl.clearColor(0.0, 0.0, 0.0, 0.0);
       gl.clear(gl.COLOR_BUFFER_BIT);
 
@@ -194,7 +188,6 @@ const Lightning = ({ hue = 230, xOffset = 0, speed = 1, intensity = 1, size = 1 
     };
   }, [hue, xOffset, speed, intensity, size]);
 
-  // CSS class orqali to'liq qoplash
   return <canvas ref={canvasRef} className="w-full h-full block" />;
 };
 

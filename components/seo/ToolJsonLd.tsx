@@ -6,18 +6,16 @@ interface Props {
 }
 
 export function ToolJsonLd({ tool, lang }: Props) {
-  // Fallback to default content if locale specific content is missing
   const localeContent = tool.locales?.[lang] || tool.locales?.['en'] || {
     title: tool.title,
     description: tool.description,
-    content: tool.content // Legacy fallback
+    content: tool.content
   };
 
   const title = localeContent.title;
   const description = localeContent.description;
   const faq = localeContent.content?.faq || [];
 
-  // Construct FAQ Schema
   const faqSchema = {
     "@type": "FAQPage",
     "mainEntity": faq.map(f => ({
