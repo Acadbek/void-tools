@@ -119,9 +119,9 @@ export default async function RootLayout({
         >
           <header className="fixed top-0 left-0 right-0 z-50 border-b bg-background/80 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60">
             <nav className="flex items-center justify-between container mx-auto px-4 h-14">
-              <Link href={`/${lang}`} className="inline-flex items-center gap-2 hover:opacity-80 transition-opacity">
+              <Link href={`/${lang}`} className="inline-flex items-center hover:opacity-80 transition-opacity">
                 <Logo className="w-8 h-8 text-primary" />
-                <span className="text-xl font-bold font-saira tracking-tight">void tools</span>
+                <span className="text-xl font-saira tracking-tight mt-[10px]">void tools</span>
               </Link>
 
               <ThemeToggle />

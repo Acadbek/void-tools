@@ -1957,6 +1957,80 @@ export const toolsRegistry: Record<string, ToolConfig> = {
     nextSteps: [
       { slug: "open-graph-preview", label: "Check Social Preview" }
     ]
+  },
+  "docx-to-html": {
+    slug: "docx-to-html",
+    title: "DOCX to HTML Converter",
+    description: "Convert Word documents (.docx) to clean HTML code. Perfect for web developers and content creators.",
+    category: "converter",
+    componentKey: "DocxToHtml",
+    icon: "FileText",
+    content: {
+      overview: "Transform your Microsoft Word documents into editable HTML code. This tool preserves text formatting, tables, and lists while removing complex Word-specific XML, making the HTML clean and web-ready.",
+      howTo: [
+        "Upload a .docx file (Max 10MB).",
+        "Click 'Convert to HTML'.",
+        "Copy the generated HTML code or download the .html file."
+      ],
+      features: [
+        "Preserves formatting (Bold, Italic, Lists).",
+        "Clean HTML output (no Word junk).",
+        "Supports tables and nested structures.",
+        "Fast conversion for documents up to 10MB."
+      ],
+      faq: [
+        { question: "Does it keep my Word formatting?", answer: "Yes, it preserves basic formatting like headings, bold, italics, and lists." },
+        { question: "Can I edit the HTML after conversion?", answer: "Yes, the output is clean HTML, making it easy to edit in any code editor." },
+        { question: "What is the file size limit?", answer: "The maximum file size is 10MB." }
+      ]
+    },
+    locales: {
+      en: {
+        title: "DOCX to HTML Converter",
+        description: "Convert Word documents to clean HTML code.",
+        content: {
+          overview: "Transform Word documents into editable HTML code.",
+          howTo: ["Upload .docx", "Convert", "Download HTML"],
+          features: ["Preserves formatting", "Clean HTML", "Supports tables", "5MB limit"],
+          faq: [
+            { question: "Keeps formatting?", answer: "Yes." },
+            { question: "Edit HTML?", answer: "Yes." },
+            { question: "Size limit?", answer: "5MB." }
+          ]
+        }
+      },
+      es: {
+        title: "Convertidor DOCX a HTML",
+        description: "Convierte documentos de Word a HTML limpio.",
+        content: {
+          overview: "Transforma documentos de Word en código HTML editable.",
+          howTo: ["Subir .docx", "Convertir", "Descargar HTML"],
+          features: ["Preserva formato", "HTML limpio", "Soporta tablas", "Límite 5MB"],
+          faq: [
+            { question: "¿Mantiene formato?", answer: "Sí." },
+            { question: "¿Editar HTML?", answer: "Sí." },
+            { question: "¿Límite tamaño?", answer: "5MB." }
+          ]
+        }
+      },
+      ru: {
+        title: "Конвертер DOCX в HTML",
+        description: "Преобразуйте документы Word в чистый HTML.",
+        content: {
+          overview: "Преобразуйте документы Word в редактируемый HTML код.",
+          howTo: ["Загрузить .docx", "Конвертировать", "Скачать HTML"],
+          features: ["Сохраняет форматирование", "Чистый HTML", "Поддержка таблиц", "Лимит 5MB"],
+          faq: [
+            { question: "Сохраняет форматирование?", answer: "Да." },
+            { question: "Редактировать HTML?", answer: "Да." },
+            { question: "Лимит размера?", answer: "5MB." }
+          ]
+        }
+      }
+    },
+    nextSteps: [
+      { slug: "html-to-docx", label: "Convert HTML to DOCX" }
+    ]
   }
 };
 

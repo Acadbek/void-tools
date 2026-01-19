@@ -184,3 +184,14 @@ body {
   height: 100%;
   position: relative;
 }
+
+
+.docx-paper {
+  background: white;
+  color: black;
+  box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+  padding: 40px;
+  min-height: 297mm;
+  margin: 0 auto;
+  font-family: 'Times New Roman', serif;
+}

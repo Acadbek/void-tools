@@ -123,6 +123,10 @@ const ToolComponents = {
     loading: () => <LoadingSpinner />,
     ssr: false
   }),
+  DocxToHtml: dynamic(() => import("./converter/DocxToHTML"), {
+    loading: () => <LoadingSpinner />,
+    ssr: false
+  }),
 };
 
 export default function ToolRenderer({ componentKey }: { componentKey: string }) {
