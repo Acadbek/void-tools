@@ -234,12 +234,6 @@ export default function DocxToHTML() {
     <div className="min-h-screen bg-gradient-to-br from-zinc-950 via-zinc-900 to-zinc-950 p-6">
       <div className="w-full max-w-7xl mx-auto space-y-6">
 
-        {/* Header */}
-        <div className="text-center space-y-2 mb-8">
-          <h1 className="text-4xl font-bold text-white">DOCX to HTML Converter</h1>
-          <p className="text-zinc-400">Professional document conversion with full formatting support</p>
-        </div>
-
         {/* Upload Area */}
         {!html && (
           <div
