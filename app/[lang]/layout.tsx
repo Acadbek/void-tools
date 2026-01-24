@@ -51,7 +51,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Void Tools - Privacy-First",
     description: "100+ Free online tools. Zero server uploads.",
-    creator: "@voidtools",
+    creator: "@acadb3k",
   },
 
   robots: {
