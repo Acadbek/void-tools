@@ -1,13 +1,58 @@
 import type { NextConfig } from "next";
 
+const securityHeaders = [
+  {
+    key: 'Strict-Transport-Security',
+    value: 'max-age=63072000; includeSubDomains; preload',
+  },
+  {
+    key: 'Content-Security-Policy',
+    value: [
+      "default-src 'self' https: data: blob:",
+      "script-src 'self' 'unsafe-inline' 'unsafe-eval' https:",
+      "style-src 'self' 'unsafe-inline' https:",
+      "img-src 'self' data: blob: https:",
+      "font-src 'self' data: https:",
+      "connect-src 'self' https:",
+      "frame-ancestors 'none'",
+      "form-action 'self'",
+      "object-src 'none'",
+      'base-uri \'self\'',
+      'upgrade-insecure-requests',
+    ].join('; '),
+  },
+  {
+    key: 'Referrer-Policy',
+    value: 'strict-origin-when-cross-origin',
+  },
+  {
+    key: 'X-Content-Type-Options',
+    value: 'nosniff',
+  },
+];
+
 const nextConfig: NextConfig = {
   typescript: {
     ignoreBuildErrors: true,
   },
 
-  plugins: [
-    require('@tailwindcss/typography'),
-  ],
+  // Enable gzip/brotli and remove x-powered-by to improve CWV/security.
+  compress: true,
+  poweredByHeader: false,
+
+  // Prefer modern formats for image responses.
+  images: {
+    formats: ['image/avif', 'image/webp'],
+  },
+
+  async headers() {
+    return [
+      {
+        source: '/(.*)',
+        headers: securityHeaders,
+      },
+    ];
+  },
 };
 
 export default nextConfig;

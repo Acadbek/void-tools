@@ -5,11 +5,13 @@ export default function robots(): MetadataRoute.Robots {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || DOMEIN;
 
   return {
-    rules: {
-      userAgent: '*',
-      allow: '/',
-      disallow: '/private/',
-    },
+    rules: [
+      {
+        userAgent: '*',
+        allow: ['/', '/tools', '/tools/*'],
+        disallow: '/private/',
+      },
+    ],
     sitemap: `${baseUrl}/sitemap.xml`,
   };
 }

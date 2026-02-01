@@ -17,7 +17,7 @@ export async function middleware(request: NextRequest) {
     const locale = defaultLocale;
     return NextResponse.redirect(
       new URL(`/${locale}${pathname.startsWith("/") ? "" : "/"}${pathname}`, request.url)
-    );
+    , 308);
   }
 
   return NextResponse.next();

@@ -36,12 +36,13 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
   const description = localeConfig.description;
 
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || DOMEIN;
+  const metaDescription = `${description} Free, secure, no sign-up online ${tool.category} tool with instant, in-browser results.`;
 
   const ogImageUrl = `${baseUrl}/api/og?title=${encodeURIComponent(title)}&description=${encodeURIComponent(description)}`;
 
   return {
-    title: `${title} | Void Tools`,
-    description: description,
+    title: `${title} - Free, Secure Online Tool | Void Tools`,
+    description: metaDescription,
     alternates: {
       canonical: `${baseUrl}/${lang}/tools/${slug}`,
       languages: {
@@ -52,8 +53,8 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
       },
     },
     openGraph: {
-      title: title,
-      description: description,
+      title: `${title} | Free & Secure Online Tool`,
+      description: metaDescription,
       url: `${baseUrl}/${lang}/tools/${slug}`,
       type: 'website',
       siteName: 'Void Tools',
@@ -68,10 +69,21 @@ export async function generateMetadata({ params }: PageProps): Promise<Metadata>
     },
     twitter: {
       card: 'summary_large_image',
-      title: title,
-      description: description,
+      title: `${title} | Free & Secure Online Tool`,
+      description: metaDescription,
       images: [ogImageUrl],
     },
+    keywords: [
+      title,
+      `${tool.category} tool`,
+      `${tool.slug} online`,
+      'free',
+      'secure',
+      'no sign-up',
+      'fast',
+      'privacy-first',
+      'browser based'
+    ],
     appleWebApp: {
       capable: true,
       title: title,
@@ -98,6 +110,10 @@ export default async function ToolPage({ params }: PageProps) {
     // Fallback if structure is somehow broken
     return notFound();
   }
+
+  const relatedTools = Object.values(toolsRegistry)
+    .filter(t => t.slug !== slug && t.category === tool.category)
+    .slice(0, 3);
 
   return (
     <>
@@ -181,6 +197,24 @@ export default async function ToolPage({ params }: PageProps) {
               ))}
             </div>
           </article>
+
+          {relatedTools.length > 0 && (
+            <section className="max-w-5xl mx-auto">
+              <h2 className="text-2xl font-bold text-foreground mb-6 text-center">Related Tools</h2>
+              <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+                {relatedTools.map((t) => (
+                  <Link
+                    key={t.slug}
+                    href={`/${lang}/tools/${t.slug}`}
+                    className="block p-6 bg-card border border-border rounded-xl hover:shadow-md transition duration-200"
+                  >
+                    <div className="font-bold text-lg mb-2">{t.title}</div>
+                    <p className="text-sm text-muted-foreground line-clamp-2">{t.description}</p>
+                  </Link>
+                ))}
+              </div>
+            </section>
+          )}
         </div>
       </main>
     </>

@@ -1,4 +1,5 @@
 import { ToolConfig } from "@/types";
+import { DOMEIN } from "@/constants";
 
 interface Props {
   tool: ToolConfig;
@@ -15,6 +16,17 @@ export function ToolJsonLd({ tool, lang }: Props) {
   const title = localeContent.title;
   const description = localeContent.description;
   const faq = localeContent.content?.faq || [];
+  const howTo = localeContent.content?.howTo || [];
+  const features = localeContent.content?.features || [];
+
+  const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || DOMEIN;
+  const pageUrl = `${baseUrl}/${lang}/tools/${tool.slug}`;
+
+  const applicationCategory = tool.category === "code"
+    ? "DeveloperApplication"
+    : tool.category === "pdf"
+      ? "DocumentApplication"
+      : "UtilitiesApplication";
 
   const faqSchema = {
     "@type": "FAQPage",
@@ -28,21 +40,37 @@ export function ToolJsonLd({ tool, lang }: Props) {
     }))
   };
 
+  const howToSchema = {
+    "@type": "HowTo",
+    "name": `How to use ${title}`,
+    "description": description,
+    "totalTime": "PT1M",
+    "step": howTo.map((step, index) => ({
+      "@type": "HowToStep",
+      "position": index + 1,
+      "name": step,
+      "text": step
+    }))
+  };
+
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [
       {
         "@type": "SoftwareApplication",
         "name": title,
-        "description": description,
+        "url": pageUrl,
+        "applicationCategory": applicationCategory,
+        "description": `${description} Free, secure, no sign-up online tool with instant results.`,
         "operatingSystem": "Web, Android, iOS",
-        "applicationCategory": tool.category === "code" ? "DeveloperApplication" : "UtilitiesApplication",
+        "featureList": features.length ? features : ["Free", "Online", "Secure", "Fast"],
         "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "USD"
         }
       },
+      ...(howTo.length > 0 ? [howToSchema] : []),
       ...(faq.length > 0 ? [faqSchema] : [])
     ]
   };

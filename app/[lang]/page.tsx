@@ -9,9 +9,10 @@ export const metadata: Metadata = {
   description: "100+ Free online tools. Merge PDF, Compress Images, QR Code Generator and more. No registration required.",
 };
 
-export default function Home() {
+export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
+  const { lang } = await params;
   return (
-    <main className="min-h-screen bg-background text-foreground">
+    <div className="min-h-screen bg-background text-foreground">
       <section className="bg-card relative overflow-hidden">
         <div className="absolute inset-0 z-0 pointer-events-none opacity-60">
           <Lightning
@@ -37,7 +38,7 @@ export default function Home() {
       </section>
 
       <section className="container mx-auto px-4 z-20">
-        <ToolGrid tools={toolsList} />
+        <ToolGrid tools={toolsList} lang={lang} />
       </section>
 
       <section className="bg-card py-16">
@@ -60,7 +61,7 @@ export default function Home() {
         </div>
       </section>
 
-    </main>
+    </div>
   );
 }
 

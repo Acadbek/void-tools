@@ -8,6 +8,7 @@ import { Search } from "lucide-react";
 
 interface Props {
   tools: ToolConfig[];
+  lang?: string;
 }
 
 const categories = [
@@ -23,7 +24,7 @@ const categories = [
   { id: 'social', label: 'Social' },
 ];
 
-export default function ToolGrid({ tools }: Props) {
+export default function ToolGrid({ tools, lang = 'en' }: Props) {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
 
@@ -81,7 +82,7 @@ export default function ToolGrid({ tools }: Props) {
             const Icon = getIconByName(tool.icon);
             return (
               <Link
-                href={`/tools/${tool.slug}`}
+                href={`/${lang}/tools/${tool.slug}`}
                 key={tool.slug}
                 className="group bg-card p-6 rounded-2xl border border-border shadow-sm hover:shadow-xl hover:-translate-y-1 transition-all duration-300"
               >

@@ -5,6 +5,7 @@ import { Analytics } from "@vercel/analytics/react";
 import Link from "next/link";
 import { ThemeProvider } from "@/components/theme/provider";
 import { ThemeToggle } from "@/components/theme/toggle";
+import { DOMEIN } from "@/constants";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -21,58 +22,56 @@ const saira = Saira({
   subsets: ["latin"],
 });
 
-export const metadata: Metadata = {
-  metadataBase: new URL('https://tool.nosirjonov.uz'),
+const siteUrl = process.env.NEXT_PUBLIC_SITE_URL || DOMEIN;
 
-  title: {
-    default: "Void Tools - Privacy-First Online Tools",
-    template: "%s | Void Tools",
-  },
-  description: "100% Free, Privacy-First online tools. Merge PDF, Convert Images, Generate QR Codes and more. No file uploads, everything runs in your browser.",
+export async function generateMetadata({ params }: { params: Promise<{ lang: string }> }): Promise<Metadata> {
+  const { lang } = await params;
+  const canonical = `${siteUrl}/${lang || 'en'}`;
 
-  keywords: [
-    "online tools", "pdf merger", "image converter", "privacy first",
-    "secure tools", "web utilities", "nextjs tools", "free tools"
-  ],
-
-  authors: [{ name: "Void Tools Team" }],
-  creator: "Void Tools",
-
-  openGraph: {
-    type: "website",
-    locale: "en_US",
-    url: "https://tool.nosirjonov.uz",
-    siteName: "Void Tools",
-    title: "Void Tools - Secure & Free Online Utilities",
-    description: "Secure, browser-based tools for developers and creators. No server uploads.",
-  },
-
-  twitter: {
-    card: "summary_large_image",
-    title: "Void Tools - Privacy-First",
-    description: "100+ Free online tools. Zero server uploads.",
-    creator: "@acadb3k",
-  },
-
-  robots: {
-    index: true,
-    follow: true,
-  },
-
-  alternates: {
-    canonical: "./",
-    languages: {
-      "en": "/en",
-      "es": "/es",
-      "ru": "/ru",
+  return {
+    metadataBase: new URL(siteUrl),
+    title: {
+      default: "Void Tools - Free, Secure Online Tools",
+      template: "%s | Void Tools",
     },
-  },
-
-  verification: {
-    google: 'google-site-verification=oRaQSCavKaGz06iuMH1NTnN4_H8SWZX2Omud68s7xEs',
-  },
-};
-
+    description: "Free, secure, no sign-up online tools. Merge PDF, compress images, and generate assets in your browser with instant results.",
+    keywords: [
+      "void tools", "free online tools", "secure pdf merge", "image compressor", "no sign-up tools",
+      "fast online utilities", "browser based", "privacy first", "webp converter"
+    ],
+    authors: [{ name: "Void Tools Team" }],
+    creator: "Void Tools",
+    openGraph: {
+      type: "website",
+      locale: "en_US",
+      url: canonical,
+      siteName: "Void Tools",
+      title: "Void Tools - Secure & Free Online Utilities",
+      description: "Secure, browser-based tools for developers and creators. No server uploads.",
+    },
+    twitter: {
+      card: "summary_large_image",
+      title: "Void Tools - Privacy-First",
+      description: "100+ Free online tools. Zero server uploads.",
+      creator: "@acadb3k",
+    },
+    robots: {
+      index: true,
+      follow: true,
+    },
+    alternates: {
+      canonical,
+      languages: {
+        "en": `${siteUrl}/en`,
+        "es": `${siteUrl}/es`,
+        "ru": `${siteUrl}/ru`,
+      },
+    },
+    verification: {
+      google: 'google-site-verification=oRaQSCavKaGz06iuMH1NTnN4_H8SWZX2Omud68s7xEs',
+    },
+  };
+}
 
 export function Logo(props: React.SVGProps<SVGSVGElement>) {
   return (
@@ -117,7 +116,7 @@ export default async function RootLayout({
           disableTransitionOnChange
           attribute="class"
         >
-          <header className="fixed top-0 left-0 right-0 z-50 border-b bg-background/80 backdrop-blur-sm supports-[backdrop-filter]:bg-background/60">
+          <header className="fixed top-0 left-0 right-0 z-50 border-b bg-background/80 backdrop-blur-sm supports-backdrop-filter:bg-background/60">
             <nav className="flex items-center justify-between container mx-auto px-4 h-14">
               <Link href={`/${lang}`} className="inline-flex items-center hover:opacity-80 transition-opacity">
                 <Logo className="w-8 h-8 text-primary" />
