@@ -3,18 +3,16 @@
 import dynamic from "next/dynamic";
 import { Loader2 } from "lucide-react";
 
-// Loading component
 const LoadingSpinner = () => (
   <div className="flex items-center justify-center h-64 text-blue-600">
     <Loader2 className="w-8 h-8 animate-spin" />
   </div>
 );
 
-// Lazy imports - Har bir yangi tool shu yerga qo'shiladi
 const ToolComponents = {
   WordCounter: dynamic(() => import("./text/WordCounter"), {
     loading: () => <LoadingSpinner />,
-    ssr: false // Client side only tools uchun
+    ssr: false 
   }),
   ImageConverter: dynamic(() => import("./image/ImageConverter"), {
     loading: () => <LoadingSpinner />,
@@ -22,7 +20,7 @@ const ToolComponents = {
   }),
   PdfMerger: dynamic(() => import("./pdf/PdfMerger"), {
     loading: () => <LoadingSpinner />,
-    ssr: false // Browser library!
+    ssr: false 
   }),
   QrGenerator: dynamic(() => import("./generator/QrGenerator"), {
     loading: () => <LoadingSpinner />, ssr: false
@@ -113,7 +111,7 @@ const ToolComponents = {
   }),
   OpenGraphPreview: dynamic(() => import("./social/OpenGraphPreview"), {
     loading: () => <LoadingSpinner />,
-    ssr: false // Brauzerda ishlagani ma'qul
+    ssr: false
   }),
   ResponsiveTester: dynamic(() => import("./dev/ResponsiveTester"), {
     loading: () => <LoadingSpinner />,
