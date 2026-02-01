@@ -79,8 +79,8 @@ export default async function ToolPage({ params }: PageProps) {
       <main className="min-h-screen bg-background py-12">
         <div className="container mx-auto px-4 max-w-5xl">
           <nav className="text-sm text-muted-foreground mb-6">
-            <Link href="/" className="hover:text-blue-600">
-              Home
+            <Link href="/en/tools" className="hover:text-blue-600">
+              Tools
             </Link>
             <span className="mx-2">/</span>
             <span className="capitalize">{tool.category}</span>

@@ -6,12 +6,26 @@ export default function sitemap(): MetadataRoute.Sitemap {
 	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || DOMEIN;
 	const locales = ['en', 'es', 'ru'];
 
-	const routes = locales.map(lang => ({
-		url: `${baseUrl}/${lang}`,
-		lastModified: new Date(),
-		changeFrequency: 'daily' as const,
-		priority: 1,
-	}));
+	const routes = locales.flatMap(lang => ([
+		{
+			url: `${baseUrl}/${lang}`,
+			lastModified: new Date(),
+			changeFrequency: 'daily' as const,
+			priority: 1,
+		},
+		{
+			url: `${baseUrl}/${lang}/tools`,
+			lastModified: new Date(),
+			changeFrequency: 'daily' as const,
+			priority: 0.9,
+		},
+		{
+			url: `${baseUrl}/${lang}/blog`,
+			lastModified: new Date(),
+			changeFrequency: 'weekly' as const,
+			priority: 0.6,
+		},
+	]));
 
 	const toolRoutes = Object.values(toolsRegistry).flatMap((tool) =>
 		locales.map(lang => ({
