@@ -6,7 +6,6 @@ import {
 import { useCssConverter } from "@/hooks/code/css-to-tailwind/use-css-converter";
 import { useClipboard } from "@/hooks/code/css-to-tailwind/use-clipboard";
 
-// Syntax Highlighting imports
 import Editor from "react-simple-code-editor";
 import { highlight, languages } from "prismjs/components/prism-core";
 import "prismjs/components/prism-css";
@@ -14,7 +13,6 @@ import "prismjs/components/prism-clike";
 import "prismjs/themes/prism-tomorrow.css";
 
 export default function CssToTailwindPro() {
-  // unsupportedProps arrayini hookdan qabul qilamiz (default bo'sh array)
   const { input, setInput, output, status, error, reset, unsupportedProps = [] } = useCssConverter();
   const { copied, copy } = useClipboard();
 
@@ -69,7 +67,7 @@ export default function CssToTailwindPro() {
                   fontFamily: '"Fira Code", "Fira Mono", monospace',
                   fontSize: 14,
                   color: '#f8f8f2',
-                  backgroundColor: 'transparent', // Orqa fon shaffof bo'lishi shart
+                  backgroundColor: 'transparent',
                   minHeight: '100%'
                 }}
               />
@@ -77,7 +75,6 @@ export default function CssToTailwindPro() {
           </div>
         </div>
 
-        {/* O'NG TOMON - TAILWIND RESULT */}
         <div className="flex flex-col gap-2 h-full min-h-0">
           <div className="flex justify-between items-center h-5 px-1">
             <label className="text-xs font-bold text-muted-foreground uppercase">Tailwind Result</label>
@@ -141,7 +138,6 @@ export default function CssToTailwindPro() {
               )}
             </div>
 
-            {/* OGOHLANTIRISH BLOKI (UNSUPPORTED PROPERTIES) */}
             {unsupportedProps.length > 0 && output && (
               <div className="shrink-0 w-full p-3 rounded-xl border border-amber-500/20 bg-amber-500/10 animate-in slide-in-from-top-2">
                 <div className="flex items-center gap-2 mb-2 text-amber-500">
