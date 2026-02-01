@@ -55,6 +55,9 @@ importers:
       jszip:
         specifier: ^3.10.1
         version: 3.10.1
+      lodash-es:
+        specifier: ^4.17.23
+        version: 4.17.23
       lucide-react:
         specifier: ^0.559.0
         version: 0.559.0(react@19.2.1)
