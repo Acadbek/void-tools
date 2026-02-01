@@ -19,27 +19,19 @@ export default function CssMinifier() {
   const [copied, setCopied] = useState(false);
   const [stats, setStats] = useState({ original: 0, minified: 0, saved: 0 });
 
-  // Minifikatsiya logikasi (Regex based - High Performance)
   const minifyCss = () => {
     if (!input.trim()) return;
 
     let minified = input
-      // 1. Commentlarni olib tashlash
       .replace(/\/\*[\s\S]*?\*\//g, "")
-      // 2. Yangi qatorlarni va bo'shliqlarni bitta probelga almashtirish
       .replace(/\s+/g, " ")
-      // 3. { } : ; , oldidagi va ketidagi bo'shliqlarni olib tashlash
       .replace(/\s*([{}:;,])\s*/g, "$1")
-      // 4. Eng oxirgi ; ni olib tashlash (block ichidagi)
       .replace(/;}/g, "}")
-      // 5. 0px -> 0 qilish (ixtiyoriy, lekin foydali)
       .replace(/([\s:])0(?:px|em|rem|%|in|cm|mm|pc|pt)/g, "$10")
-      // 6. Ranglarni qisqartirish (masalan #ffffff -> #fff) - Murakkabligi uchun hozircha qo'shmadim
       .trim();
 
     setOutput(minified);
 
-    // Statistika hisoblash
     const originalSize = new Blob([input]).size;
     const minifiedSize = new Blob([minified]).size;
     const savedPercent = originalSize > 0
@@ -70,7 +62,6 @@ export default function CssMinifier() {
     setStats({ original: 0, minified: 0, saved: 0 });
   };
 
-  // Format Size
   const formatBytes = (bytes: number) => {
     if (bytes === 0) return "0 B";
     const k = 1024;
