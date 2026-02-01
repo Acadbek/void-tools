@@ -72,26 +72,77 @@ export default function WordToPdf() {
 
 		const element = previewRef.current;
 
+		const normalizeColorToRgb = (value: string, fallback: string) => {
+			const canvas = document.createElement('canvas');
+			const ctx = canvas.getContext('2d');
+			if (!ctx) return fallback;
+			try {
+				ctx.fillStyle = '#000';
+				ctx.fillStyle = value;
+				return ctx.fillStyle;
+			} catch {
+				return fallback;
+			}
+		};
+
+		const inlineNormalizedColors = (root: HTMLElement) => {
+			const propsToNormalize = [
+				'color',
+				'backgroundColor',
+				'borderTopColor',
+				'borderRightColor',
+				'borderBottomColor',
+				'borderLeftColor',
+				'outlineColor',
+				'fill',
+				'stroke',
+			] as const;
+
+			const all: HTMLElement[] = [root, ...Array.from(root.querySelectorAll<HTMLElement>('*'))];
+			for (const el of all) {
+				const computed = window.getComputedStyle(el);
+				for (const prop of propsToNormalize) {
+					const val = computed[prop] as unknown as string;
+					if (!val || val === 'transparent' || val === 'rgba(0, 0, 0, 0)') continue;
+					if (val.includes('lab(') || val.includes('oklab(') || val.includes('oklch(') || val.includes('color-mix(')) {
+						const fallback = prop.toLowerCase().includes('background') ? '#ffffff' : '#000000';
+						(el.style as any)[prop] = normalizeColorToRgb(val, fallback);
+					}
+				}
+			}
+		};
+
 		const opt = {
-			margin: [15, 15, 15, 15] as [number, number, number, number], // Marginlarni sal kattalashtirdim (standart A4 uchun)
+			margin: [15, 15, 15, 15] as [number, number, number, number],
 			filename: file?.name.replace(".docx", ".pdf") || "document.pdf",
 			image: { type: 'jpeg' as const, quality: 0.98 },
+
 			html2canvas: {
 				scale: 2,
 				useCORS: true,
 				letterRendering: true,
 				backgroundColor: "#ffffff",
-				// Canvas balandligini oshirishga urinish
 				windowHeight: element.scrollHeight
 			},
 			jsPDF: { unit: 'mm', format: 'a4', orientation: 'portrait' as const },
-			// MUHIM O'ZGARISH: 'avoid-all' olib tashlandi.
-			// Endi u kerak joyda sahifani buzib (split) keyingi betga o'tadi.
 			pagebreak: { mode: ['css', 'legacy'] }
 		};
 
 		try {
-			await html2pdf().set(opt).from(element).save();
+			const exportNode = element.cloneNode(true) as HTMLDivElement;
+			const container = document.createElement('div');
+			container.style.position = 'fixed';
+			container.style.left = '-100000px';
+			container.style.top = '0';
+			container.style.width = `${element.offsetWidth}px`;
+			container.style.background = '#ffffff';
+			container.appendChild(exportNode);
+			document.body.appendChild(container);
+
+			inlineNormalizedColors(exportNode);
+
+			await html2pdf().set(opt).from(exportNode).save();
+			document.body.removeChild(container);
 		} catch (err) {
 			console.error(err);
 			setError("Error generating PDF. Try a smaller file.");
@@ -193,10 +244,6 @@ export default function WordToPdf() {
 							id="pdf-content"
 							className="bg-white shadow-xl p-[15mm] min-h-[297mm] w-full max-w-[210mm] origin-top"
 						>
-							{/* CSS FIXES FOR LISTS:
-                       - page-break-inside: auto (Listlarga bo'linishga ruxsat berish)
-                       - ul, ol marginlarini to'g'irlash
-                    */}
 							<style>{`
                         .pdf-preview p, .pdf-preview h1, .pdf-preview h2, .pdf-preview h3, .pdf-preview span, .pdf-preview li {
                             color: #000000 !important;
