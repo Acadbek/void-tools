@@ -1,9 +1,11 @@
 import { NextResponse } from "next/server";
 import type { NextRequest } from "next/server";
 
+// Supported locales for internationalization
 const locales = ["en", "es", "ru"];
 const defaultLocale = "en";
 
+// Middleware handles locale-based routing and redirects
 export async function middleware(request: NextRequest) {
   const pathname = new URL(request.url).pathname;
 
@@ -12,7 +14,7 @@ export async function middleware(request: NextRequest) {
     (locale) => !pathname.startsWith(`/${locale}/`) && pathname !== `/${locale}`
   );
 
-  // Redirect if there is no locale
+  // Redirect to default locale if missing (308 = permanent redirect)
   if (pathnameIsMissingLocale) {
     const locale = defaultLocale;
     return NextResponse.redirect(

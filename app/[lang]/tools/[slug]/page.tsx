@@ -107,7 +107,6 @@ export default async function ToolPage({ params }: PageProps) {
   const content = localeContent.content;
 
   if (!content) {
-    // Fallback if structure is somehow broken
     return notFound();
   }
 
@@ -130,7 +129,6 @@ export default async function ToolPage({ params }: PageProps) {
             <span className="text-foreground font-medium">{localeContent.title}</span>
           </nav>
 
-          {/* SECTION 1: THE TOOL (Above the Fold) */}
           <section className="flex flex-col items-center justify-center mb-16">
             <header className="text-center mb-10 mt-6">
               <h1 className="text-3xl md:text-5xl font-extrabold text-foreground mb-4">
@@ -146,7 +144,6 @@ export default async function ToolPage({ params }: PageProps) {
             </div>
           </section>
 
-          {/* NEXT STEPS (Logical Interlinking) */}
           {tool.nextSteps && tool.nextSteps.length > 0 && (
             <section className="max-w-3xl mx-auto mb-16">
               <h3 className="text-xl font-bold mb-4 text-center">Next Steps</h3>
@@ -164,7 +161,6 @@ export default async function ToolPage({ params }: PageProps) {
             </section>
           )}
 
-          {/* SECTION 2: SEO CONTENT (Below the Fold) */}
           <article className="prose text-muted-foreground prose-lg dark:prose-invert max-w-3xl mx-auto bg-card p-8 rounded-2xl border border-border shadow-sm mb-12">
 
             <h2 className="text-foreground">About {localeContent.title}</h2>

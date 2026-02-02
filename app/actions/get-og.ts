@@ -1,5 +1,6 @@
 "use server";
 
+// Open Graph data structure for social media previews
 export interface OGData {
 	title: string;
 	description: string;
@@ -8,6 +9,7 @@ export interface OGData {
 	siteName?: string;
 }
 
+// Fetches Open Graph metadata from a given URL for preview generation
 export async function fetchOpenGraphData(url: string): Promise<{ success: boolean; data?: OGData; error?: string }> {
 	try {
 		if (!url.startsWith("http")) {
@@ -16,7 +18,7 @@ export async function fetchOpenGraphData(url: string): Promise<{ success: boolea
 
 		const response = await fetch(url, {
 			headers: {
-				"User-Agent": "bot-crawler-preview", // Ba'zi saytlar botlarni bloklashi mumkin
+				"User-Agent": "bot-crawler-preview",
 			},
 			next: { revalidate: 3600 }
 		});
@@ -25,23 +27,22 @@ export async function fetchOpenGraphData(url: string): Promise<{ success: boolea
 
 		const html = await response.text();
 
-		// Oddiy Regex orqali parsing (Cheerio kutubxonasi shart emas)
+		// Parse meta tags using regex (avoids Cheerio dependency)
 		const getMetaContent = (prop: string) => {
 			const regex = new RegExp(`<meta property="${prop}" content="([^"]*)"`, "i");
 			const match = html.match(regex);
 			if (match) return match[1];
 
-			// Alternativ: name=""
 			const regexName = new RegExp(`<meta name="${prop}" content="([^"]*)"`, "i");
 			const matchName = html.match(regexName);
 			return matchName ? matchName[1] : "";
 		};
 
-		// Image qidirish
+		// Extract Open Graph image (fallback to Twitter card)
 		let image = getMetaContent("og:image");
 		if (!image) image = getMetaContent("twitter:image");
 
-		// Title qidirish
+		// Extract page title with multiple fallbacks
 		let title = getMetaContent("og:title");
 		if (!title) title = getMetaContent("twitter:title");
 		if (!title) {
@@ -49,12 +50,12 @@ export async function fetchOpenGraphData(url: string): Promise<{ success: boolea
 			title = titleMatch ? titleMatch[1] : "";
 		}
 
-		// Description qidirish
+		// Extract description from various meta tags
 		let description = getMetaContent("og:description");
 		if (!description) description = getMetaContent("twitter:description");
 		if (!description) description = getMetaContent("description");
 
-		// Nisbiy URL larni to'g'irlash (masalan: /image.png -> https://site.com/image.png)
+		// Convert relative image URLs to absolute
 		if (image && !image.startsWith("http")) {
 			const urlObj = new URL(url);
 			image = `${urlObj.protocol}//${urlObj.host}${image}`;

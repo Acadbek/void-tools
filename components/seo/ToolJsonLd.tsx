@@ -6,6 +6,7 @@ interface Props {
   lang: string;
 }
 
+// Generates JSON-LD structured data for SEO (Schema.org markup)
 export function ToolJsonLd({ tool, lang }: Props) {
   const localeContent = tool.locales?.[lang] || tool.locales?.['en'] || {
     title: tool.title,
@@ -22,12 +23,14 @@ export function ToolJsonLd({ tool, lang }: Props) {
   const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || DOMEIN;
   const pageUrl = `${baseUrl}/${lang}/tools/${tool.slug}`;
 
+  // Map tool category to Schema.org application type
   const applicationCategory = tool.category === "code"
     ? "DeveloperApplication"
     : tool.category === "pdf"
       ? "DocumentApplication"
       : "UtilitiesApplication";
 
+  // FAQ schema for rich snippets in search results
   const faqSchema = {
     "@type": "FAQPage",
     "mainEntity": faq.map(f => ({
@@ -40,6 +43,7 @@ export function ToolJsonLd({ tool, lang }: Props) {
     }))
   };
 
+  // HowTo schema for step-by-step instructions
   const howToSchema = {
     "@type": "HowTo",
     "name": `How to use ${title}`,
@@ -53,6 +57,7 @@ export function ToolJsonLd({ tool, lang }: Props) {
     }))
   };
 
+  // Combined structured data graph for the tool
   const jsonLd = {
     "@context": "https://schema.org",
     "@graph": [

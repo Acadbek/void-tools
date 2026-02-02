@@ -8,7 +8,6 @@ export const metadata: Metadata = {
   title: "Void Tools - Free Online PDF, Image & Text Tools",
   description: "100+ Free online tools. Merge PDF, Compress Images, QR Code Generator and more. No registration required.",
 };
-
 export default async function Home({ params }: { params: Promise<{ lang: string }> }) {
   const { lang } = await params;
   return (
@@ -37,10 +36,12 @@ export default async function Home({ params }: { params: Promise<{ lang: string 
         </div>
       </section>
 
+      {/* Tool grid section */}
       <section className="container mx-auto px-4 z-20">
         <ToolGrid tools={toolsList} lang={lang} />
       </section>
 
+      {/* Features section */}
       <section className="bg-card py-16">
         <div className="container mx-auto px-4 max-w-4xl text-center">
           <h2 className="text-3xl font-bold mb-6">Why use Void Tools?</h2>

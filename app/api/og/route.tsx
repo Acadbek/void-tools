@@ -39,7 +39,7 @@ export async function GET(request: Request) {
               transform: 'translateX(-50%)',
               width: '600px',
               height: '600px',
-              background: 'radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, rgba(0,0,0,0) 70%)', // Purple glow
+              background: 'radial-gradient(circle, rgba(124, 58, 237, 0.15) 0%, rgba(0,0,0,0) 70%)',
               filter: 'blur(80px)',
             }}
           />

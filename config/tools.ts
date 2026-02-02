@@ -1,5 +1,6 @@
 import { ToolConfig } from "@/types";
 
+// Registry of all available tools with metadata, content, and i18n support
 export const toolsRegistry: Record<string, ToolConfig> = {
   // --- SEO & SOCIAL TOOLS ---
   "seo-meta-generator": {

@@ -2,10 +2,12 @@ import { MetadataRoute } from 'next';
 import { toolsRegistry } from '@/config/tools';
 import { DOMEIN } from '@/constants';
 
+// Generates XML sitemap for SEO (search engine indexing)
 export default function sitemap(): MetadataRoute.Sitemap {
 	const baseUrl = process.env.NEXT_PUBLIC_SITE_URL || DOMEIN;
 	const locales = ['en', 'es', 'ru'];
 
+	// Static routes for each locale
 	const routes = locales.flatMap(lang => ([
 		{
 			url: `${baseUrl}/${lang}`,
@@ -27,6 +29,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
 		},
 	]));
 
+	// Dynamic tool routes for each locale
 	const toolRoutes = Object.values(toolsRegistry).flatMap((tool) =>
 		locales.map(lang => ({
 			url: `${baseUrl}/${lang}/tools/${tool.slug}`,

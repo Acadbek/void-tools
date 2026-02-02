@@ -36,15 +36,16 @@ const nextConfig: NextConfig = {
     ignoreBuildErrors: true,
   },
 
-  // Enable gzip/brotli and remove x-powered-by to improve CWV/security.
+  // Enable gzip/brotli compression and remove x-powered-by header
   compress: true,
   poweredByHeader: false,
 
-  // Prefer modern formats for image responses.
+  // Modern image formats for better performance
   images: {
     formats: ['image/avif', 'image/webp'],
   },
 
+  // Apply security headers to all routes
   async headers() {
     return [
       {

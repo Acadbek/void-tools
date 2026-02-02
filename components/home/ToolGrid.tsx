@@ -11,6 +11,7 @@ interface Props {
   lang?: string;
 }
 
+// Category filter options for the tool grid
 const categories = [
   { id: 'all', label: 'All' },
   { id: 'pdf', label: 'PDF' },
@@ -28,7 +29,7 @@ export default function ToolGrid({ tools, lang = 'en' }: Props) {
   const [search, setSearch] = useState("");
   const [activeCategory, setActiveCategory] = useState("all");
 
-  // Filter Logic (Juda tez ishlashi uchun useMemo)
+  // Filter tools based on search query and selected category (memoized for performance)
   const filteredTools = useMemo(() => {
     return tools.filter((tool) => {
       const matchesSearch = tool.title.toLowerCase().includes(search.toLowerCase()) ||
@@ -42,10 +43,10 @@ export default function ToolGrid({ tools, lang = 'en' }: Props) {
   return (
     <div className="space-y-8">
 
-      {/* 1. SEARCH & FILTER SECTION */}
+      {/* Search & Filter Section */}
       <div className="flex flex-col md:flex-row gap-4 justify-between items-center">
 
-        {/* Categories (Tabs) */}
+        {/* Category tabs */}
         <div className="flex gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto no-scrollbar">
           {categories.map((cat) => (
             <button
@@ -75,7 +76,7 @@ export default function ToolGrid({ tools, lang = 'en' }: Props) {
         </div>
       </div>
 
-      {/* 2. TOOLS GRID */}
+      {/* Tools Grid */}
       {filteredTools.length > 0 ? (
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
           {filteredTools.map((tool) => {

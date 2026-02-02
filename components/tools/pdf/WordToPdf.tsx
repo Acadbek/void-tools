@@ -3,7 +3,7 @@
 import { useState, useCallback, useRef } from "react";
 import { useDropzone } from "react-dropzone";
 import mammoth from "mammoth";
-// @ts-ignore
+// @ts-ignore - html2pdf.js lacks TypeScript definitions
 import html2pdf from "html2pdf.js";
 import {
 	FileText,
@@ -16,6 +16,7 @@ import {
 	AlertTriangle
 } from "lucide-react";
 
+// Converts Word documents to PDF with client-side processing
 export default function WordToPdf() {
 	const [file, setFile] = useState<File | null>(null);
 	const [htmlContent, setHtmlContent] = useState<string>("");
@@ -23,6 +24,7 @@ export default function WordToPdf() {
 	const [error, setError] = useState<string | null>(null);
 	const previewRef = useRef<HTMLDivElement>(null);
 
+	// Handle file drop from react-dropzone
 	const onDrop = useCallback(async (acceptedFiles: File[]) => {
 		const selected = acceptedFiles[0];
 		if (!selected?.name.endsWith(".docx")) {
@@ -37,6 +39,7 @@ export default function WordToPdf() {
 		try {
 			const arrayBuffer = await selected.arrayBuffer();
 
+			// Configure mammoth to convert images to base64 data URLs
 			const options = {
 				convertImage: mammoth.images.imgElement((image) => {
 					return image.read("base64").then((imageBuffer) => {
@@ -47,6 +50,7 @@ export default function WordToPdf() {
 				})
 			};
 
+			// Convert DOCX to HTML for preview
 			const result = await mammoth.convertToHtml({ arrayBuffer }, options);
 
 			if (!result.value.trim()) {
@@ -154,7 +158,6 @@ export default function WordToPdf() {
 	return (
 		<div className="flex flex-col h-full gap-6">
 
-			{/* HEADER */}
 			<div className="bg-primary/10 border border-primary/20 p-4 rounded-xl flex items-start gap-3">
 				<div className="p-2 bg-primary/20 rounded-lg text-primary">
 					<FileType className="w-5 h-5" />
@@ -169,12 +172,10 @@ export default function WordToPdf() {
 
 			<div className="grid lg:grid-cols-2 gap-6 h-full">
 
-				{/* LEFT PANE */}
 				<div className="flex flex-col gap-4">
 					<div
 						{...getRootProps()}
-						className={`
-              flex-1 border-2 border-dashed rounded-xl flex flex-col items-center justify-center p-8 transition-all cursor-pointer min-h-[300px]
+						className={`flex-1 border-2 border-dashed rounded-xl flex flex-col items-center justify-center p-8 transition-all cursor-pointer min-h-[300px]
               ${isDragActive ? 'border-primary bg-primary/10' : 'border-border hover:border-primary hover:bg-muted'}
               ${file ? 'bg-primary/5 border-primary/30' : 'bg-card'}
             `}
@@ -208,8 +209,7 @@ export default function WordToPdf() {
 					<button
 						onClick={handleDownloadPdf}
 						disabled={!htmlContent || isConverting}
-						className={`
-                  w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-all shadow-md
+						className={`w-full py-4 rounded-xl font-bold text-lg flex items-center justify-center gap-2 transition-all shadow-md
                   ${!htmlContent || isConverting
 								? 'bg-muted text-muted-foreground cursor-not-allowed shadow-none'
 								: 'bg-primary text-primary-foreground hover:bg-primary/90 hover:shadow-lg'}
@@ -233,7 +233,6 @@ export default function WordToPdf() {
 					)}
 				</div>
 
-				{/* RIGHT PANE: PREVIEW */}
 				<div className="bg-muted border border-border rounded-xl p-4 overflow-y-auto max-h-[600px] flex flex-col items-center relative">
 					<div className="sticky top-0 bg-muted/90 backdrop-blur w-full py-2 z-10 flex items-center gap-2 text-xs font-bold text-muted-foreground uppercase tracking-wider mb-2 border-b border-border">
 						<Eye className="w-4 h-4" /> Preview
@@ -250,19 +249,17 @@ export default function WordToPdf() {
                             line-height: 1.6;
                         }
                         
-                        /* Listlarni to'g'ri bo'lish uchun stillar */
                         .pdf-preview ul, .pdf-preview ol {
                             page-break-inside: auto !important;
                             margin-bottom: 1em;
                         }
                         
                         .pdf-preview li {
-                            page-break-inside: avoid; /* Bitta elementni ichini buzmang */
-                            page-break-after: auto;   /* Elementdan keyin buzsa bo'ladi */
+                            page-break-inside: avoid;
+                            page-break-after: auto;
                             margin-bottom: 0.5em;
                         }
 
-                        /* Jadval bo'linishi */
                         .pdf-preview table {
                           page-break-inside: auto;
                         }
